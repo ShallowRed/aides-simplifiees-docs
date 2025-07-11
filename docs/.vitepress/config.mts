@@ -5,6 +5,7 @@ export default defineConfig({
   title: "Aides simplifiées",
   description: "Documentation technique et méthodologique pour la modélisation et la simulation des aides publiques",
   lang: 'fr-FR',
+  base: '/aides-simplifiees-docs/',
   markdown: {
     config(md) {
       md.use(MermaidMarkdown);
