@@ -1,162 +1,138 @@
-# Historique des simulateurs dans l'écosystème public
+# Historique des simulateurs d'aides dans l'écosystème public
 
-Cette section retrace l'évolution des simulateurs d'aides publiques en France et situe le projet Aides simplifiées dans ce contexte historique.
+Afin de situer le projet Aides simplifiées dans son contexte, il est utile de retracer l'évolution historique des simulateurs de prestations et de droits en France. Depuis les premiers calculateurs fiscaux des années 1990 jusqu'aux approches de "Rules as Code" aujourd'hui explorées, le rôle du numérique dans l'accès aux droits a beaucoup évolué.
 
-::: info Section en développement
-Cette section sera enrichie au fur et à mesure avec nos recherches sur l'histoire des simulateurs publics français et internationaux.
-:::
+## Les précurseurs : premières simulations fiscales (années 1990)
 
-## Les précurseurs (années 1990-2000)
+Les premiers simulateurs publics en ligne en France sont apparus dans le domaine fiscal. Dès le milieu des années 1990, l'administration fiscale propose aux contribuables un moyen d'estimer le montant de leur impôt annuel. En 2000, le portail officiel impots.gouv.fr généralise ce service.
 
-### Première génération : simulateurs fiscaux
+### Caractéristiques de la première génération
 
-Les premiers simulateurs publics français sont apparus dans le domaine fiscal :
-- **1995** : Premier simulateur d'impôt sur le revenu en ligne
-- **2000** : Généralisation sur impots.gouv.fr
-- **Caractéristiques** : Calculs complexes mais publics restreints (contribuables avertis)
+- **Public averti** : supposait une bonne connaissance du système d'imposition
+- **Logique administrative existante** : reproduction en ligne des formulaires papier
+- **Développement en silos** : chaque administration créait son propre outil
 
-### Limites de la première génération
-- **Public expert** : Nécessitait une connaissance préalable du système fiscal
-- **Logique administrative** : Reproduisait la complexité des formulaires papier
-- **Silos** : Chaque administration développait ses propres outils
+Cette première génération a démontré la faisabilité de la dématérialisation de calculs complexes pour le citoyen, tout en révélant ses limites en termes d'expérience usager.
 
-## L'émergence des simulateurs sociaux (années 2000-2010)
+## L'essor des simulateurs sociaux sectoriels (années 2000)
 
-### Développement par les organismes sociaux
+Dans les années 2000, d'autres organismes publics développent leurs propres simulateurs, marquant une deuxième génération plus orientée vers le grand public.
 
-#### CAF : Pionnière des simulateurs d'aides sociales
-- **2001** : Premier simulateur APL en ligne
-- **2005** : Extension aux allocations familiales
-- **Innovation** : Interface plus accessible au grand public
+### La CAF fait figure de précurseur
 
-#### Pôle emploi : Simulateurs d'aide au retour à l'emploi
-- **2008** : Simulateur d'allocation chômage
-- **2012** : Simulateur de prime d'activité
+- **2001** : Premier simulateur en ligne pour l'Aide personnalisée au logement (APL)
+- **2005** : Extension aux allocations familiales et à la PAJE
+- **Innovation** : Interface plus accessible, langage simplifié, questions enchaînées de façon interactive
 
-### Caractéristiques de cette période
-- **Approche sectorielle** : Un organisme = un simulateur
-- **Amélioration UX** : Prise en compte progressive de l'expérience utilisateur
-- **Maintien des silos** : Pas de vision transversale
+### Pôle emploi : Simulateurs emploi/chômage
 
-## La révolution numérique (années 2010-2020)
+- **2008** : Simulateur d'allocation chômage (ARE)
+- **Fin 2000s** : Outils pour simuler les dispositifs incitatifs à la reprise d'activité
 
-### Modernisation de l'action publique
+Dans cette période 2000-2010, chaque organisme conçoit son simulateur dans son périmètre. L'approche reste très sectorielle mais on note une amélioration progressive de l'ergonomie.
 
-#### Programme de dématérialisation
-- **2012** : Lancement du programme "France Numérique 2012-2020"
-- **2016** : Loi pour une République numérique
-- **Objectif** : 100% des démarches publiques en ligne
+## La transformation numérique de l'action publique (années 2010)
 
-#### Émergence de beta.gouv.fr (2013)
-- **Philosophie** : Startups d'État centrées utilisateur
-- **Méthode** : Développement itératif et open source
-- **Impact** : Nouveau paradigme pour les services publics numériques
+Les années 2010 voient une accélération de la transformation numérique de l'État, avec deux dynamiques complémentaires.
 
-### Premiers simulateurs transversaux
+### Modernisation et dématérialisation à grande échelle
 
-#### Mes Aides (2014-2020)
-- **Innovation** : Premier simulateur multi-aides français
-- **Périmètre** : 25+ aides nationales et locales
-- **Méthode** : Approche centrée utilisateur, développement itératif
-- **Technologie** : OpenFisca + interface web moderne
+- **2012** : Création du SGMAP et programme "France numérique 2012-2020"
+- **2016** : Loi pour une République numérique (ouverture des données et algorithmes publics)
+- **2017** : Mise en place du Portail national des droits sociaux (mesdroitssociaux.gouv.fr)
 
-#### Service-public.fr : Simulateurs intégrés
-- **2016** : Intégration de simulateurs dans le portail national
-- **Approche** : Information + simulation + orientation
-- **Limite** : Périmètre restreint aux aides nationales
+### Nouveau paradigme des "startups d'État" (Beta.gouv)
 
-## Vers l'écosystème actuel (2020-2025)
+En 2013, l'incubateur de services numériques de l'État (beta.gouv.fr) propose de créer de petites équipes autonomes capables de développer rapidement des services publics innovants.
 
-### Diversification des acteurs
+**Innovation majeure : Mes Aides (2014)**
+- Premier simulateur transversal multi-prestations en France
+- Une seule simulation pour vérifier ses droits à plus de 25 aides différentes
+- S'appuie sur OpenFisca, moteur de calcul open source
+- Succès d'usage : jusqu'à 30 000 simulations par jour en 2019
 
-#### Collectivités territoriales
-- **Métropoles** : Simulateurs d'aides locales (Lyon, Lille, Rennes...)
-- **Départements** : Simulateurs d'aides sociales départementales
-- **Enjeu** : Coordination avec le niveau national
+Cette période introduit un nouveau paradigme : celui d'un service public numérique "le plus simple possible pour l'utilisateur, quitte à gérer la complexité en coulisses".
 
-#### Associations et tiers de confiance
-- **CAP Retraite** : Simulateurs de retraite
-- **1jeune1solution** : Simulateurs d'aides jeunesse
-- **Rôle** : Médiation et accompagnement
+## Vers l'écosystème actuel des simulateurs (2020-2025)
 
-### Évolutions technologiques
+Au début des années 2020, l'écosystème se diversifie encore davantage.
 
-#### Multiplication des moteurs de règles
-- **OpenFisca** : Référence pour la fiscalité et le social
-- **Publicodes** : Émergence d'une alternative plus accessible
-- **Enjeu** : Interopérabilité et réutilisabilité
+### Diversification des porteurs de simulateurs
 
-#### Intelligence artificielle et personnalisation
-- **Chatbots** : Interfaces conversationnelles (Éva, assistant CNAM...)
-- **Recommandation** : Personnalisation proactive des aides
-- **Prospective** : Personal Regulation Assistants (PRA)
+- **Collectivités territoriales** : métropoles et villes développent leurs simulateurs locaux
+- **Associations et tiers de confiance** : positionnement comme intermédiaires
+- **Exemple** : 1jeune1solution.gouv.fr (2020) avec plus de 1000 aides pour les moins de 30 ans
 
-## Le contexte international
+### Évolutions technologiques majeures
 
-### Précurseurs nordiques
+**Moteurs de règles :**
+- **OpenFisca** : référence pour la modélisation du système socio-fiscal français
+- **Publicodes** : alternative récente, accent sur la lisibilité des règles
 
-#### Finlande : Benefits.kela.fi
-- **2010** : Premier simulateur multi-aides européen
-- **Approche** : Guichet unique numérique
-- **Résultats** : Réduction significative du non-recours
+**Intelligence Artificielle :**
+- Assistants virtuels et chatbots pour guider les usagers
+- Systèmes de recommandation proactive
+- Objectif : administration "anticipative" qui notifie automatiquement les droits
 
-#### Estonie : e-gouvernement intégral
-- **2014** : 99% des services publics en ligne
-- **Principe** : "Once only" - dire une seule fois ses informations
-- **Innovation** : Interopérabilité systématique entre administrations
+## Le contexte international et l'approche « Rules as Code »
 
-### Émergence du "Rules as Code"
+### Pionniers nordiques
 
-#### Nouvelle-Zélande : Better Rules
-- **2018** : Programme national "Rules as Code"
-- **Objectif** : Législation directement exécutable
-- **Impact** : Réduction des délais de mise en œuvre
+- **Finlande** : Portail benefits de la Kela (2010), simulateur multi-prestations pionnier
+- **Estonie** : 99% des services publics en ligne dès 2014, principe du "Once Only"
 
-#### OCDE : Standards internationaux
-- **2020** : Publication du premier guide international
-- **2023** : Adoption par 12 pays membres
-- **Vision** : Réglementation "digital by design"
+### "Rules as Code" : vers la réglementation exécutable
+
+Depuis quelques années, un mouvement international promeut l'idée de rendre les lois directement compréhensibles par les machines dès leur écriture.
+
+- **Nouvelle-Zélande** : Programme Better Rules (2018) pour produire en parallèle le texte juridique et sa version exécutable
+- **OCDE** : Guide "Cracking the Code" (2020) sur les principes du Rule as Code
+- **France** : Début d'exploration via Etalab
 
 ## Positionnement d'Aides simplifiées
 
-### Héritages et innovations
+### Ce que nous reprenons des expériences passées
 
-#### Ce qu'on reprend des expériences passées
-- **Approche centrée utilisateur** (heritage beta.gouv.fr)
-- **Moteurs de règles open source** (OpenFisca/Publicodes)
-- **Méthodologie itérative** et tests utilisateurs
+- **Approche centrée sur l'utilisateur** : approche beta.gouv
+- **Moteurs de règles open source** : contribution aux communs numériques existants
+- **Méthode itérative et agile** : amélioration continue basée sur les retours
+- **Implication des experts métier** : garantie d'exactitude des règles
 
-#### Ce qu'on apporte de nouveau
-- **Focus méthodologique** : Documentation des processus de modélisation
-- **Approche collaborative** : Implication des experts métier dans la modélisation
-- **Réutilisabilité** : Outils et méthodes pour faciliter l'essaimage
+### Ce que nous apportons de nouveau
 
-### Vision pour l'avenir
+- **Focus méthodologique** : documentation et formalisation de la méthodologie de modélisation
+- **Approche collaborative multi-acteurs** : processus pour que les experts contribuent directement
+- **Réutilisabilité et essaimage** : outils pensés pour être facilement réutilisés par d'autres
+- **Infrastructure partagée** : méthode de travail et bibliothèque commune de règles
 
-#### Court terme (2025-2027)
-- **Consolidation** : Stabilisation des outils et méthodes
-- **Essaimage** : Adoption par d'autres acteurs publics
-- **Interopérabilité** : Standards pour l'échange de règles modélisées
+## Vision à moyen terme
 
-#### Moyen terme (2027-2030)
-- **Personal Regulation Assistants** : Assistants personnels réglementaires
-- **Proactivité** : Notification automatique des droits
-- **Européanisation** : Extension aux aides européennes
+### Court terme (2025-2027)
+- **Consolidation** : stabilisation des outils existants, sécurité, accessibilité
+- **Essaimage** : adoption par d'autres acteurs publics
+- **Standards d'interopérabilité** : formats d'API et données communs
 
-## Leçons apprises de l'histoire
+### Moyen terme (2027-2030)
+- **Personal Regulation Assistants (PRA)** : assistants personnels réglementaires
+- **Proactivité** : notification automatique des droits
+- **Européanisation** : intégration des aides européennes, interconnexions entre pays
+
+## Leçons apprises et facteurs de réussite
 
 ### Facteurs de succès
-1. **Implication utilisateur** dès la conception
-2. **Expertise métier** dans l'équipe projet
-3. **Technologies ouvertes** et réutilisables
-4. **Itération rapide** et amélioration continue
-5. **Partenariats** avec les institutions porteuses des aides
+1. **Impliquer l'utilisateur** dès la conception
+2. **Associer l'expertise métier** dans l'équipe projet
+3. **S'appuyer sur des technologies ouvertes** et éprouvées
+4. **Itérer rapidement** et améliorer en continu
+5. **Nouer des partenariats** avec les institutions métier
 
 ### Écueils à éviter
-1. **Complexification** : Reproduire la complexité administrative
-2. **Silos** : Développer sans coordination avec l'existant
-3. **Techno-solutionnisme** : Croire que la technique résout tous les problèmes
-4. **Abandon de la maintenance** : Ne pas anticiper l'évolution dans le temps
+1. **Reproduire la complexité administrative** sans simplifier l'expérience
+2. **Travailler en silos** sans coordination
+3. **Techno-solutionnisme** : croire que la technologie résoudra tout
+4. **Négliger la maintenance** sur la durée
+
+L'étude de cette histoire montre le chemin parcouru et celui restant à faire. Aides simplifiées s'appuie sur les enseignements du passé pour innover dans la manière d'informer les citoyens sur leurs droits, dans une logique de transformation numérique de l'action publique qui place la donnée et les algorithmes au service de l'humain et de l'égalité d'accès aux droits.
 
 ### Évolutions nécessaires
 1. **Standards** : Interopérabilité entre simulateurs

@@ -1,21 +1,20 @@
 # Introduction
 
-Aujourd'hui, il existe une multitude d'aides portées par différents acteurs (État, collectivités, opérateurs, etc.), à destination de publics très divers. Ces dispositifs évoluent dans le temps, utilisent des critères parfois proches mais rarement identiques, et sont rarement accessibles via un point d'entrée unique. 
+En France, il existe une multitude d'aides publiques portées par des acteurs variés (État, collectivités locales, organismes sociaux, etc.), à destination de publics très divers. Ces dispositifs évoluent régulièrement, utilisent des critères souvent proches mais rarement identiques, et ne sont que rarement accessibles via un point d'entrée unique.
 
-**Résultat** : il est difficile pour une personne de savoir clairement ce à quoi elle est éligible, à un moment donné, dans sa situation réelle.
+**Conséquence** : il est difficile pour une personne de savoir clairement à quelles aides elle est éligible, compte tenu de sa situation réelle. Par exemple, on estime que près de 80 % des personnes éligibles à une aide pour une complémentaire santé ne la demandent pas en raison de la complexité des démarches.
 
-## Le problème
+## Problèmes identifiés
 
-Les informations disponibles sont souvent soit :
-- **Partielles** : ne couvrent qu'une partie des aides disponibles
-- **Techniques** : formulées dans un langage juridique difficile à comprendre
-- **Dispersées** : réparties sur de multiples sites et services
+Les informations disponibles sur les aides publiques présentent plusieurs limites :
 
-Même quand on les trouve, il est difficile de comprendre ce qu'elles impliquent concrètement, ou de vérifier qu'on n'est pas passé à côté d'un droit.
+- **Parcellaires** : chaque source ne couvre qu'une partie des aides existantes
+- **Techniques** : descriptions formulées dans un langage juridique ou administratif difficile à comprendre
+- **Dispersées** : éparpillées sur de multiples sites web et services, sans portail centralisé
 
-## Notre mission
+Le parcours actuel de l'usager pour connaître ses droits est complexe et incertain, engendrant iniquité et inégalités d'accès aux aides.
 
-**Aides simplifiées** part d'un objectif simple : **rendre l'information sur les aides plus claire, plus accessible, plus actionnable**.
+## Objectifs du projet Aides simplifiées
 
 Pour rendre l'information plus claire et plus actionnable, au bon moment, au bon endroit, aides simplifiées travaille sur deux faces de la même pièce :
 

@@ -4,9 +4,9 @@
 
 La modélisation des règles d'aides publiques s'inscrit dans une démarche d'**égalité** et d'**équité** territoriale et sociale. En rendant l'information accessible de manière uniforme, nous contribuons à réduire les inégalités d'accès aux droits.
 
-## Réponse à l'AMI (Appel à Manifestation d'Intérêt)
+## Contexte et enjeux
 
-Notre démarche s'inscrit dans le cadre des politiques publiques de modernisation et de simplification de l'accès aux services publics. Elle répond aux enjeux identifiés dans les appels à manifestation d'intérêt pour l'amélioration de l'expérience usager.
+Notre démarche s'inscrit dans l'objectif de simplification et de modernisation de l'action publique. Elle répond notamment aux enjeux identifiés dans les programmes gouvernementaux de transformation numérique, visant à améliorer l'expérience usager dans les services publics.
 
 ## Le choix du médium numérique
 
@@ -30,24 +30,32 @@ Le numérique ne remplace pas l'accompagnement humain mais le complète :
 ## Impact attendu
 
 ### Pour les usagers
+En offrant un premier niveau d'information automatisé, le simulateur joue un rôle d'orientation et de pré-diagnostic. Il permet à l'usager d'arriver mieux informé à un rendez-vous physique.
 
-- **Découverte proactive** des droits
+### Pour les professionnels
+Ces outils sont des aides à la décision. Un conseiller peut utiliser le simulateur comme support lors d'un entretien pour vérifier en direct les droits de l'usager.
+
+La modélisation numérique libère du temps pour l'humain là où il apporte la plus forte valeur (l'accompagnement personnalisé) tout en automatisant les tâches de calcul et de vérification.
+
+## Impacts attendus
+
+### Pour les usagers
+- **Découverte proactive** de leurs droits
 - **Gain de temps** dans les démarches
-- **Réduction des erreurs** et des non-recours
-- **Meilleure compréhension** des dispositifs
+- **Moins d'erreurs** dans les formulaires
+- **Meilleure compréhension** de l'offre d'aides
 
 ### Pour les administrations
-
 - **Harmonisation** des pratiques
-- **Réduction des erreurs** de traitement
-- **Optimisation** des ressources humaines
+- **Réduction des erreurs** de traitement et des indus
+- **Optimisation des ressources** (redéploiement du temps agent vers l'accompagnement qualitatif)
 - **Amélioration** de la qualité de service
 
-### Pour l'écosystème
-
-- **Réutilisabilité** des modélisations entre acteurs
+### Pour l'écosystème global
+- **Modélisations réutilisables** par d'autres acteurs
 - **Contribution collective** à la maintenance des règles
-- **Transparence** des critères d'attribution
+- **Plus grande transparence** des critères d'attribution
+- **Innovation supplémentaire** (comparateurs, services d'agrégation)
 - **Innovation** dans les services aux usagers
 
 ::: warning Important
