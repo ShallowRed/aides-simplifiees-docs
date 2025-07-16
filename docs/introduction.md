@@ -34,11 +34,11 @@ Nous développons des **outils publics, gratuits, ouverts et réutilisables** d�
 
 Notre rôle est d'apporter aux personnes concernées une réponse rapide à la question :
 
-> **"À quelles aides puis-je prétendre dans ma situation, ici et maintenant ?"**
+> **"À quelles aides puis-je prétendre dans ma situation, ici et à date ?"**
 
-Ces informations personnalisées à l'usager sur les aides auxquels il a droit, qu'elles prennent la forme de simulateurs, de notifications proactives ou de chatbot, reposent sur une **bibliothèque de règles modélisées** à partir des textes réglementaires, dans des langages et moteurs de calcul open source.
+Ces informations personnalisées à l'usager sur les aides auxquels il a droit, qu'elles qu'en soit la forme (simulateurs, notifications proactives, chatbot, ...), reposent sur une **bibliothèque de règles modélisées** à partir des textes réglementaires, dans des langages et moteurs de calcul __open source__.
 
-Nous publions aussi les composants, la documentation technique et les principes méthodologiques pour faciliter la réutilisation et la contribution de nos travaux.
+Nous publions aussi en __open source__ les composants, la documentation technique et les principes méthodologiques pour faciliter la réutilisation et la contribution de nos travaux.
 
 ## Nos principes
 
@@ -47,7 +47,7 @@ Parce que les règles changent, parce que les situations évoluent, parce que le
 - **Structurés autour de règles lisibles et vérifiables**
 - **Conçus pour être maintenus dans le temps**  
 - **Pensés pour l'interopérabilité**
-- **Développés en open source, par défaut**
+- **Développés en open source contributifs, par défaut**
 
 ::: info État d'avancement
 À date, nous avons développé plusieurs simulateurs opérationnels et documenté notre méthodologie de modélisation des règles d'aides publiques.
