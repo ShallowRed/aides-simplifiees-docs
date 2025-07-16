@@ -62,6 +62,6 @@ API, widget, iframe pour intégrer dans d'autres sites.
 
 Choisissez votre point d'entrée selon votre besoin :
 
-- **Nouveau projet** → [Modéliser une aide](/simulateurs/modeliser-une-aide)
-- **Projet complexe** → [Simulateur multi-aide](/simulateurs/simulateur-multi-aide)  
+- **Nouveau produit** → [Modéliser une aide](/simulateurs/modeliser-une-aide)
+- **Produit complexe** → [Simulateur multi-aide](/simulateurs/simulateur-multi-aide)  
 - **Questionnement méthodologique** → [Importance de la modélisation](/simulateurs/importance-modelisation)
