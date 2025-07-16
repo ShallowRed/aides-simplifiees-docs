@@ -22,15 +22,15 @@ Pour rendre l'information plus claire et plus actionnable, au bon moment, au bon
 
 ### 1. L'expérience utilisateur
 
-Pour afficher cette information à l'usager de la manière la plus UX-friendly possible (ex. via une notification proactive [^1]) via des méthodologies et outils front-end.
+Pour afficher cette information à l'usager de la manière la plus UX-friendly possible (ex. via une notification proactive [^1]) Aides simplifiées développe des méthodologies et des interfaces numériques.
 
 ### 2. La donnée de qualité
 
-Pour que l'information affichée à l'usager soit toujours à jour et exacte, une bibliothèque de règles modélisées facilement maintenable par une communauté d'experts, ainsi que les outils qui permettent de faire circuler ou de consommer cette "donnée".
+Pour que l'information affichée à l'usager soit toujours à jour, exacte et transparente, Aides simplifiées contribue à une bibliothèque de règles modélisées facilement maintenable par une communauté d'experts, ainsi que les outils qui permettent de faire circuler ou de consommer cette "donnée".
 
 ## Notre approche
 
-Nous développons des **outils publics, gratuits et réutilisables** délivrant une information personnalisée à l'usager sur les aides auxquelles il peut prétendre : la bonne aide, au bon moment au bon endroit. 
+Nous développons des **outils publics, gratuits, ouverts et réutilisables** délivrant une information personnalisée à l'usager sur les aides auxquelles il peut prétendre : la bonne aide, au bon moment au bon endroit. 
 
 Notre rôle est d'apporter aux personnes concernées une réponse rapide à la question :
 
