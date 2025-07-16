@@ -1,6 +1,6 @@
 # Historique des simulateurs d'aides dans l'écosystème public
 
-Afin de situer le projet Aides simplifiées dans son contexte, il est utile de retracer l'évolution historique des simulateurs de prestations et de droits en France. Depuis les premiers calculateurs fiscaux des années 1990 jusqu'aux approches de "Rules as Code" aujourd'hui explorées, le rôle du numérique dans l'accès aux droits a beaucoup évolué.
+Afin de situer le produit Aides simplifiées dans son contexte, il est utile de retracer l'évolution historique des simulateurs de prestations et de droits en France. Depuis les premiers calculateurs fiscaux des années 1990 jusqu'aux approches de "Rules as Code" aujourd'hui explorées, le rôle du numérique dans l'accès aux droits a beaucoup évolué.
 
 ## Les précurseurs : premières simulations fiscales (années 1990)
 
@@ -121,7 +121,7 @@ Depuis quelques années, un mouvement international promeut l'idée de rendre le
 
 ### Facteurs de succès
 1. **Impliquer l'utilisateur** dès la conception
-2. **Associer l'expertise métier** dans l'équipe projet
+2. **Associer l'expertise métier** dans l'équipe produit
 3. **S'appuyer sur des technologies ouvertes** et éprouvées
 4. **Itérer rapidement** et améliorer en continu
 5. **Nouer des partenariats** avec les institutions métier
@@ -141,7 +141,7 @@ L'étude de cette histoire montre le chemin parcouru et celui restant à faire. 
 4. **Inclusion** : Accessibilité pour tous les publics
 
 ::: tip Pour aller plus loin
-Cette analyse historique nourrit notre réflexion prospective. Découvrez notre vision dans la [présentation du projet](/introduction).
+Cette analyse historique nourrit notre réflexion prospective. Découvrez notre vision dans la [présentation du produit Aides simplifiées](/introduction).
 :::
 
 ## Sources et références
@@ -161,6 +161,6 @@ Cette analyse historique nourrit notre réflexion prospective. Découvrez notre 
 
 ## Prochaines étapes
 
-- [Retourner à l'introduction du projet](/introduction)
+- [Retourner à l'introduction du produit Aides simplifiées](/introduction)
 - [Explorer la méthodologie des simulateurs](/simulateurs/)
 - [Consulter le glossaire technique](/glossaire)

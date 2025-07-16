@@ -4,7 +4,7 @@ Documentation technique et méthodologique pour la modélisation et la simulatio
 
 ## 🚀 Déploiement automatique sur GitHub Pages
 
-Ce projet est configuré pour un déploiement automatique sur GitHub Pages via GitHub Actions.
+Ce produit est configuré pour un déploiement automatique sur GitHub Pages via GitHub Actions.
 
 ### Configuration
 
@@ -63,7 +63,7 @@ pnpm run docs:build
 pnpm run docs:preview
 ```
 
-## 📁 Structure du projet
+## 📁 Structure du dépôt
 
 ```
 ├── docs/                          # Documentation source

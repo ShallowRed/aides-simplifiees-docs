@@ -1,4 +1,4 @@
-# Aides simplifiées : Documentation du projet
+# Aides simplifiées : Documentation du produit
 
 ## À propos de cette documentation
 
@@ -17,7 +17,7 @@ L'équipe Aides simplifiées a développé plusieurs simulateurs opérationnels 
 ## Cibles
 
 - **Expert·e·s métier** au sein d'opérateurs d'aides, de tarifs solidaires, de taxes
-- **Équipes techniques** qui souhaitent modéliser des règles ou contribuer au projet
+- **Équipes techniques** qui souhaitent modéliser des règles ou contribuer au produit
 - **Partenaires institutionnels** cherchant à réutiliser nos outils
 
 ::: tip
@@ -26,7 +26,7 @@ Cette documentation est en constante évolution. N'hésitez pas à [contribuer](
 
 ## Commencer
 
-- [Introduction au projet](/introduction)
+- [Introduction au produit Aides simplifiées](/introduction)
 - [Pourquoi modéliser les aides ?](/pourquoi)
 - [Guide des simulateurs](/simulateurs/)
 

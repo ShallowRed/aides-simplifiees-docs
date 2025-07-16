@@ -14,7 +14,7 @@ Les informations disponibles sur les aides publiques présentent plusieurs limit
 
 Le parcours actuel de l'usager pour connaître ses droits est complexe et incertain, engendrant iniquité et inégalités d'accès aux aides.
 
-## Objectifs du projet Aides simplifiées
+## Objectifs du produit Aides simplifiées
 
 Pour rendre l'information plus claire et plus actionnable, au bon moment, au bon endroit, aides simplifiées travaille sur deux faces de la même pièce :
 
