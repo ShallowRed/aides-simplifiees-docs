@@ -17,10 +17,12 @@ Le parcours actuel de l'usager pour connaître ses droits est complexe et incert
 ## Objectifs du produit Aides simplifiées
 
 Pour rendre l'information plus claire et plus actionnable, au bon moment, au bon endroit, aides simplifiées travaille sur deux faces de la même pièce :
+* l'expérience utilisateur
+* la donnée de qualité
 
 ### 1. L'expérience utilisateur
 
-Pour afficher cette information à l'usager de la manière la plus UX-friendly possible (ex. via une notification proactive) via des méthodologies et outils front-end.
+Pour afficher cette information à l'usager de la manière la plus UX-friendly possible (ex. via une notification proactive [^1]) via des méthodologies et outils front-end.
 
 ### 2. La donnée de qualité
 
@@ -56,3 +58,6 @@ Parce que les règles changent, parce que les situations évoluent, parce que le
 - [Comprendre pourquoi modéliser les aides](/pourquoi)
 - [Découvrir notre approche des simulateurs](/simulateurs/)
 - [Explorer notre glossaire technique](/glossaire)
+
+[^1] Lancée à l'occasion du [sixième comité interministériel de la transformation publique](https://www.modernisation.gouv.fr/actualites/tenue-du-6eme-comite-interministeriel-de-la-transformation-publique-citp) en juillet 2021, __l'administration proactive__ a pour objectifs la lutte contre le non-recours aux droits et la simplification des démarches administratives grâce aux partages d'informations (de données) entre administrations.  
+Elle va au devant des usagers. Elle ne peut être qu'à leur bénéfice (personne physique ou personne morale) et jamais à des fins de lutte contre la fraude.
