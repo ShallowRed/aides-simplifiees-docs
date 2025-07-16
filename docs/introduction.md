@@ -12,7 +12,7 @@ Les informations disponibles sur les aides publiques présentent plusieurs limit
 - **Techniques** : descriptions formulées dans un langage juridique ou administratif difficile à comprendre
 - **Dispersées** : éparpillées sur de multiples sites web et services
 
-Le parcours actuel de l'usager pour connaître ses droits est complexe et incertain, engendrant iniquité et inégalités d'accès aux aides.
+Le parcours actuel de l'usager pour connaître ses droits est complexe et incertain, ce qui accroît le risque d'iniquité et d'inégalité d'accès aux aides.
 
 ## Objectifs du produit Aides simplifiées
 
