@@ -18,7 +18,7 @@ L'équipe Aides simplifiées a développé et géré en production plusieurs sim
 
 - **Expert·e·s métier** au sein d'opérateurs d'aides, de tarification solidaire, de réduction de prélèvements
 - **Équipes techniques** qui souhaitent modéliser des règles ou contribuer au produit
-- **Partenaires institutionnels** intéressés par la réutilisation de nos outils
+- **Partenaires institutionnels publics et privés** intéressés par la réutilisation de nos outils
 
 ::: tip
 Cette documentation est en constante évolution. N'hésitez pas à [contribuer](https://github.com/betagouv/aides-simplifiees-docs) pour l'améliorer !
