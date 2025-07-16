@@ -16,7 +16,7 @@ L'équipe Aides simplifiées a développé et géré en production plusieurs sim
 
 ## Cibles
 
-- **Expert·e·s métier** au sein d'opérateurs d'aides, de tarifs solidaires, de taxes
+- **Expert·e·s métier** au sein d'opérateurs d'aides, de tarification solidaire, de réduction de prélèvements
 - **Équipes techniques** qui souhaitent modéliser des règles ou contribuer au produit
 - **Partenaires institutionnels** intéressés par la réutilisation de nos outils
 
