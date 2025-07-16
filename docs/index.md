@@ -2,7 +2,7 @@
 
 ## À propos de cette documentation
 
-Cette documentation présente les méthodologies, outils et apprentissages de l'équipe Aides simplifiées pour modéliser des règles d'aides publiques, créer des simulateurs user-friendly et maintenir ces outils dans le temps.
+Cette documentation présente les méthodologies, outils et apprentissages de l'équipe [Aides simplifiées](https://beta.gouv.fr/startups/droit-data-gouv-fr-simulateurs-de-droits.html) pour modéliser des règles d'aides publiques, créer des simulateurs user-friendly et maintenir ces outils dans le temps.
 
 L'équipe Aides simplifiées a développé plusieurs simulateurs opérationnels couvrant des aides nationales et locales, et a formalisé une méthodologie de modélisation des règles. Cette documentation vise à partager ces apprentissages et à faciliter l'essaimage de telles démarches au sein de l'administration.
 
