@@ -2,7 +2,7 @@
 
 En France, il existe une multitude d'aides publiques portées par des acteurs variés (État, collectivités locales, organismes sociaux, etc.), à destination de publics très divers. Ces dispositifs évoluent régulièrement, utilisent des critères souvent proches mais rarement identiques, et ne sont que rarement accessibles via un point d'entrée unique.
 
-**Conséquence** : il est difficile pour une personne de savoir clairement à quelles aides elle est éligible, compte tenu de sa situation réelle. Par exemple, on estime que près de 80 % des personnes éligibles à une aide pour une complémentaire santé ne la demandent pas en raison de la complexité des démarches.
+**Conséquence** : Il est difficile pour une personne de savoir clairement à quelles aides elle est éligible, compte tenu de sa situation réelle. Par exemple, on estime que près de 80 % des personnes éligibles à une aide pour une complémentaire santé ne la demandent pas en raison de la complexité des démarches.
 
 ## Problèmes identifiés
 
@@ -10,7 +10,7 @@ Les informations disponibles sur les aides publiques présentent plusieurs limit
 
 - **Parcellaires** : chaque source ne couvre qu'une partie des aides existantes
 - **Techniques** : descriptions formulées dans un langage juridique ou administratif difficile à comprendre
-- **Dispersées** : éparpillées sur de multiples sites web et services, sans portail centralisé
+- **Dispersées** : éparpillées sur de multiples sites web et services
 
 Le parcours actuel de l'usager pour connaître ses droits est complexe et incertain, engendrant iniquité et inégalités d'accès aux aides.
 
