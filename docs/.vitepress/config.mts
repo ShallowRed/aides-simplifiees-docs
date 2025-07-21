@@ -25,7 +25,7 @@ export default defineConfig({
         text: 'Introduction',
         items: [
           { text: 'Présentation', link: '/introduction' },
-          { text: 'À quoi ça sert ?', link: '/pourquoi' }
+          { text: 'Les enjeux ?', link: '/enjeux' }
         ]
       },
       {

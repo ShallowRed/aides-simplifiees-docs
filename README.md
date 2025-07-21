@@ -75,7 +75,7 @@ pnpm run docs:preview
 │   ├── historique.md             # Historique
 │   ├── index.md                  # Page d'accueil
 │   ├── introduction.md           # Introduction
-│   └── pourquoi.md               # À quoi ça sert ?
+│   └── enjeux.md               # Les enjeux
 ├── .github/workflows/deploy.yml  # Workflow GitHub Actions
 ├── package.json                  # Configuration npm/pnpm
 └── pnpm-lock.yaml               # Lock file pnpm

@@ -55,7 +55,7 @@ Parce que les règles changent, parce que les situations évoluent, parce que le
 
 ## Prochaines étapes
 
-- [Comprendre pourquoi modéliser les aides](/pourquoi)
+- [Comprendre les enjeux de la modelisation d'aides](/enjeux)
 - [Découvrir notre approche des simulateurs](/simulateurs/)
 - [Explorer notre glossaire technique](/glossaire)
 

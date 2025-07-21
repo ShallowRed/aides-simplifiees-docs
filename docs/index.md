@@ -27,7 +27,7 @@ Cette documentation est en constante évolution. N'hésitez pas à [contribuer](
 ## Commencer
 
 - [Introduction au produit Aides simplifiées](/introduction)
-- [Pourquoi modéliser les aides ?](/pourquoi)
+- [Les enjeux de la modélisation d'aides ?](/enjeux)
 - [Guide des simulateurs](/simulateurs/)
 
 ## Ressources utiles

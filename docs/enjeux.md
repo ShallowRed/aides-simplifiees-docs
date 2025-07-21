@@ -1,4 +1,4 @@
-# À quoi ça sert ? Pourquoi fait-on ça ?
+# Pourquoi modéliser les aides publiques ?
 
 ## Égalité, équité et efficacité
 
