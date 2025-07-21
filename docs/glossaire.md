@@ -119,4 +119,4 @@ Ce glossaire est évolutif. N'hésitez pas à proposer des ajouts ou corrections
 
 - [Historique des simulateurs publics](/historique)
 - [Guide complet des simulateurs](/simulateurs/)
-- [Introduction au projet](/introduction)
+- [Introduction au produit Aides simplifiées](/introduction)

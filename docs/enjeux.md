@@ -1,8 +1,12 @@
- # À quoi ça sert ? Pourquoi on fait ça ?
+# Pourquoi modéliser les aides publiques ?
 
-## Égalité et équité
+## Égalité, équité et efficacité
 
-La modélisation des règles d'aides publiques s'inscrit dans une démarche d'**égalité** et d'**équité** territoriale et sociale. En rendant l'information accessible de manière uniforme, nous contribuons à réduire les inégalités d'accès aux droits.
+La transcription en algorithmes des règles d'aides publiques est largement appliquée par les services de l'Etat depuis de nombreuses années. 
+
+Faciliter aujourd'hui la circulation de ces modélisations s'inscrit dans une démarche : 
+* d'**efficacité** du service public : lorsqu'un dispositif d'aide est décidé, il s'agit de contribuer à sa diffusion auprès du public concerné.
+* d'**égalité** et d'**équité** territoriale et sociale : en rendant l'information accessible de manière uniforme, nous contribuons à réduire les inégalités d'accès aux droits.
 
 ## Contexte et enjeux
 

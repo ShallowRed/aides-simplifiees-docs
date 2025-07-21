@@ -4,7 +4,7 @@ Documentation technique et méthodologique pour la modélisation et la simulatio
 
 ## 🚀 Déploiement automatique sur GitHub Pages
 
-Ce projet est configuré pour un déploiement automatique sur GitHub Pages via GitHub Actions.
+Ce produit est configuré pour un déploiement automatique sur GitHub Pages via GitHub Actions.
 
 ### Configuration
 
@@ -63,7 +63,7 @@ pnpm run docs:build
 pnpm run docs:preview
 ```
 
-## 📁 Structure du projet
+## 📁 Structure du dépôt
 
 ```
 ├── docs/                          # Documentation source
@@ -75,7 +75,7 @@ pnpm run docs:preview
 │   ├── historique.md             # Historique
 │   ├── index.md                  # Page d'accueil
 │   ├── introduction.md           # Introduction
-│   └── pourquoi.md               # À quoi ça sert ?
+│   └── enjeux.md               # Les enjeux
 ├── .github/workflows/deploy.yml  # Workflow GitHub Actions
 ├── package.json                  # Configuration npm/pnpm
 └── pnpm-lock.yaml               # Lock file pnpm

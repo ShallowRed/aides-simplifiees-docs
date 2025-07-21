@@ -88,7 +88,7 @@ On passe d'une **règle implicite** à une **règle visible et partageable**.
 
 ### Le défi de la communication
 
-Dans un projet d'aide publique interviennent :
+Dans un produit dédié à un dispositif d'aide publique interviennent :
 - **Experts métier** : connaissent les règles mais pas forcément la technique
 - **Juristes** : maîtrisent les textes mais pas l'UX
 - **Designers** : pensent parcours utilisateur mais pas réglementation
