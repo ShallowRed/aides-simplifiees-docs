@@ -2,31 +2,24 @@
 
 En France, il existe une multitude d'aides publiques portées par des acteurs variés (État, collectivités locales, organismes sociaux, etc.), à destination de publics très divers. Ces dispositifs évoluent régulièrement, utilisent des critères souvent proches mais rarement identiques, et ne sont que rarement accessibles via un point d'entrée unique.
 
-**Conséquence** : Il est difficile pour une personne de savoir clairement à quelles aides elle est éligible, compte tenu de sa situation réelle. Par exemple, on estime que près de 80 % des personnes éligibles à une aide pour une complémentaire santé ne la demandent pas en raison de la complexité des démarches.
+Les informations relatives aux aides auxquelles un usager peut prétendre sont souvent dispersées, parcellaires et formulées en langage technique.
 
-## Problèmes identifiés
+**Conséquence** : Il est difficile pour une personne de savoir clairement à quelles aides elle est éligible, compte tenu de sa situation réelle.
 
-Les informations disponibles sur les aides publiques présentent plusieurs limites :
-
-- **Parcellaires** : chaque source ne couvre qu'une partie des aides existantes
-- **Techniques** : descriptions formulées dans un langage juridique ou administratif difficile à comprendre
-- **Dispersées** : éparpillées sur de multiples sites web et services
-
-Le parcours actuel de l'usager pour connaître ses droits est complexe et incertain, ce qui accroît le risque d'iniquité et d'inégalité d'accès aux aides.
+Le parcours actuel de l'usager pour connaître ses droits et les activer est ainsi complexe et incertain, ce qui accroît le risque d'iniquité et d'inégalité d'accès aux aides.
 
 ## Objectifs du produit Aides simplifiées
 
 Pour rendre l'information plus claire et plus actionnable, au bon moment, au bon endroit, aides simplifiées travaille sur deux faces de la même pièce :
-* l'expérience utilisateur
+* l'expérience usager
 * la donnée de qualité
 
-### 1. L'expérience utilisateur
-
-Pour afficher cette information à l'usager de la manière la plus UX-friendly possible (ex. via une notification proactive [^1]) Aides simplifiées développe des méthodologies et des interfaces numériques.
+### 1. L'expérience usager
+Pour transmettre à l’usager l’information relative aux aides de la manière la plus accessible et conviviale possible (ex. via une notification proactive [^1]), Aides simplifiées développe des méthodologies et des interfaces numériques.
 
 ### 2. La donnée de qualité
 
-Pour que l'information affichée à l'usager soit toujours à jour, exacte et transparente, Aides simplifiées contribue à une bibliothèque de règles modélisées facilement maintenable par une communauté d'experts, ainsi que les outils qui permettent de faire circuler ou de consommer cette "donnée".
+Pour que l'information transmise à l'usager soit toujours à jour, exacte et transparente, Aides simplifiées contribue à la construction d'une bibliothèque de règles modélisées facilement maintenable par une communauté d'experts, ainsi qu'aux outils qui permettent de faire circuler ou de consommer cette "donnée".
 
 ## Notre approche
 
