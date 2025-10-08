@@ -73,7 +73,8 @@ export default defineConfig({
       include: ['mermaid'],
     },
     ssr: {
-      noExternal: ['mermaid'],
+      noExternal: ['mermaid', '@gouvfr/dsfr'],
     },
+    assetsInclude: ['**/*.woff2', '**/*.woff'],
   },
 })
