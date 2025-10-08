@@ -1,25 +1,22 @@
-# Introduction
+# Aides simplifiées
 
-En France, il existe une multitude d'aides publiques portées par des acteurs variés (État, collectivités locales, organismes sociaux, etc.), à destination de publics très divers. Ces dispositifs évoluent régulièrement, utilisent des critères souvent proches mais rarement identiques, et ne sont que rarement accessibles via un point d'entrée unique.
+Cette documentation est née de la volonté de l'équipe porteuse du produit [Aides simplifiées](https://beta.gouv.fr/startups/droit-data-gouv-fr-simulateurs-de-droits.html) de mettre en commun les apprentissages de l'équipe et des autres acteurs publics engagés dans la modélisation des aides.
 
-Les informations relatives aux aides auxquelles un usager peut prétendre sont souvent dispersées, parcellaires et formulées en langage technique.
+> *Comment rendre les règles de droit exécutables, compréhensibles et réutilisables* ?
+
+## Contexte
+
+En France, il existe une multitude d'aides publiques portées par des acteurs variés (État, collectivités locales, organismes sociaux, etc.), à destination de publics très divers. Ces dispositifs évoluent régulièrement, utilisent des critères souvent proches mais rarement identiques, et ne sont que rarement accessibles via un point d'entrée unique. Les informations relatives aux aides auxquelles un usager peut prétendre sont souvent dispersées, parcellaires et formulées en langage technique.
 
 **Conséquence** : Il est difficile pour une personne de savoir clairement à quelles aides elle est éligible, compte tenu de sa situation réelle.
 
-Le parcours actuel de l'usager pour connaître ses droits et les activer est ainsi complexe et incertain, ce qui accroît le risque d'iniquité et d'inégalité d'accès aux aides.
+## Objectifs du produit
 
-## Objectifs du produit Aides simplifiées
+Pour rendre l'information plus claire et plus actionnable, au bon moment, au bon endroit, aide simplifiées poursuit trois missions complémentaires :
 
-Pour rendre l'information plus claire et plus actionnable, au bon moment, au bon endroit, aides simplifiées travaille sur deux faces de la même pièce :
-* l'expérience usager
-* la donnée de qualité
-
-### 1. L'expérience usager
-Pour transmettre à l’usager l’information relative aux aides de la manière la plus accessible et conviviale possible (ex. via une notification proactive [^1]), Aides simplifiées développe des méthodologies et des interfaces numériques.
-
-### 2. La donnée de qualité
-
-Pour que l'information transmise à l'usager soit toujours à jour, exacte et transparente, Aides simplifiées contribue à la construction d'une bibliothèque de règles modélisées facilement maintenable par une communauté d'experts, ainsi qu'aux outils qui permettent de faire circuler ou de consommer cette "donnée".
+1. **Rendre les règles compréhensibles** en les exprimant sous une forme claire, cohérente et documentée.
+2. **Rendre les aides accessibles** en traduisant cette connaissance en outils de calculs fiables et maintenables.
+3. **Rendre la fabrique d'outils de Rules as Code ouverte** en mutualisant les modèles, outils et méthodes entre acteurs publics.
 
 ## Notre approche
 
@@ -29,10 +26,6 @@ Notre rôle est d'apporter aux personnes concernées une réponse rapide à la q
 
 > **"À quelles aides puis-je prétendre dans ma situation, ici et à date ?"**
 
-Ces informations personnalisées à l'usager sur les aides auxquels il a droit, qu'elles qu'en soit la forme (simulateurs, notifications proactives, chatbot, ...), reposent sur une **bibliothèque de règles modélisées** à partir des textes réglementaires, dans des langages et moteurs de calcul __open source__.
-
-Nous publions aussi en __open source__ les composants, la documentation technique et les principes méthodologiques pour faciliter la réutilisation et la contribution de nos travaux.
-
 ## Nos principes
 
 Parce que les règles changent, parce que les situations évoluent, parce que les plateformes sont multiples, nous construisons des services :
@@ -41,16 +34,3 @@ Parce que les règles changent, parce que les situations évoluent, parce que le
 - **Conçus pour être maintenus dans le temps**  
 - **Pensés pour l'interopérabilité**
 - **Développés en open source contributifs, par défaut**
-
-::: info État d'avancement
-À date, nous avons développé plusieurs simulateurs opérationnels et documenté notre méthodologie de modélisation des règles d'aides publiques.
-:::
-
-## Prochaines étapes
-
-- [Comprendre les enjeux de la modelisation d'aides](/enjeux)
-- [Découvrir notre approche des simulateurs](/simulateurs/)
-- [Explorer notre glossaire technique](/glossaire)
-
-[^1] Lancée à l'occasion du [sixième comité interministériel de la transformation publique](https://www.modernisation.gouv.fr/actualites/tenue-du-6eme-comite-interministeriel-de-la-transformation-publique-citp) en juillet 2021, __l'administration proactive__ a pour objectifs la lutte contre le non-recours aux droits et la simplification des démarches administratives grâce aux partages d'informations (de données) entre administrations.  
-Elle va au devant des usagers. Elle ne peut être qu'à leur bénéfice (personne physique ou personne morale) et jamais à des fins de lutte contre la fraude.

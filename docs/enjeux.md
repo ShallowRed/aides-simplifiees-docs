@@ -1,70 +1,90 @@
-# Pourquoi modéliser les aides publiques ?
+# Les enjeux de la modélisation d’aides publiques
 
-## Égalité, équité et efficacité
+## Un cadre : le Rules as Code
 
-La transcription en algorithmes des règles d'aides publiques est largement appliquée par les services de l'Etat depuis de nombreuses années. 
+Le concept de **Rules as Code (RaC)** consiste à représenter la règle juridique sous une forme **formelle et exécutable**, tout en préservant sa lisibilité pour les juristes et citoyens.  
+Cette approche permet de créer un **jumeau numérique de la réglementation**, sur lequel il devient possible de :
+- simuler des situations ;
+- vérifier la cohérence d’une politique publique ;
+- produire automatiquement des services (simulateurs, API, préremplissages…).
 
-Faciliter aujourd'hui la circulation de ces modélisations s'inscrit dans une démarche : 
-* d'**efficacité** du service public : lorsqu'un dispositif d'aide est décidé, il s'agit de contribuer à sa diffusion auprès du public concerné.
-* d'**égalité** et d'**équité** territoriale et sociale : en rendant l'information accessible de manière uniforme, nous contribuons à réduire les inégalités d'accès aux droits.
+Le **Rules as code** explore une idée simple : et si les règles administratives pouvaient être **conçues, testées et maintenues comme du code** ?
 
-## Contexte et enjeux
+L’objectif n’est pas de “digitaliser” la réglementation, mais de **la rendre opérable** : lisible par les humains, exécutable par les machines, et gouvernable collectivement. C’est dans cette articulation entre droit, conception et informatique que se déploie le Rules as Code.
 
-Notre démarche s'inscrit dans l'objectif de simplification et de modernisation de l'action publique. Elle répond notamment aux enjeux identifiés dans les programmes gouvernementaux de transformation numérique, visant à améliorer l'expérience usager dans les services publics.
+## Pourquoi modéliser les aides publiques ?
 
-## Le choix du médium numérique
+La modélisation des aides n’est pas une qu'une question technique. C’est un **enjeu de politique publique** : rendre les droits sociaux accessibles, compréhensibles et exécutables sans perte de sens.
 
-### Pourquoi le numérique ?
+Les dispositifs d’aide se multiplient, se croisent, parfois se contredisent, résultant en :
+- des règles trop complexes pour les usagers ;
+- trop mouvantes pour les agents ;
+- trop coûteuses à maintenir pour les développeurs publics.
 
-Le choix du numérique n'est pas une fin en soi, mais un moyen de :
+> **Modéliser les aides**, c’est retrouver la capacité collective à comprendre ce que l’on finance, à mesurer l’impact réel des politiques publiques et à garantir l’égalité d’accès aux droits.
 
-- **Massifier l'accès** : Toucher un grand nombre de bénéficiaires potentiels
-- **Personnaliser l'information** : Adapter les réponses à chaque situation individuelle  
-- **Garantir la cohérence** : Appliquer les mêmes règles de manière uniforme
-- **Faciliter la mise à jour** : Intégrer rapidement les évolutions réglementaires
+### 1. Un besoin d’équité et de lisibilité
 
-### Complémentarité avec l'humain
+Près d’un tiers des personnes éligibles à une aide publique ne la perçoivent pas, non par choix, mais faute d’information ou de compréhension du dispositif.
 
-Le numérique ne remplace pas l'accompagnement humain mais le complète :
+Les raisons sont connues :
+- méconnaissance des critères d’éligibilité ;
+- complexité du vocabulaire administratif ;
+- multiplicité des formulaires et guichets ;
+- peur de l’erreur ou du contrôle.
 
-- **Premier niveau d'information** : Orientation et pré-diagnostic automatisés
-- **Préparation des échanges** : L'usager arrive mieux préparé lors d'un entretien
-- **Support aux professionnels** : Outils d'aide à la décision pour les conseillers
+> **Le Rules as Code est un levier d’accessibilité et d’inclusion numérique**
 
-## Impact attendu
+### 2. Un besoin de cohérence et de réutilisation
 
-### Pour les usagers
-En offrant un premier niveau d'information automatisé, le simulateur joue un rôle d'orientation et de pré-diagnostic. Il permet à l'usager d'arriver mieux informé à un rendez-vous physique.
+Chaque aide publique repose sur sa propre architecture : textes, décrets, circulaires, instructions, exceptions locales, produisant des règles **sans mémoire commune**, où les mêmes conditions peuvent être redéfinies des dizaines de fois.
 
-### Pour les professionnels
-Ces outils sont des aides à la décision. Un conseiller peut utiliser le simulateur comme support lors d'un entretien pour vérifier en direct les droits de l'usager.
+Modéliser les aides, c’est construire **un socle partagé** : un ensemble de briques logiques réutilisables (revenu fiscal de référence, âge, statut, résidence, etc.) que chacun peut invoquer sans les redéfinir.
 
-La modélisation numérique libère du temps pour l'humain là où il apporte la plus forte valeur (l'accompagnement personnalisé) tout en automatisant les tâches de calcul et de vérification.
+> Le Rules as Code est un **levier de mutualisation et d’interopérabilité entre acteurs publics**.
 
-## Impacts attendus
+### 3. Un besoin de transparence et de traçabilité
 
-### Pour les usagers
-- **Découverte proactive** de leurs droits
-- **Gain de temps** dans les démarches
-- **Moins d'erreurs** dans les formulaires
-- **Meilleure compréhension** de l'offre d'aides
+Les règles sont déjà traduites en code, souvent de manière implicite, dans des systèmes fermés. Or, quand le droit s'exprime à travers des programmes informatiques, leurs **lisibilités deviennent un enjeu démocratique**.
 
-### Pour les administrations
-- **Harmonisation** des pratiques
-- **Réduction des erreurs** de traitement et des indus
-- **Optimisation des ressources** (redéploiement du temps agent vers l'accompagnement qualitatif)
-- **Amélioration** de la qualité de service
+Publier les modèles de calcul, c’est permettre :
+- la vérification citoyenne des conditions d’attribution ;
+- l’auditabilité des décisions automatisées ;
+- la comparaison des politiques publiques entre territoires ou périodes.
 
-### Pour l'écosystème global
-- **Modélisations réutilisables** par d'autres acteurs
-- **Contribution collective** à la maintenance des règles
-- **Plus grande transparence** des critères d'attribution
-- **Innovation supplémentaire** (comparateurs, services d'agrégation)
-- **Innovation** dans les services aux usagers
+> Le Rules as Code est un levier de **transparence et de confiance** envers les institutions.
 
-::: warning Important
-La modélisation numérique des règles ne dispense pas d'un accompagnement humain qualifié, notamment pour les situations complexes ou les publics en difficulté avec le numérique.
-:::
+### 4. Un besoin de soutenabilité
+
+Chaque modification de décret peut entraîner des heures de développement, chaque changement de barème impose une chaîne de vérification manuelle.
+
+En produisant des **modèles explicites**, testés et documentés, on transforme un coût récurrent en investissement collectif : une fois codée, la règle peut être réutilisée, adaptée, versionnée.
+
+> Le Rules as Code est un levier d’**efficience budgétaire et de continuité administrative**.
+
+### 5. Un besoin d’alignement entre le droit et l’expérience
+
+## Des tensions à assumer
+
+Formaliser les règles, c’est aussi accepter plusieurs tensions :
+
+| Tension | Description | Posture proposée |
+|----------|--------------|------------------|
+| **Lisibilité vs exhaustivité** | Simplifier sans trahir le texte | Adopter une granularité progressive (niveau 1 : critères principaux, niveau 2 : exceptions) |
+| **Automatisation vs accompagnement humain** | Le simulateur ne remplace pas le conseiller | Intégrer des points de contact et rediriger vers les services compétents |
+| **Réutilisation vs spécificité locale** | Mutualiser sans uniformiser | Isoler les règles “communes” et documenter les “dérivées” locales |
+| **Innovation vs sécurité juridique** | Expérimenter sans fragiliser le droit | Travailler sous supervision juridique et publier les modèles avec disclaimers explicites |
+
+> Le Rules as Code n’est pas une panacée. C’est un levier parmi d’autres pour repenser la relation entre droit, administration et usagers.
+
+## Des enjeux politiques et éthiques
+
+Formaliser le droit, c’est aussi le rendre manipulable. Le Rules as code soulève donc des questions de **gouvernance algorithmique** :
+- qui décide de la version "référence" d’une règle ?
+- comment garantir la neutralité du calcul ?
+- comment signaler les zones d’incertitude ou d’interprétation ?
+
+Ces sujets de gouvernance sont cruciaux dans les projets de Rules as Code : chaque modèle doit par exemple être associé à une source juridique, une date de validité et un responsable de publication.  
 
 ## Prochaines étapes
 
