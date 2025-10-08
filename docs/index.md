@@ -1,22 +1,20 @@
-# Aides simplifiées : Documentation du produit
+# Titre de la documentation
 
-## À propos de cette documentation
+## Objectif de cette documentation
 
-Cette documentation présente les méthodologies, outils et apprentissages de l'équipe [Aides simplifiées](https://beta.gouv.fr/startups/droit-data-gouv-fr-simulateurs-de-droits.html) pour modéliser des règles d'aides publiques, créer des simulateurs user-friendly et maintenir ces outils dans le temps.
+L'objectif principal de cette documentation est de **transmettre une méthode reproductible** pour modéliser des aides publiques et créer des simulateurs. Elle s'adresse aux **équipes publiques** souhaitant développer ou améliorer des simulateurs d'aides, ainsi qu'aux **partenaires techniques** intéressés par la réutilisation de nos outils.
 
-L'équipe Aides simplifiées a développé et géré en production plusieurs simulateurs couvrant des aides nationales et locales, et formalise une méthodologie de modélisation des règles. Cette documentation vise à partager ces apprentissages et à faciliter la réutilisation de telles démarches au sein de l'administration.
+Les dispositifs d’aides publiques sont souvent perçus comme complexes, fragmentés et inaccessibles. Pourtant, ils représentent l’un des leviers majeurs de l’action sociale et économique de l’État.
 
-## Objectifs
+Notre ambition est de contribuer à la transformation numérique des aides publiques en **ressources numériques partagées et ouvertes** qui :
+- traduisent les règles administratives en modèles compréhensibles par la machine et par l’humain ;
+- garantissent l’équité et la transparence de l’accès aux droits ;
+- mutualisent les efforts techniques et juridiques entre acteurs publics ;
+- renforcent la capacité de réutilisation et d’amélioration continue.
 
-- **Présenter le produit** : Faire découvrir les outils et méthodologies développés
-- **Faciliter la réutilisation** : Fournir la documentation nécessaire pour intégrer ou réutiliser nos travaux  
-- **Faciliter la contribution** : Documenter les processus de contribution à la "bibliothèque de règles"
-- **Partager les apprentissages** : Décrire notre méthodologie et nos apprentissages en modélisation de règles
-- **Documenter l'architecture** : Expliquer les choix techniques et l'organisation des codes produits
+## À qui s’adresse cette documentation ?
 
-## Cibles
-
-- **Expert·e·s métier** au sein d'opérateurs d'aides, de tarification solidaire, de réduction de prélèvements
+- **Experts métier** au sein d'opérateurs d'aides, de tarification solidaire, de réduction de prélèvements
 - **Équipes techniques** qui souhaitent modéliser des règles ou contribuer au produit
 - **Partenaires institutionnels publics et privés** intéressés par la réutilisation de nos outils
 
