@@ -1,6 +1,10 @@
 import { defineConfig } from 'vitepress'
 import { MermaidMarkdown, MermaidPlugin } from 'vitepress-plugin-mermaid';
-// https://vitepress.dev/reference/site-config
+
+/**
+ * @see https://vitepress.dev/reference/site-config
+ */
+
 export default defineConfig({
   title: "Aides simplifiées",
   description: "Documentation technique et méthodologique pour la modélisation et la simulation des aides publiques",
@@ -15,47 +19,47 @@ export default defineConfig({
     // https://vitepress.dev/reference/default-theme-config
     nav: [
       { text: 'Accueil', link: '/' },
-      { text: 'Introduction', link: '/introduction' },
-      { text: 'Simulateurs', link: '/simulateurs/' },
-      { text: 'Glossaire', link: '/glossaire' }
+      { text: 'Le produit', link: '/00_meta/02_aides-simplifiées' },
+      { text: 'Simulateurs', link: '/01_simulateurs/' },
+      { text: 'Glossaire', link: '/99_annexe/glossaire' }
     ],
 
     sidebar: [
       {
-        text: 'Introduction',
+        text: 'Contexte',
         items: [
-          { text: 'Présentation', link: '/introduction' },
-          { text: 'Les enjeux ?', link: '/enjeux' }
+          { text: 'Aides simplifiées', link: '/00_meta/02_aides-simplifiées' },
+          { text: 'Enjeux Rules as Code', link: '/00_meta/01_enjeux-rules-as-code' }
         ]
       },
       {
-        text: 'Simulateurs',
+        text: 'Guide des simulateurs',
+        collapsed: false,
         items: [
-          { text: 'Vue d\'ensemble', link: '/simulateurs/' },
-          { text: 'Modéliser une aide', link: '/simulateurs/modeliser-une-aide' },
-          { text: 'Simulateur multi-aide', link: '/simulateurs/simulateur-multi-aide' },
-          { text: 'Importance de la modélisation', link: '/simulateurs/importance-modelisation' },
-          { text: 'Passer en code', link: '/simulateurs/passer-en-code' },
-          { text: 'Tester et ajuster', link: '/simulateurs/tester-ajuster' },
-          { text: 'Maintenir', link: '/simulateurs/maintenir' }
+          { text: 'Vue d\'ensemble', link: '/01_simulateurs/' },
+          { text: 'Fondamentaux', link: '/01_simulateurs/01_fondamentaux' },
+          { text: 'Modéliser une aide', link: '/01_simulateurs/02_modeliser-une-aide' },
+          { text: 'Simulateur multi-aide', link: '/01_simulateurs/03_simulateur-multi-aide' },
+          { text: 'Passer en code', link: '/01_simulateurs/03_passer-en-code' },
+          { text: 'Tester et ajuster', link: '/01_simulateurs/05_tester-ajuster' },
+          { text: 'Maintenir', link: '/01_simulateurs/06_maintenir' }
         ]
       },
       {
-        text: 'Références',
+        text: 'Annexe',
         items: [
-          { text: 'Glossaire', link: '/glossaire' },
-          { text: 'Historique', link: '/historique' }
+          { text: 'Glossaire', link: '/99_annexe/glossaire' },
+          { text: 'Historique', link: '/99_annexe/historique' }
         ]
       }
     ],
 
     socialLinks: [
-      { icon: 'github', link: 'https://github.com/betagouv/aides-simplifiees' }
+      { icon: 'github', link: 'https://github.com/shallowred/aides-simplifiees' }
     ],
 
     footer: {
       message: 'Documentation sous licence ouverte',
-      copyright: 'Copyright © 2025 Aides simplifiées - beta.gouv.fr'
     },
 
     search: {
@@ -63,7 +67,7 @@ export default defineConfig({
     },
 
     editLink: {
-      pattern: 'https://github.com/betagouv/aides-simplifiees-docs/edit/main/docs/:path',
+      pattern: 'https://github.com/shallowred/aides-simplifiees-docs/edit/main/docs/:path',
       text: 'Modifier cette page sur GitHub'
     }
   },
