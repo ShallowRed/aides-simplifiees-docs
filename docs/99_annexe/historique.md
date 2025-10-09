@@ -93,7 +93,7 @@ L'étude de cette histoire montre le chemin parcouru et celui restant à faire. 
 Plusieurs évolutions sont nécessaires pour renforcer l’efficacité et l’accessibilité des simulateurs. L’établissement de standards permettra d’assurer l’interopérabilité entre différents outils et plateformes. Une gouvernance claire, favorisant la coordination entre tous les acteurs impliqués, est essentielle pour garantir la cohérence et la pérennité des services. La formation des agents publics constitue également un levier clé, en leur permettant de monter en compétence et de mieux accompagner les usagers. Enfin, l’inclusion doit rester une priorité, en veillant à ce que les simulateurs soient accessibles à tous les publics, quels que soient leurs niveaux de maîtrise du numérique ou leurs besoins spécifiques.
 
 ::: tip Pour aller plus loin
-Cette analyse historique nourrit notre réflexion prospective. Découvrez notre vision dans la [présentation du produit Aides simplifiées](/introduction).
+Cette analyse historique nourrit notre réflexion prospective. Découvrez notre vision dans la [présentation du produit aides simplifiées](/00_meta/02_aides-simplifiées).
 :::
 
 ## Sources et références
@@ -113,6 +113,6 @@ Cette analyse historique nourrit notre réflexion prospective. Découvrez notre 
 
 ## Prochaines étapes
 
-- [Retourner à l'introduction du produit Aides simplifiées](/introduction)
-- [Explorer la méthodologie des simulateurs](/simulateurs/)
-- [Consulter le glossaire technique](/glossaire)
+- [Découvrir Aides simplifiées](/00_meta/02_aides-simplifiées)
+- [Explorer la méthodologie des simulateurs](/01_simulateurs/)
+- [Consulter le glossaire technique](/99_annexe/glossaire)

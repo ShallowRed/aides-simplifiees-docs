@@ -129,6 +129,7 @@ Ce glossaire est évolutif. N'hésitez pas à proposer des ajouts ou corrections
 
 ## Voir aussi
 
-- [Historique des simulateurs publics](/historique)
-- [Guide complet des simulateurs](/simulateurs/)
-- [Introduction au produit Aides simplifiées](/introduction)
+- [Historique des simulateurs publics](/99_annexe/historique)
+- [Guide complet des simulateurs](/01_simulateurs/)
+- [Les enjeux Rules as Code](/00_meta/01_enjeux-rules-as-code)
+- [Introduction au produit aides simplifiées](/introduction)

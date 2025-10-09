@@ -52,7 +52,12 @@ Recommandations :
 - Simuler les effets d’un futur barème avant sa publication ;
 
 ## En résumé
-Maintenir, c’est :
+Maintenir, c'est :
 - garantir la conformité et la durabilité des simulateurs ;
 - documenter et versionner chaque changement ;
 - surveiller, prévenir et améliorer continuellement.
+
+## Pour approfondir
+
+- [Les fondamentaux de la fabrique de simulateurs](/01_simulateurs/01_fondamentaux)
+- [Consulter le glossaire](/99_annexe/glossaire).

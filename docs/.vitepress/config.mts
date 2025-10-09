@@ -6,7 +6,7 @@ import { MermaidMarkdown, MermaidPlugin } from 'vitepress-plugin-mermaid';
  */
 
 export default defineConfig({
-  title: "Aides simplifiées",
+  title: "aides simplifiées",
   description: "Documentation technique et méthodologique pour la modélisation et la simulation des aides publiques",
   lang: 'fr-FR',
   base: '/aides-simplifiees-docs/',
@@ -28,8 +28,8 @@ export default defineConfig({
       {
         text: 'Contexte',
         items: [
-          { text: 'Aides simplifiées', link: '/00_meta/02_aides-simplifiées' },
-          { text: 'Enjeux Rules as Code', link: '/00_meta/01_enjeux-rules-as-code' }
+          { text: 'Le produit aides simplifiées', link: '/00_meta/02_aides-simplifiées' },
+          { text: 'Enjeux du Rules as Code', link: '/00_meta/01_enjeux-rules-as-code' }
         ]
       },
       {

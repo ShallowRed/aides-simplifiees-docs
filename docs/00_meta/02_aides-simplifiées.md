@@ -1,6 +1,6 @@
 # Aides simplifiées
 
-Cette documentation est née de la volonté de l'équipe porteuse du produit [Aides simplifiées](https://beta.gouv.fr/startups/droit-data-gouv-fr-simulateurs-de-droits.html) de mettre en commun les apprentissages de l'équipe et des autres acteurs publics engagés dans la modélisation des aides.
+Cette documentation est née de la volonté de l'équipe porteuse du produit [aides simplifiées](https://beta.gouv.fr/startups/droit-data-gouv-fr-simulateurs-de-droits.html) de mettre en commun les apprentissages de l'équipe et des autres acteurs publics engagés dans la modélisation des aides.
 
 > *Comment rendre les règles de droit exécutables, compréhensibles et réutilisables* ?
 
@@ -34,3 +34,8 @@ Parce que les règles changent, parce que les situations évoluent, parce que le
 - **Conçus pour être maintenus dans le temps**  
 - **Pensés pour l'interopérabilité**
 - **Développés en open source contributifs, par défaut**
+
+## Pour aller plus loin
+
+- [Les enjeux du Rules as Code](/00_meta/01_enjeux-rules-as-code) - Comprendre le cadre théorique
+- [Guide des simulateurs](/01_simulateurs/) - Passer à la pratique

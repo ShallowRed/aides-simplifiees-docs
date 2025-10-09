@@ -6,12 +6,12 @@ Cette section présente notre méthodologie pour créer des simulateurs d'aides 
 
 La création d'un simulateur d'aide publique suit plusieurs étapes clés :
 
-1. **[Modéliser une aide](/simulateurs/modeliser-une-aide)** - Traduire les règles réglementaires en modèle logique
-2. **[Concevoir un simulateur multi-aide](/simulateurs/simulateur-multi-aide)** - Gérer plusieurs aides dans un même parcours
-3. **[Comprendre l'importance de la modélisation](/simulateurs/importance-modelisation)** - Pourquoi modéliser est essentiel
-4. **[Passer le modèle en code](/simulateurs/passer-en-code)** - Implémenter techniquement les règles
-5. **[Tester et ajuster](/simulateurs/tester-ajuster)** - Valider et améliorer le simulateur
-6. **[Maintenir](/simulateurs/maintenir)** - Faire évoluer le simulateur dans le temps
+1. **[Fondamentaux](/01_simulateurs/01_fondamentaux)** - Les principes fondateurs de la fabrique de simulateurs
+2. **[Modéliser une aide](/01_simulateurs/02_modeliser-une-aide)** - Traduire les règles réglementaires en modèle logique
+3. **[Concevoir un simulateur multi-aide](/01_simulateurs/03_simulateur-multi-aide)** - Gérer plusieurs aides dans un même parcours
+4. **[Passer le modèle en code](/01_simulateurs/03_passer-en-code)** - Implémenter techniquement les règles
+5. **[Tester et ajuster](/01_simulateurs/05_tester-ajuster)** - Valider et améliorer le simulateur
+6. **[Maintenir](/01_simulateurs/06_maintenir)** - Faire évoluer le simulateur dans le temps
 
 ## Défis principaux
 
@@ -62,6 +62,6 @@ API, widget, iframe pour intégrer dans d'autres sites.
 
 Choisissez votre point d'entrée selon votre besoin :
 
-- **Nouveau produit** → [Modéliser une aide](/simulateurs/modeliser-une-aide)
-- **Produit complexe** → [Simulateur multi-aide](/simulateurs/simulateur-multi-aide)  
-- **Questionnement méthodologique** → [Importance de la modélisation](/simulateurs/importance-modelisation)
+- **Comprendre le contexte** → [Enjeux du Rules as Code](/00_meta/01_enjeux-rules-as-code)
+- **Découvrir les fondamentaux** → [Principes fondateurs](/01_simulateurs/01_fondamentaux)
+- **Modéliser votre première aide** → [Modéliser une aide](/01_simulateurs/02_modeliser-une-aide)

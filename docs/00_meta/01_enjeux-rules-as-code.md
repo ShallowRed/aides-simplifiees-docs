@@ -88,5 +88,5 @@ Ces sujets de gouvernance sont cruciaux dans les projets de Rules as Code : chaq
 
 ## Prochaines étapes
 
-- [Découvrir comment nous modélisons les simulateurs](/simulateurs/)
-- [Comprendre l'importance de la modélisation](/simulateurs/importance-modelisation)
+- [Découvrir aides simplifiées](/00_meta/02_aides-simplifiées) - Notre approche concrète
+- [Guide des simulateurs](/01_simulateurs/) - Notre méthodologie de modélisation

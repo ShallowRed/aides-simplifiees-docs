@@ -24,11 +24,11 @@ Cette documentation est en constante évolution. N'hésitez pas à [contribuer](
 
 ## Commencer
 
-- [Introduction au produit Aides simplifiées](/introduction)
-- [Les enjeux de la modélisation d'aides ?](/enjeux)
-- [Guide des simulateurs](/simulateurs/)
+- [Découvrir aides simplifiées](/00_meta/02_aides-simplifiées)
+- [Les enjeux du Rules as Code](/00_meta/01_enjeux-rules-as-code)
+- [Guide de conception simulateurs](/01_simulateurs/)
 
 ## Ressources utiles
 
-- [Glossaire](/glossaire) des termes techniques
-- [Historique](/historique) des simulateurs dans l'écosystème public
+- [Glossaire](/99_annexe/glossaire) des termes techniques
+- [Historique](/99_annexe/historique) des simulateurs dans l'écosystème public

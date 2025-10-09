@@ -233,6 +233,6 @@ Chaque commit doit inclure :
 
 ## Prochaines étapes
 
-- [Apprendre à tester et valider son modèle](/simulateurs/tester-ajuster)
-- [Comprendre les enjeux de maintenance](/simulateurs/maintenir)
-- [Découvrir les outils et bonnes pratiques](/glossaire)
+Une fois votre modèle implémenté en code :
+- [Tester et ajuster votre simulateur](/01_simulateurs/05_tester-ajuster) - Valider la conformité et l'UX
+- [Maintenir dans le temps](/01_simulateurs/06_maintenir) - Garantir la pérennité

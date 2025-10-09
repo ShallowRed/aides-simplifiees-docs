@@ -144,6 +144,6 @@ Commencez par modéliser les cas les plus fréquents (80% des situations) avant 
 
 ## Prochaines étapes
 
-- [Gérer plusieurs aides dans un même simulateur](/simulateurs/simulateur-multi-aide)
-- [Comprendre pourquoi la modélisation est cruciale](/simulateurs/importance-modelisation)
-- [Implémenter le modèle en code](/simulateurs/passer-en-code)
+Une fois votre aide modélisée :
+- [Gérer plusieurs aides dans un même simulateur](/01_simulateurs/03_simulateur-multi-aide)
+- [Implémenter le modèle en code](/01_simulateurs/03_passer-en-code)
