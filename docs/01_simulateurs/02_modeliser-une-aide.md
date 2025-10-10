@@ -1,54 +1,71 @@
-# Modéliser une aide pour en faire un simulateur user-friendly
+# Modéliser une aide publique
 
-La modélisation d'une aide publique est la première étape pour créer un simulateur efficace. Elle consiste à traduire un texte réglementaire en un modèle logique compréhensible et calculable.
+Modéliser une aide, c’est passer du **texte réglementaire** à une **représentation logique** exploitable par le code. Cette étape est délicate : elle exige de comprendre la règle, de la découper, puis de la traduire sans en altérer le sens.
 
-## Sources d'information
+> La modélisation est à la fois un acte juridique, conceptuel et technique.  
+> C’est ici que le droit devient calculable.
 
-### Sources de première main
-- **Textes de loi** : Code du travail, Code de l'action sociale, etc.
-- **Décrets d'application** : Précisions sur les modalités d'application
-- **Circulaires** : Instructions aux services déconcentrés
+## 1. Comprendre la règle avant de la formaliser
 
-### Sources de seconde main
-- **Articles explicatifs** : service-public.fr, sites spécialisés
-- **Documentation d'organismes** : CAF, Pôle emploi, etc.
-- **Retours d'expérience** : Autres simulateurs existants
+Avant toute modélisation, il faut **clarifier la source** et le **périmètre** de la règle.
+
+### Identifier les sources primaires
+- Textes législatifs et réglementaires (lois, décrets, arrêtés)  
+- Instructions ministérielles ou circulaires  
+- Documentation technique des opérateurs (CAF, Pôle emploi, etc.)  
+
+> Chaque modèle devrait mentionner explicitement la **source primaire** de chaque condition.
+
+### Recueillir des sources secondaires
+- Articles explicatifs (service-public.fr, sites spécialisés)
+- Documentation d'organismes (CAF, Pôle emploi, etc.).
 
 ::: warning Attention aux sources
 Privilégiez toujours les sources officielles. Les sources de seconde main peuvent contenir des simplifications ou des erreurs.
 :::
 
-## De la réglementation aux variables
-
-### Analyse du texte réglementaire
+### Analyser le texte réglementaire
 
 1. **Identifier les conditions d'éligibilité** : Qui peut bénéficier de l'aide ?
 2. **Repérer les modalités de calcul** : Comment le montant est-il déterminé ?
 3. **Lister les exceptions** : Quels sont les cas particuliers ?
 4. **Définir les temporalités** : Quand s'applique la règle ?
 
-### Modélisation "pure et abstraite"
+## 2. Décomposer la règle en variables
 
 À cette étape, on se concentre sur l'identification de **toutes les variables** nécessaires au calcul, sans se préoccuper de l'expérience utilisateur :
 
-```
-Variables identifiées pour l'aide X :
-- Âge du demandeur
-- Situation familiale
-- Nombre d'enfants à charge
-- Revenus du foyer (N-1)
-- Type de logement
-- Montant du loyer
-- Zone géographique
-- etc.
+| Type de variable | Exemple | Description |
+|------------------|----------|--------------|
+| **Entrée (input)** | âge, revenus, résidence | Saisie par l’usager ou fournie par un service externe |
+| **Référence (constante)** | barème, plafond, taux | Issue du texte réglementaire, souvent mise à jour annuellement |
+| **Intermédiaire (calculée)** | quotient familial, revenu net | Déduite d’autres variables selon une formule |
+| **Sortie (output)** | éligibilité, montant simulé | Résultat final affiché ou transmis |
+| **Temporelle** | année fiscale, date de demande | Permet de gérer l’évolution des règles dans le temps |
+
+Chaque variable doit être documentée avec :
+- son **nom clair et cohérent** (en français ou en camelCase selon le moteur choisi) ;
+- son **type** (booléen, numérique, textuel, date…) ;
+- sa **source** et sa **dernière mise à jour**.
+
+## 3. Formaliser les conditions logiques
+
+Une fois les variables identifiées, on traduit les règles en **conditions logiques**.
+
+### Exemple (APL étudiant)
+> Article R.351-3 du Code de la construction et de l’habitation :  
+> « Le demandeur doit occuper le logement à titre de résidence principale et ne pas être rattaché au foyer fiscal de ses parents. »
+
+Traduction logique :
+```mermaid
+graph TD
+    A["logement_residence_principale"] --"true"--> B["rattache_foyer_parents"]
+    A["logement_residence_principale"] --"false"--> D["non_eligible"]
+    B["rattache_foyer_parents"] --"true"--> D["non_eligible"]
+    B["rattache_foyer_parents"] --"false"--> C["eligible"]
 ```
 
-### Types de variables
-
-- **Variables d'entrée** : Informations à collecter auprès de l'utilisateur
-- **Variables calculées** : Résultats d'opérations sur d'autres variables
-- **Variables de référence** : Plafonds, barèmes officiels
-- **Variables temporelles** : Dates de prise en compte
+Le modèle n’est pas encore du code exécutable, mais il est déjà un objet partagé entre juristes, designers et développeurs.
 
 ## Du modèle au parcours utilisateur
 
@@ -63,14 +80,13 @@ Une fois les variables identifiées, il faut déterminer :
 
 ### Formulation user-friendly
 
-Transformer le langage juridique en questions compréhensibles :
+Il faut rransformer le langage juridique en questions compréhensibles :
 
 | Langage juridique | Formulation utilisateur |
 |-------------------|-------------------------|
 | "Personne isolée au sens de l'article L.262-2" | "Vivez-vous seul(e) ?" |
 | "Revenus d'activité perçus au cours de l'année N-1" | "Quel était votre salaire l'année dernière ?" |
 
-## Outils de modélisation
 
 ### Représentation visuelle
 
@@ -128,6 +144,6 @@ Commencez par modéliser les cas les plus fréquents (80% des situations) avant 
 
 ## Prochaines étapes
 
-- [Gérer plusieurs aides dans un même simulateur](/simulateurs/simulateur-multi-aide)
-- [Comprendre pourquoi la modélisation est cruciale](/simulateurs/importance-modelisation)
-- [Implémenter le modèle en code](/simulateurs/passer-en-code)
+Une fois votre aide modélisée :
+- [Gérer plusieurs aides dans un même simulateur](/01_simulateurs/03_simulateur-multi-aide)
+- [Implémenter le modèle en code](/01_simulateurs/03_passer-en-code)

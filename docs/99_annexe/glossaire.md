@@ -1,14 +1,15 @@
 # Glossaire
 
-Ce glossaire définit les termes techniques et méthodologiques utilisés dans la documentation d'Aides simplifiées.
+Ce glossaire rassemble les notions, acronymes et références employés dans la documentation.  
+Il a pour vocation de **clarifier le vocabulaire commun** aux métiers du droit, du numérique et de la conception de services publics.
 
 ## A
 
 ### Aide publique
-Dispositif financier mis en place par une collectivité publique (État, région, département, commune) pour soutenir certains publics ou activités selon des critères définis.
+Mesure financière, fiscale ou sociale accordée par une autorité publique (État, collectivité, opérateur) selon des conditions d’éligibilité. Une aide peut être monétaire, en nature ou sous forme d’exonération.
 
 ### Algorithme
-Ensemble de règles et d'instructions logiques permettant de résoudre un problème ou d'effectuer un calcul de manière automatisée.
+Suite d’instructions logiques permettant d’exécuter un calcul déterminé. Dans un simulateur, l’algorithme traduit une règle de droit en opération mathématique ou logique.
 
 ### API (Application Programming Interface)
 Interface permettant à différents logiciels de communiquer entre eux. Dans notre contexte, permet d'intégrer les calculs d'éligibilité dans d'autres services.
@@ -16,12 +17,19 @@ Interface permettant à différents logiciels de communiquer entre eux. Dans not
 ## B
 
 ### Barème
-Grille de valeurs (montants, seuils, taux) utilisée pour calculer une aide selon différents critères (revenus, situation familiale, etc.).
+Tableau ou formule qui détermine un montant d’aide selon un ou plusieurs critères (revenus, nombre d’enfants, situation géographique).
+Exemple : le barème APL selon la zone et les ressources du foyer.
 
 ## C
 
 ### Calcul
-Opération mathématique permettant de déterminer le montant d'une aide à partir des données de situation d'un demandeur.
+Processus d'opérations mathématiques par laquelle les conditions d’accès à une aide sont évaluées pour un usager. Il peut être binaire (éligible / non éligible) ou graduel (montant ajusté selon un barème).
+
+### CI/CD (Continuous Integration / Continuous Deployment)
+Pratiques d’intégration et de déploiement continu permettant d’automatiser les tests, la construction et la mise à jour du code.
+
+### Commun numérique
+Ressource logicielle, documentaire ou méthodologique ouverte, réutilisable et gouvernée collectivement.  
 
 ### Critères d'éligibilité
 Conditions à remplir pour pouvoir bénéficier d'une aide publique (âge, revenus, situation familiale, etc.).
@@ -38,6 +46,10 @@ Standard de modélisation des règles métier permettant de représenter la logi
 
 ### Éligibilité
 Fait de remplir les conditions requises pour bénéficier d'une aide ou d'un service public.
+
+### Entité
+Objet de calcul dans un moteur de règles (ex. : *individu*, *foyer*, *logement*).  
+Chaque variable est rattachée à une entité pour structurer les dépendances.
 
 ## L
 
@@ -117,6 +129,6 @@ Ce glossaire est évolutif. N'hésitez pas à proposer des ajouts ou corrections
 
 ## Voir aussi
 
-- [Historique des simulateurs publics](/historique)
-- [Guide complet des simulateurs](/simulateurs/)
-- [Introduction au produit Aides simplifiées](/introduction)
+- [Historique des simulateurs publics](/99_annexe/historique)
+- [Guide complet des simulateurs](/01_simulateurs/)
+- [Les enjeux Rules as Code](/00_meta/01_enjeux-rules-as-code)

@@ -8,6 +8,9 @@ importers:
 
   .:
     dependencies:
+      '@gouvfr/dsfr':
+        specifier: ^1.14.2
+        version: 1.14.2
       vitepress:
         specifier: ^1.6.3
         version: 1.6.3(@algolia/client-search@5.32.0)(postcss@8.5.6)(search-insights@2.17.3)
@@ -297,6 +300,10 @@ packages:
     engines: {node: '>=12'}
     cpu: [x64]
     os: [win32]
+
+  '@gouvfr/dsfr@1.14.2':
+    resolution: {integrity: sha512-EJ/ZZMLmSN4KISuuXp0X0lGf+gKVqYATyqgcM5IPhMQAkJ8s5pjzvthjv+Hu6zYk4jwf2NRVt+jQz7JRpw1yiA==}
+    engines: {node: ^20.19.0 || ^22.12.0 || >=24.0.0}
 
   '@iconify-json/simple-icons@1.2.42':
     resolution: {integrity: sha512-G/EED0hUV1wMNUsWaFdQYLibm6SO7rP2GZP1+CvhszB5WAFYYibD3zoWp3X96xSIWpYQFvccvE17ewpd0Q1hWQ==}
@@ -1501,6 +1508,8 @@ snapshots:
 
   '@esbuild/win32-x64@0.21.5':
     optional: true
+
+  '@gouvfr/dsfr@1.14.2': {}
 
   '@iconify-json/simple-icons@1.2.42':
     dependencies:
