@@ -194,7 +194,7 @@ Les tests servent à :
 - vérifier la cohérence entre les modèles d’aides ;
 - renforcer la confiance des utilisateurs et des partenaires.
 
-[Plus d'infos sur les tests](/simulateurs/tester-ajuster)
+[Plus d'infos sur les tests](/01_simulateurs/05_tester-ajuster)
 
 ### Gérer les dépendances et les temporalités
 

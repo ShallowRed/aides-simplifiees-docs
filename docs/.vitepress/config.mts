@@ -55,7 +55,7 @@ export default defineConfig({
     ],
 
     socialLinks: [
-      { icon: 'github', link: 'https://github.com/shallowred/aides-simplifiees' }
+      { icon: 'github', link: 'https://github.com/shallowred/aides-simplifiees-docs' }
     ],
 
     footer: {
