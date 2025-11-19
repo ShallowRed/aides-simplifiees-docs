@@ -147,3 +147,38 @@ Commencez par modéliser les cas les plus fréquents (80% des situations) avant 
 Une fois votre aide modélisée :
 - [Gérer plusieurs aides dans un même simulateur](/01_simulateurs/03_simulateur-multi-aide)
 - [Implémenter le modèle en code](/01_simulateurs/03_passer-en-code)
+
+## Ressources mutualisées
+
+### Template de modélisation standard
+
+Pour faciliter la réutilisation et la cohérence, un **template standard** de modélisation d'aide est disponible :
+
+➡️ [Voir le template complet](/02_mutualisation/01_standards-formats.md#template-de-modelisation-daide)
+
+Ce template structure :
+- Les métadonnées (source juridique, dates, responsables)
+- Les conditions d'éligibilité avec traçabilité
+- Les variables nécessaires
+- Les formules de calcul
+- Les cas particuliers et edge cases
+- Les personas de test associés
+
+**Avantages** :
+- Gain de temps : structure prête à remplir
+- Cohérence : format partagé entre projets
+- Réutilisabilité : facilite la compréhension et l'adaptation
+
+### Patterns courants
+
+Plusieurs situations reviennent fréquemment dans la modélisation d'aides :
+- Gestion de la rétroactivité
+- Règles de cumul/non-cumul entre aides
+- Changements de situation en cours de période
+- Plafonds et tranches progressives
+
+➡️ [Consulter la bibliothèque de patterns](/02_mutualisation/03_patterns.md) pour des solutions éprouvées
+
+::: tip Contribuer
+Votre documentation de modélisation peut aider d'autres équipes ! Pensez à la partager via [GitHub](https://github.com/betagouv/aides-simplifiees-docs).
+:::

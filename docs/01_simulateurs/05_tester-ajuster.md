@@ -102,3 +102,9 @@ Tester et ajuster, c’est :
 
 - [Maintenir votre simulateur dans le temps](/01_simulateurs/06_maintenir) - Garantir la pérennité
 - [Consulter le glossaire](/99_annexe/glossaire) - Définitions des termes techniques
+
+::: tip Mutualisation
+Pensez à partager vos personas de test validés avec l'écosystème ! Ils pourront servir à d'autres projets et bénéficier de contributions en retour.
+
+Voir la section [Mutualisation](/02_mutualisation/) pour en savoir plus.
+:::

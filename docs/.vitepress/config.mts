@@ -21,6 +21,7 @@ export default defineConfig({
       { text: 'Accueil', link: '/' },
       { text: 'Le produit', link: '/00_meta/02_aides-simplifiées' },
       { text: 'Simulateurs', link: '/01_simulateurs/' },
+      { text: 'Mutualisation', link: '/02_mutualisation/' },
       { text: 'Glossaire', link: '/99_annexe/glossaire' }
     ],
 
@@ -43,6 +44,17 @@ export default defineConfig({
           { text: 'Passer en code', link: '/01_simulateurs/03_passer-en-code' },
           { text: 'Tester et ajuster', link: '/01_simulateurs/05_tester-ajuster' },
           { text: 'Maintenir', link: '/01_simulateurs/06_maintenir' }
+        ]
+      },
+      {
+        text: 'Mutualisation et collaboration',
+        collapsed: false,
+        items: [
+          { text: 'Vue d\'ensemble', link: '/02_mutualisation/' },
+          { text: 'Standards et formats', link: '/02_mutualisation/01_standards-formats' },
+          { text: 'Protocoles', link: '/02_mutualisation/02_protocoles' },
+          { text: 'Patterns', link: '/02_mutualisation/03_patterns' },
+          { text: 'Mesure du succès', link: '/02_mutualisation/04_mesure-succes' }
         ]
       },
       {
