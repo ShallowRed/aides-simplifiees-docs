@@ -27,8 +27,11 @@ Cette documentation est en constante évolution. N'hésitez pas à [contribuer](
 - [Découvrir aides simplifiées](/00_meta/02_aides-simplifiées)
 - [Les enjeux du Rules as Code](/00_meta/01_enjeux-rules-as-code)
 - [Guide de conception simulateurs](/01_simulateurs/)
+- [Mutualisation et collaboration](/02_mutualisation/) - **Nouveau** : Partager et réutiliser
 
 ## Ressources utiles
 
 - [Glossaire](/99_annexe/glossaire) des termes techniques
 - [Historique](/99_annexe/historique) des simulateurs dans l'écosystème public
+- [Standards et formats](/02_mutualisation/01_standards-formats) pour l'interopérabilité
+- [Bibliothèque de patterns](/02_mutualisation/03_patterns) pour résoudre les problèmes courants
