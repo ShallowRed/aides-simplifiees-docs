@@ -74,8 +74,9 @@ Formaliser les règles, c’est aussi accepter plusieurs tensions :
 | **Automatisation vs accompagnement humain** | Le simulateur ne remplace pas le conseiller | Intégrer des points de contact et rediriger vers les services compétents |
 | **Réutilisation vs spécificité locale** | Mutualiser sans uniformiser | Isoler les règles “communes” et documenter les “dérivées” locales |
 | **Innovation vs sécurité juridique** | Expérimenter sans fragiliser le droit | Travailler sous supervision juridique et publier les modèles avec disclaimers explicites |
+| **Modernité NPM vs accessibilité** | Les dépendances JavaScript évoluent vite, mais les équipes métier ne maîtrisent pas npm | Proposer des bundles pré-construits ou des versions standalone |
+| **Tests techniques vs validation métier** | Les tests unitaires vérifient le code, pas la conformité réglementaire | Formaliser des cas types métier lisibles par les experts juridiques |
 
-> Le Rules as Code n’est pas une panacée. C’est un levier parmi d’autres pour repenser la relation entre droit, administration et usagers.
 
 ## Des enjeux politiques et éthiques
 

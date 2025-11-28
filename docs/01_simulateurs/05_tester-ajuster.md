@@ -38,6 +38,31 @@ Permettre à un expert de faire passer des cas réels (dossiers traités manuell
 
 Organiser des ateliers réguliers de revue entre modeleurs et experts est une bonne pratique pour maintenir la qualité.
 
+### Formaliser les cas types métier
+
+Au-delà des tests techniques, il est recommandé de formaliser des **cas types métier** (ou « fixtures métier ») : des situations représentatives définies avec les experts, servant à la fois de spécification et de test de non-régression.
+
+Exemple de format YAML :
+
+```yaml
+cas_types:
+  - nom: "Jeune alternant éligible Mobili-Jeunes"
+    situation:
+      age: 22
+      contrat: alternance
+      revenu_mensuel: 900
+      loyer: 450
+    resultat_attendu:
+      eligible: true
+      montant_estime: 100
+    source: "Dossier traité CAF - Réf. 2024-1234"
+```
+
+Ces cas types permettent :
+- Une **communication partagée** entre développeurs et experts métier
+- Une **validation continue** à chaque modification des règles
+- Une **traçabilité** vers des situations réelles anonymisées
+
 ### Tests UX et compréhension usager
 
 Même si le calcul est juste, l’interface peut trahir la règle. Les tests utilisateurs visent à mesurer la compréhension, la fluidité et la perception de fiabilité du simulateur.

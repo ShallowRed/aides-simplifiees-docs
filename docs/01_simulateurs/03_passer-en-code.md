@@ -114,36 +114,98 @@ mobili-jeunes . montant:
     le minimum de:
       - 100 €/mois
       - surface logement * 10 €/m²
-  applicable si: mobili-jeunes . éligibilité
+    applicable si: mobili-jeunes . éligibilité
 ```
 
 ## Du modèle au schéma de questionnaire
 
-Une fois le modèle exécuté, il faut le rendre interactif. Un simulateur repose alors sur un schéma de questions lié aux variables du modèle. Deux cas de figure se présentent :
+Une fois le modèle exécuté, il faut le rendre interactif. Les projets de l'écosystème ont développé plusieurs architectures pour connecter formulaires et moteurs de calcul. Le choix dépend du contexte : type de moteur, besoins UX, composition de l'équipe.
 
-### Cas 1 : le modèle suffit
+### Pattern 1 : Schéma déclaratif multi-moteur
 
-// merged :
-Le modèle algorithmique peut directement générer les questions si :
-- le parcours est relativement court ;
-- l'ordre de saisie importe peu ;
-- les variables sont explicites et simples ;
-- il n'y a pas d'optimisation UX spécifiques nécessaires.
+Le formulaire est décrit dans un fichier JSON/YAML indépendant. Il peut alimenter plusieurs moteurs (Publicodes, OpenFisca, custom).
 
-### Cas 2 : passer par un schéma intermédiaire
+**Exemple** : aides-simplifiees (survey-schema)
 
-Il faut créer un schéma spécifique de description du formulaire lorsque :
-- on ne souhaite pas que le simulateur entre dans tous les détails du modèle ;
-- certaines variables nécessitent des regroupements ou des inférences (ex. “travail à l’étranger”) ;
-- le parcours doit être optimisé pour l'utilisateur (ex. questions conditionnelles, ordonnancement spécifique) ;
-- le public cible nécessite des adaptations du langage ou des concepts.
-- on souhaite ordonner les questions de manière spécifique (ex. regrouper les questions sur le logement) ;
+**Caractéristiques** :
+- Découplage total UI / moteur
+- Multi-moteur natif
+- Réutilisable entre frameworks (React, Vue, etc.)
+- Nécessite un système de synchronisation
 
-Voici un exemple de schéma JSON reprenant l'aide plus haut :
+### Pattern 2 : Formulaire généré depuis les règles
+
+L'UI est dérivée automatiquement des métadonnées du moteur. Chaque variable d'entrée devient une question.
+
+**Exemples** : mon-entreprise (RuleInput), publicodes-core (@publicodes/forms)
+
+**Caractéristiques** :
+- Source unique (les règles)
+- Cohérence garantie
+- Personnalisation via extension des règles
+- Couplé au moteur Publicodes
+
+### Pattern 3 : Config YAML + moteur séparé
+
+Les questions ou programmes sont décrits en YAML. Le moteur est invoqué séparément avec les réponses.
+
+**Exemples** : mes-aides-reno, transition-widget (213 programmes), nosgestesclimat
+
+**Caractéristiques** :
+- Flexibilité d'ordonnancement
+- Séparation claire données / calcul
+- Adapté aux catalogues de programmes/aides
+
+### Pattern 4 : Formulaires dynamiques codés
+
+Les questions sont définies en TypeScript/JavaScript avec la logique de transformation intégrée.
+
+**Exemples** : aides-jeunes (Property classes), code-du-travail, a-just
+
+**Caractéristiques** :
+- Grande flexibilité
+- Couplage fort au code
+- Contribution nécessite compétences dev
+- Adapté aux parcours complexes
+
+### Pattern 5 : API backend + formulaire découplé
+
+Le formulaire frontend est indépendant. Il appelle une API qui interroge le moteur (OpenFisca, custom).
+
+**Exemples** : estime, leximpact, mes-ressources-formation
+
+**Caractéristiques** :
+- Séparation nette frontend/backend
+- Adapté aux architectures distribuées
+- Le moteur peut être dans un autre langage
+
+### Approches sans moteur déclaratif
+
+Certains projets utilisent des approches spécifiques :
+- envergo : Moulinette Python custom
+- pacoupa : Lookup SQLite + validation Zod
+- impact-co2 : Données JSON + state React
+
+### Aide au choix
+
+| Besoin | Pattern adapté |
+|--------|----------------|
+| Multi-moteur (Publicodes + OpenFisca) | Schéma déclaratif |
+| Cohérence automatique règles/UI | Formulaire généré |
+| Catalogue de programmes/aides | Config déclarative |
+| Parcours très personnalisé | Formulaires codés |
+| Architecture microservices | Backend découplé |
+| Équipe sans designer | Formulaire généré |
+| Contribution non-dev souhaitée | Config déclarative |
+
+### Exemple de schéma JSON
+
+Voici un exemple de schéma déclaratif pour l'aide Mobili-jeunes :
 
 ```json
 {
   "id": "eligibilite_mobili_jeune",
+  "engine": "openfisca",
   "questions": [
     {
       "clé": "âge",
@@ -161,26 +223,20 @@ Voici un exemple de schéma JSON reprenant l'aide plus haut :
 }
 ```
 
-Un tel schéma relie certaines question à une variable du modèle et permet d’automatiser la création de formulaires.
+Un tel schéma relie certaines questions à une variable du modèle et permet d'automatiser la création de formulaires.
 
 ::: tip Conseil pratique
 Commencez toujours par la modélisation algorithmique pure avant d'optimiser l'expérience utilisateur. Cela garantit la cohérence réglementaire.
+:::
+
+::: info Pour aller plus loin
+Voir [Patterns architecturaux](/02_ecosysteme/03_patterns) pour une analyse détaillée des différentes approches avec schémas et matrices de décision.
 :::
 
 ## [À venir] : Du schéma au front-end
 
 ## Bonnes pratiques
 
-### Vérifier le comportement du code
-
-Les moteurs de règles incluent des frameworks de test intégrés.
-Chaque modèle doit être accompagné d’un dossier /tests contenant des cas d’entrée et les résultats attendus.
-
-Exemple de test YAML
-
-```yaml
-- nom: "Cas étudiant éligible"
-  input:
     age: 22
     statut: "salarié"
     type_contrat: "alternance"

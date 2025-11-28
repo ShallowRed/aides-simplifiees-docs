@@ -32,7 +32,20 @@ La maintenance débute par la **veille juridique et administrative**.
 - Informations des ministères porteurs ou collectivités ;
 - Retours terrain des agents et usagers.
 
+### Organiser la veille
+
+| Fréquence | Action | Responsable suggéré |
+|-----------|--------|---------------------|
+| Quotidien | Alertes Légifrance automatisées | Équipe technique |
+| Hebdomadaire | Revue des circulaires pertinentes | Expert métier |
+| Mensuel | Point avec les partenaires institutionnels | Product owner |
+| Trimestriel | Revue des évolutions anticipées | Comité de pilotage |
+
 > La veille est un travail collectif : chaque acteur du réseau contribue à la mise à jour.
+
+::: tip Ressource complémentaire
+Voir [Collaboration métier-produit](/02_ecosysteme/04_collaboration) pour des conseils détaillés sur l'organisation de la veille et le dialogue avec les partenaires.
+:::
 
 ## Mettre à jour le simulateur
 

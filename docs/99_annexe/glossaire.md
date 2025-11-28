@@ -23,10 +23,13 @@ Exemple : le barème APL selon la zone et les ressources du foyer.
 ## C
 
 ### Calcul
-Processus d'opérations mathématiques par laquelle les conditions d’accès à une aide sont évaluées pour un usager. Il peut être binaire (éligible / non éligible) ou graduel (montant ajusté selon un barème).
+Processus d'opérations mathématiques par laquelle les conditions d'accès à une aide sont évaluées pour un usager. Il peut être binaire (éligible / non éligible) ou graduel (montant ajusté selon un barème).
+
+### Cas type
+Situation représentative définie avec les experts métier, servant à la fois de spécification fonctionnelle et de test. Contrairement aux tests unitaires, les cas types sont exprimés dans un langage compréhensible par des non-développeurs. Voir aussi : Fixtures métier.
 
 ### CI/CD (Continuous Integration / Continuous Deployment)
-Pratiques d’intégration et de déploiement continu permettant d’automatiser les tests, la construction et la mise à jour du code.
+Pratiques d'intégration et de déploiement continu permettant d'automatiser les tests, la construction et la mise à jour du code.
 
 ### Commun numérique
 Ressource logicielle, documentaire ou méthodologique ouverte, réutilisable et gouvernée collectivement.  
@@ -51,6 +54,14 @@ Fait de remplir les conditions requises pour bénéficier d'une aide ou d'un ser
 Objet de calcul dans un moteur de règles (ex. : *individu*, *foyer*, *logement*).  
 Chaque variable est rattachée à une entité pour structurer les dépendances.
 
+### Expert métier
+Personne disposant d'une connaissance approfondie d'un domaine réglementaire (juriste, agent CAF, conseiller Pôle Emploi, etc.). Dans un projet de simulateur, l'expert métier valide les interprétations et les cas types.
+
+## F
+
+### Fixtures métier
+Cas types représentatifs définis avec les experts, servant à la fois de spécification fonctionnelle et de test de non-régression. Contrairement aux tests unitaires techniques, les fixtures métier sont lisibles par des non-développeurs et traçables vers des situations réelles.
+
 ## L
 
 ### Liquidateur
@@ -64,7 +75,13 @@ Représentation formalisée et structurée des règles d'attribution d'une aide,
 ### Moteur de règles
 Logiciel spécialisé dans l'exécution de règles métier formalisées. Exemples : OpenFisca, Publicodes.
 
+### Multi-moteur
+Architecture permettant à un même formulaire ou schéma de questionnaire d'alimenter plusieurs moteurs de règles (Publicodes, OpenFisca, custom). Cette approche favorise le découplage entre l'interface utilisateur et la logique de calcul.
+
 ## P
+
+### @publicodes/forms
+Bibliothèque JavaScript permettant de générer automatiquement des formulaires à partir de règles Publicodes. Fait partie de l'écosystème publicodes-core.
 
 ### Personal Regulation Assistant (PRA)
 Concept d'assistant numérique personnel capable d'analyser la situation d'un individu au regard de multiples réglementations pour l'informer de ses droits et obligations.
@@ -73,6 +90,9 @@ Concept d'assistant numérique personnel capable d'analyser la situation d'un in
 Moteur de règles open source développé par beta.gouv.fr, privilégiant la lisibilité et la facilité de contribution par des non-techniques.
 
 ## R
+
+### Registre d'interprétations
+Document traçant les décisions prises lorsqu'un texte réglementaire est ambigu. Chaque interprétation est justifiée, datée et validée par un expert, permettant de comprendre pourquoi le simulateur se comporte d'une certaine manière.
 
 ### Règle (réglementaire)
 Portion d'un texte réglementaire identifiable comme une instruction précise émise par les législateurs. Exemple : "condition d'âge pour l'éligibilité à l'APL en location".
@@ -85,12 +105,18 @@ Approche consistant à traduire directement les règles juridiques en code infor
 ### Simulateur
 Outil permettant à un utilisateur d'estimer son éligibilité et le montant potentiel d'une ou plusieurs aides publiques, à partir de la description de sa situation.
 
+### Survey-schema
+Format de description déclarative d'un questionnaire, indépendant du moteur de calcul. Permet de définir les questions, leur ordre, les conditions d'affichage et les validations sans coder l'interface. Utilisé notamment par aides-simplifiees.
+
 ## T
 
 ### Texte réglementaire
 Document juridique officiel (loi, décret, arrêté, circulaire) définissant les règles d'attribution et de calcul d'une aide publique.
 
 ## V
+
+### Validation métier
+Processus par lequel un expert du domaine vérifie que le modèle informatique reflète correctement la réglementation. Distinct des tests techniques, la validation métier porte sur la conformité au droit, pas sur l'absence de bugs.
 
 ### Variable
 Élément d'information nécessaire au calcul d'une aide (âge, revenus, type de logement, etc.). Peut être :

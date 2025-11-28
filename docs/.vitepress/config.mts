@@ -20,6 +20,7 @@ export default defineConfig({
     nav: [
       { text: 'Accueil', link: '/' },
       { text: 'Le produit', link: '/00_meta/02_aides-simplifiées' },
+      { text: 'Écosystème', link: '/02_ecosysteme/' },
       { text: 'Simulateurs', link: '/01_simulateurs/' },
       { text: 'Glossaire', link: '/99_annexe/glossaire' }
     ],
@@ -30,6 +31,17 @@ export default defineConfig({
         items: [
           { text: 'Le produit aides simplifiées', link: '/00_meta/02_aides-simplifiées' },
           { text: 'Enjeux du Rules as Code', link: '/00_meta/01_enjeux-rules-as-code' }
+        ]
+      },
+      {
+        text: 'Écosystème',
+        collapsed: false,
+        items: [
+          { text: 'Vue d\'ensemble', link: '/02_ecosysteme/' },
+          { text: 'Panorama des projets', link: '/02_ecosysteme/01_panorama' },
+          { text: 'Outils réutilisables', link: '/02_ecosysteme/02_outils' },
+          { text: 'Patterns architecturaux', link: '/02_ecosysteme/03_patterns' },
+          { text: 'Collaboration métier-produit', link: '/02_ecosysteme/04_collaboration' }
         ]
       },
       {

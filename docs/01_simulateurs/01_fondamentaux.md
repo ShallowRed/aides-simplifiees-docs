@@ -21,7 +21,7 @@ L’ouverture du code et des modèles garantit la transparence, favorise la réu
 
 ## Une approche interdisciplinaire
 
-La réussite d’un simulateur ne repose pas sur la technique seule. Elle dépend de la **convergence des expertises** :
+La réussite d'un simulateur ne repose pas sur la technique seule. Elle dépend de la **convergence des expertises** :
 
 | Domaine | Rôle |
 |----------|----------------------|
@@ -32,7 +32,36 @@ La réussite d’un simulateur ne repose pas sur la technique seule. Elle dépen
 
 Cette approche impose une méthode de travail : **co-construire la règle** dès le départ avec ceux qui la traduiront en code.
 
-Le texte réglementaire est écrit pour le contrôle, pas pour l’usage. Le citoyen, lui, a besoin de comprendre rapidement : *suis-je éligible, et à quoi ?*. En rapprochant juristes, designers et développeurs, on permet d’**aligner la logique du droit sur la logique de l’usager**.
+Le texte réglementaire est écrit pour le contrôle, pas pour l'usage. Le citoyen, lui, a besoin de comprendre rapidement : *suis-je éligible, et à quoi ?*. En rapprochant juristes, designers et développeurs, on permet d'**aligner la logique du droit sur la logique de l'usager**.
+
+### Le défi de la collaboration
+
+Cette convergence ne va pas de soi. Les différents acteurs utilisent des **vocabulaires différents**, des **outils différents** et des **temporalités différentes** :
+
+- L'expert métier raisonne en **cas particuliers** et **exceptions**
+- Le designer pense en **parcours** et **compréhension**
+- Le développeur structure en **modèles** et **tests**
+- Le partenaire institutionnel arbitre selon des **contraintes politiques**
+
+Sans outillage adapté, ces mondes peinent à communiquer efficacement. C'est pourquoi nous recommandons de :
+
+1. **Établir un glossaire partagé** dès le début du projet
+2. **Formaliser des cas types** validés par les experts métier
+3. **Documenter les interprétations** quand le texte est ambigu
+4. **Organiser des rituels réguliers** de synchronisation
+
+::: tip Ressource complémentaire
+Voir [Collaboration métier-produit](/02_ecosysteme/04_collaboration) pour un guide détaillé sur l'outillage de ces relations.
+:::
+
+## Les publics concernés
+
+| Public cible | Rôle | Ressources clé |
+|---------------|-----------------|-----------------------|
+| **Administrations centrales et opérateurs** | Sécuriser et maintenir des simulateurs réglementaires | Méthode, outillage, référentiels communs |
+| **Collectivités territoriales** | Développer ou adapter des aides locales | Mutualisation et interopérabilité |
+| **Développeurs et designers publics** | Construire des parcours de droit fiables | Documentation, API et tests |
+| **Chercheurs / observateurs du droit** | Étudier la traduction des politiques publiques en code | Corpus de règles ouvertes et traçables |
 
 ## Les publics concernés
 
