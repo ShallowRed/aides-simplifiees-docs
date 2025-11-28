@@ -268,6 +268,7 @@ Une réponse avant le [date] nous permettrait de [livraison prévue].
 - [Formaliser les cas types métier](/01_simulateurs/05_tester-ajuster.html#formaliser-les-cas-types-metier)
 - [Tensions à assumer](/00_meta/01_enjeux-rules-as-code.html#des-tensions-a-assumer)
 - [Maintenir un simulateur](/01_simulateurs/06_maintenir)
+- [Ressources visuelles mutualisables](/99_annexe/ressources-visuelles) - Templates Mermaid pour workflows et traçabilité
 
 ::: tip Contribution
 Ce sujet est en construction. Partagez vos retours d'expérience et bonnes pratiques via [notre dépôt GitHub](https://github.com/betagouv/aides-simplifiees-docs).

@@ -61,6 +61,7 @@ export default defineConfig({
         text: 'Annexe',
         items: [
           { text: 'Glossaire', link: '/99_annexe/glossaire' },
+          { text: 'Ressources visuelles', link: '/99_annexe/ressources-visuelles' },
           { text: 'Historique', link: '/99_annexe/historique' }
         ]
       }

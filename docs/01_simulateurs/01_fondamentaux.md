@@ -62,12 +62,3 @@ Voir [Collaboration métier-produit](/02_ecosysteme/04_collaboration) pour un gu
 | **Collectivités territoriales** | Développer ou adapter des aides locales | Mutualisation et interopérabilité |
 | **Développeurs et designers publics** | Construire des parcours de droit fiables | Documentation, API et tests |
 | **Chercheurs / observateurs du droit** | Étudier la traduction des politiques publiques en code | Corpus de règles ouvertes et traçables |
-
-## Les publics concernés
-
-| Public cible | Rôle | Ressources clé |
-|---------------|-----------------|-----------------------|
-| **Administrations centrales et opérateurs** | Sécuriser et maintenir des simulateurs réglementaires | Méthode, outillage, référentiels communs |
-| **Collectivités territoriales** | Développer ou adapter des aides locales | Mutualisation et interopérabilité |
-| **Développeurs et designers publics** | Construire des parcours de droit fiables | Documentation, API et tests |
-| **Chercheurs / observateurs du droit** | Étudier la traduction des politiques publiques en code | Corpus de règles ouvertes et traçables |

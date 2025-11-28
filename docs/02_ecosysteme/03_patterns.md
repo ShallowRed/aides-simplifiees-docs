@@ -4,83 +4,87 @@ Cette page détaille les principales architectures utilisées pour connecter for
 
 ## Vue d'ensemble
 
-L'analyse des projets révèle **quatre grandes familles** d'approches, distinguées par deux axes :
-- Le **degré de couplage** entre le formulaire et le moteur de règles
-- La **localisation du calcul** (client vs serveur)
+L'analyse des projets révèle **trois axes orthogonaux** qui se combinent :
 
-```
-                        COUPLAGE FAIBLE                    COUPLAGE FORT
-                              │                                  │
-    CALCUL        ┌───────────┴───────────┐        ┌─────────────┴─────────────┐
-    CLIENT        │  Config déclarative   │        │   Formulaire généré       │
-                  │  (YAML/JSON)          │        │   depuis règles           │
-                  │                       │        │                           │
-                  │  mes-aides-reno       │        │   mon-entreprise          │
-                  │  transition-widget    │        │   @publicodes/forms       │
-                  │  nosgestesclimat      │        │   aides-simplifiees       │
-                  │  aides-simplifiees    │        │   (mode Publicodes)       │
-                  └───────────────────────┘        └───────────────────────────┘
-                              │                                  │
-    CALCUL        ┌───────────┴───────────┐        ┌─────────────┴─────────────┐
-    SERVEUR       │  API backend          │        │   Formulaires codés       │
-                  │  + front découplé     │        │   + appels API            │
-                  │                       │        │                           │
-                  │  estime               │        │   aides-jeunes            │
-                  │  leximpact            │        │   code-du-travail         │
-                  │  mes-ressources       │        │   a-just                  │
-                  └───────────────────────┘        └───────────────────────────┘
-```
+1. **Définition du formulaire** : Comment les questions sont-elles décrites ?
+2. **Localisation du calcul** : Où le moteur de règles s'exécute-t-il ?
+3. **Couche de mapping** : Quelle transformation entre les réponses utilisateur et le moteur ?
 
-## Pattern 1 : Config déclarative (YAML/JSON)
-
-### Principe
-
-Les questions sont décrites dans un fichier de configuration (YAML ou JSON) séparé du code. Le moteur de règles est invoqué avec les réponses collectées.
-
-```
-┌──────────────┐     ┌──────────────┐     ┌──────────────┐
-│   Config     │     │   Form UI    │     │   Moteur     │
-│   YAML/JSON  │────▶│  (générique) │────▶│  (invoke)    │
-└──────────────┘     └──────────────┘     └──────────────┘
+```mermaid
+flowchart TB
+    subgraph "1. Définition formulaire"
+        F1["Config déclarative<br/>(YAML/JSON)"]
+        F2["Généré depuis règles<br/>(Publicodes metadata)"]
+        F3["Formulaires codés<br/>(TypeScript/React)"]
+    end
+    
+    subgraph "2. Localisation calcul"
+        C1["Client-side<br/>(navigateur)"]
+        C2["Server-side<br/>(API backend)"]
+    end
+    
+    subgraph "3. Couche mapping"
+        M1["Aucune<br/>(direct)"]
+        M2["Légère<br/>(formatters)"]
+        M3["Complexe<br/>(builders/mappeurs)"]
+    end
 ```
 
-### Variantes observées
+### Combinaisons observées
 
-| Projet | Format config | Moteur | Particularité |
-|--------|---------------|--------|---------------|
-| **mes-aides-reno** | YAML (`simulationConfig.yaml`) | Publicodes | Liste les questions "prioritaires" (ordre) |
-| **transition-widget** | YAML (inline dans programmes) | Publicodes | Règles embarquées dans chaque programme |
-| **nosgestesclimat** | YAML | Publicodes | Questions dérivées des règles + config ordre |
-| **aides-simplifiees** | JSON (`public/forms/*.json`) | Publicodes OU OpenFisca | Champ `engine` pour routage multi-moteur |
+| Projet | Définition | Calcul | Mapping | Moteur |
+|--------|------------|--------|---------|--------|
+| **aides-simplifiees** | JSON multi-moteur | Client + Proxy API | Builder TypeScript | Publicodes OU OpenFisca |
+| **mes-aides-reno** | YAML priorités | Client | Direct | Publicodes |
+| **mon-entreprise** | Généré depuis règles | Client | Direct | Publicodes |
+| **nosgestesclimat** | YAML ordre | Client | Direct | Publicodes |
+| **aides-jeunes** | Codé (Property classes) | Serveur (proxy) | Intégré au code | OpenFisca |
+| **estime** | Codé (Angular Forms) | Serveur (backend métier) | 16 mappeurs Java | OpenFisca |
 
-### Exemple : mes-aides-reno
+---
+
+## Axe 1 : Définition du formulaire
+
+### Pattern A : Config déclarative (YAML/JSON)
+
+Les questions sont décrites dans un fichier de configuration séparé du code applicatif.
+
+```mermaid
+flowchart LR
+    A["📄 Config<br/>YAML/JSON"] --> B["🖥️ Form UI<br/>(générique)"]
+    B --> C["⚙️ Moteur<br/>(invoke)"]
+```
+
+#### Variante 1 : YAML comme filtre d'ordonnancement
+
+**mes-aides-reno** utilise un YAML qui référence des règles Publicodes existantes :
 
 ```yaml
 # simulationConfig.yaml
 prioritaires:
   - vous . propriétaire . statut
-  - logement . propriétaire occupant
   - logement . adresse
-  - ménage . personnes
   - ménage . revenu
 ```
 
-Le fichier YAML définit l'**ordre des questions**, mais celles-ci correspondent à des règles Publicodes existantes.
+Les questions sont **définies dans Publicodes** (métadonnées `question:`, `une possibilité parmi:`). Le YAML ne fait que **filtrer et ordonner** les `missingVariables` du moteur.
 
-### Exemple : aides-simplifiees (multi-moteur)
+#### Variante 2 : JSON comme schéma complet autonome
+
+**aides-simplifiées** utilise un JSON qui décrit intégralement le formulaire :
 
 ```json
 {
-  "version": "2.0.3",
   "id": "demenagement-logement",
   "engine": "openfisca",
   "steps": [
     {
       "questions": [
         {
-          "id": "age",
-          "type": "number",
-          "label": "Quel est votre âge ?"
+          "id": "date-naissance",
+          "type": "date",
+          "label": "Quelle est votre date de naissance ?",
+          "required": true
         }
       ]
     }
@@ -88,180 +92,190 @@ Le fichier YAML définit l'**ordre des questions**, mais celles-ci correspondent
 }
 ```
 
-La spécificité est le champ `engine` qui permet au **même schéma** de router vers Publicodes ou OpenFisca selon le simulateur.
+Le formulaire est **indépendant du moteur**. Le champ `engine` permet de router vers Publicodes ou OpenFisca.
 
-### Caractéristiques
+### Pattern B : Formulaire généré depuis les règles
 
-| Aspect | Description |
-|--------|-------------|
-| **Découplage** | Moyen à fort (selon implémentation) |
-| **Contribution** | Le fichier config peut être édité sans toucher au code moteur |
-| **Multi-moteur** | Possible si prévu (aides-simplifiees), sinon non |
-| **Flexibilité** | Ordonnancement et regroupement libres |
+L'UI est dérivée automatiquement des métadonnées Publicodes.
 
-### Quand l'utiliser ?
-
-- Catalogue de programmes/aides à afficher
-- Besoin de flexibilité dans l'ordre des questions
-- Contribution métier sur la structure du parcours
-- (Si multi-moteur prévu) Besoin de supporter Publicodes ET OpenFisca
-
----
-
-## Pattern 2 : Formulaire généré depuis les règles
-
-### Principe
-
-L'interface utilisateur est dérivée automatiquement des métadonnées des règles Publicodes. Chaque variable d'entrée génère une question.
-
-```
-┌──────────────┐     ┌──────────────┐     ┌──────────────┐
-│  Publicodes  │────▶│  Générateur  │────▶│   React UI   │
-│   Rules      │     │  de forms    │     │  Components  │
-│   (.yaml)    │     │              │     │              │
-└──────────────┘     └──────────────┘     └──────────────┘
+```mermaid
+flowchart LR
+    A["📜 Publicodes<br/>Rules (.yaml)"] --> B["🔄 Générateur<br/>de forms"]
+    B --> C["⚛️ React UI<br/>Components"]
 ```
 
-### Caractéristiques
-
-| Aspect | Description |
-|--------|-------------|
-| **Source unique** | Les règles sont la seule source de vérité |
-| **Cohérence** | Garantie entre calcul et UI |
-| **Personnalisation** | Via extension des métadonnées des règles |
-| **Couplage** | Fort avec le moteur Publicodes |
-
-### Exemple : mon-entreprise
-
-mon-entreprise utilise des composants `RuleInput` qui :
-- Déterminent le type d'input selon la règle (radio, checkbox, montant, commune...)
+**mon-entreprise** utilise des composants `RuleInput` qui :
+- Déterminent le type d'input selon la règle
 - Affichent les suggestions et unités depuis les métadonnées
 - Gèrent les conditions d'applicabilité automatiquement
 
-```tsx
-// Flux simplifié
-function RuleInput({ dottedName }) {
-  const nature = getRuleInputNature(engine.getRule(dottedName))
-  
-  if (nature.isMultiplePossibilities) return <Checkboxes ... />
-  if (nature.isOnePossibility) return <RadioGroup ... />
-  if (nature.isMontant) return <MontantField ... />
-  // etc.
-}
+### Pattern C : Formulaires codés
+
+Les questions sont définies en TypeScript/JavaScript.
+
+```mermaid
+flowchart LR
+    A["📋 Property<br/>Classes (.ts)"] --> B["🖥️ Vue/React<br/>Components"]
+    B --> C["🌐 API<br/>Moteur"]
 ```
 
-### Exemple : @publicodes/forms
-
-La bibliothèque `@publicodes/forms` formalise ce pattern :
-```tsx
-import { Form } from '@publicodes/forms'
-
-<Form
-  engine={engine}
-  objectives={['aide . montant']}
-  onSubmit={handleResult}
-/>
-```
-
-### Quand l'utiliser ?
-
-- Projet 100% Publicodes
-- Cohérence règles/UI prioritaire
-- Équipe maîtrisant l'écosystème Publicodes
-- Pas besoin de personnalisation fine du parcours
-
----
-
-## Pattern 3 : Formulaires codés + appels API
-
-### Principe
-
-Les questions sont définies en TypeScript/JavaScript avec la logique de transformation intégrée. Les appels au moteur (souvent OpenFisca) passent par une API.
-
-```
-┌──────────────┐     ┌──────────────┐     ┌──────────────┐
-│  Property    │────▶│   Vue/React  │────▶│   OpenFisca  │
-│  Classes     │     │  Components  │     │   API        │
-│   (.ts)      │     │              │     │              │
-└──────────────┘     └──────────────┘     └──────────────┘
-```
-
-### Variantes observées
-
-| Projet | Définition questions | Moteur | Backend |
-|--------|---------------------|--------|---------|
-| **aides-jeunes** | Property classes (TypeScript) | OpenFisca | Node.js |
-| **code-du-travail** | Composants React | Mixte | Node.js |
-| **a-just** | Angular Forms | Custom (JS) | Koa |
-
-### Exemple : aides-jeunes
+**aides-jeunes** définit des Property classes avec transformations intégrées :
 
 ```typescript
-// lib/properties/individu.ts (simplifié)
 export const age: Property = {
   type: 'number',
   label: 'Quel est votre âge ?',
-  min: 0,
-  max: 120,
   toOpenFisca: (value) => ({ age: value })
 }
 ```
 
-### Caractéristiques
+---
 
-| Aspect | Description |
-|--------|-------------|
-| **Flexibilité** | Maximale sur les parcours |
-| **Couplage** | Fort au code applicatif |
-| **Contribution** | Nécessite compétences dev |
-| **Adaptation** | Idéal pour parcours complexes |
+## Axe 2 : Localisation du calcul
 
-### Quand l'utiliser ?
+### Calcul côté client (navigateur)
 
-- Parcours très personnalisés avec logique conditionnelle complexe
-- Équipe 100% dev
-- Besoins UX spécifiques
-- Intégration OpenFisca via API
+Le moteur Publicodes s'exécute directement dans le navigateur.
+
+**Avantages** :
+- Pas de latence réseau
+- Réactivité instantanée
+- Pas de backend à maintenir
+
+**Projets** : mes-aides-reno, mon-entreprise, nosgestesclimat, aides-simplifiées (mode Publicodes)
+
+### Calcul côté serveur (API)
+
+Le moteur (souvent OpenFisca/Python) est appelé via une API.
+
+#### Variante : Proxy simple
+
+**aides-simplifiées** utilise un backend AdonisJS qui fait un simple relais vers OpenFisca :
+
+```mermaid
+flowchart LR
+    A["Frontend<br/>Vue.js"] --> B["Backend AdonisJS<br/>/api/calculate"]
+    B --> C["OpenFisca API<br/>(Python)"]
+```
+
+Le backend ne contient **aucune logique métier** : il relaye la requête construite côté client.
+
+#### Variante : Backend avec logique métier
+
+**estime** utilise un backend Java Spring qui transforme les données :
+
+```mermaid
+flowchart LR
+    A["Frontend<br/>Angular"] --> B["Backend Java<br/>Spring Boot"]
+    B --> C["16 Mappeurs<br/>OpenFisca"]
+    C --> D["OpenFisca API"]
+```
+
+Le frontend envoie un objet métier (`DemandeurEmploi`), le backend le transforme en structure OpenFisca.
 
 ---
 
-## Pattern 4 : API backend + front découplé
+## Axe 3 : Couche de mapping (traçabilité)
 
-### Principe
+::: warning Point d'attention
+La couche de mapping est souvent **source de difficultés de traçabilité** entre les questions posées à l'utilisateur et les variables calculées par le moteur.
+:::
 
-Le frontend est totalement indépendant : il collecte les réponses via des formulaires classiques et appelle une API backend qui interroge le moteur.
+### Mapping direct (aucune transformation)
 
+Avec Publicodes côté client, les réponses alimentent directement les règles :
+
+```typescript
+engine.setSituation({ 'ménage . revenu': 25000 })
 ```
-┌──────────────┐     ┌──────────────┐     ┌──────────────┐
-│   Frontend   │────▶│   REST API   │────▶│   OpenFisca  │
-│   (Angular)  │     │   (Java)     │     │   (Python)   │
-└──────────────┘     └──────────────┘     └──────────────┘
+
+### Mapping avec formatters
+
+**aides-simplifiées** utilise des formatters pour transformer les valeurs :
+
+```typescript
+// formatters.ts
+export function formatSurveyAnswerToRequest(
+  variableName: string,
+  period: string,
+  value: unknown
+): Record<string, VariableValueOnPeriod> {
+  return { [variableName]: { [period]: value } }
+}
 ```
 
-### Exemple : estime
+### Mapping avec builders complexes
 
-estime (Pôle Emploi) utilise :
-- Un frontend Angular avec Reactive Forms (formulaires codés classiques)
-- Un backend Java Spring Boot
-- Des appels à l'API OpenFisca externe
+Pour OpenFisca, **aides-simplifiées** utilise un `OpenFiscaRequestBuilder` avec plusieurs couches :
 
-Le frontend n'a **aucune connaissance** des règles : il envoie des données brutes au backend qui les transforme.
+```mermaid
+flowchart TB
+    subgraph "Réponses utilisateur"
+        R["date-naissance: '2000-01-01'<br/>situation-professionnelle: 'alternance'<br/>loyer-montant-mensuel: 700"]
+    end
+    
+    subgraph "OpenFiscaRequestBuilder"
+        MR["MappingResolver<br/>questions_variables.ts<br/>variables.ts"]
+        D["Dispatchers<br/>dispatchSituationProfessionnelle()<br/>dispatchSituationLogement()"]
+        EM["Entity Managers<br/>IndividuManager<br/>MenageManager<br/>FamilleManager<br/>FoyerFiscalManager"]
+        DP["Date Periods<br/>MONTH, YEAR, YEAR_ROLLING<br/>ETERNITY"]
+    end
+    
+    subgraph "Requête OpenFisca"
+        OF["individus:<br/>  demandeur:<br/>    date_naissance: {ETERNITY: '2000-01-01'}<br/>    alternant: {2025-01: true}<br/>menages:<br/>  _:<br/>    loyer: {2025-01: 700}"]
+    end
+    
+    R --> MR
+    MR --> D
+    D --> EM
+    EM --> DP
+    DP --> OF
+```
 
-### Caractéristiques
+#### Composants du builder
 
-| Aspect | Description |
-|--------|-------------|
-| **Séparation** | Totale frontend/backend |
-| **Multi-langage** | Frontend JS, backend Java/Python |
-| **Scalabilité** | Backend indépendamment scalable |
-| **Latence** | Appels réseau à chaque calcul |
+| Fichier | Rôle |
+|---------|------|
+| `mapping_resolver.ts` | Résout une clé de réponse vers son mapping OpenFisca |
+| `variables.ts` | Table de correspondance clé formulaire → variable OpenFisca |
+| `questions_variables.ts` | Variables à calculer (résultats) |
+| `dispatchers.ts` | Transforme une valeur en plusieurs variables (ex: "alternance" → `alternant: true`) |
+| `entity_manager.ts` | Classe abstraite pour gérer les entités OpenFisca |
+| `individu_manager.ts` | Gère l'entité `individus` |
+| `menage_manager.ts` | Gère l'entité `menages` |
+| `famille_manager.ts` | Gère l'entité `familles` |
+| `foyer_fiscal_manager.ts` | Gère l'entité `foyers_fiscaux` |
+| `date_periods.ts` | Calcule les périodes (MONTH, YEAR, YEAR_ROLLING, ETERNITY) |
 
-### Quand l'utiliser ?
+#### Exemple de transformation complexe
 
-- Architecture microservices existante
-- Équipe backend non-JS (Java, Python)
-- Besoins de scalabilité serveur
-- Moteur non disponible en JavaScript
+```typescript
+// Entrée utilisateur
+{ "situation-professionnelle": "alternance" }
+
+// Dispatch (dispatchers.ts)
+case FORM_VALUES.ALTERNANCE:
+  return formatSurveyAnswerToRequest('alternant', period, true)
+
+// Sortie OpenFisca
+{
+  "individus": {
+    "demandeur": {
+      "alternant": { "2025-01": true }
+    }
+  }
+}
+```
+
+### Comparaison des approches de mapping
+
+| Projet | Couche mapping | Traçabilité | Maintenabilité |
+|--------|----------------|-------------|----------------|
+| **mes-aides-reno** | Aucune (Publicodes direct) | ✅ Excellente | ✅ Simple |
+| **aides-simplifiées (Publicodes)** | Légère | ✅ Bonne | ✅ Simple |
+| **aides-simplifiées (OpenFisca)** | Builder TypeScript | ⚠️ Moyenne | ⚠️ Complexe |
+| **aides-jeunes** | Intégrée au code | ⚠️ Moyenne | ⚠️ Dispersée |
+| **estime** | 16 mappeurs Java | ❌ Difficile | ❌ Très complexe |
 
 ---
 
@@ -274,24 +288,26 @@ Certains projets n'utilisent pas de moteur de règles générique :
 | **envergo** | Moulinette Python (matrices, evaluators) | Règles environnementales très spécifiques |
 | **pacoupa** | Lookup SQLite + validation Zod | Recommandation basée sur base de données |
 | **impact-co2** | Données JSON + React state | Données statiques, peu de calcul |
-
-Ces approches sont adaptées quand :
-- Le domaine est très spécifique (pas de réutilisation envisagée)
-- La complexité ne justifie pas un moteur générique
-- L'équipe maîtrise mieux une approche custom
+| **a-just** | Algorithmes JavaScript custom | Calculs de charge tribunaux très spécifiques |
 
 ---
 
 ## Matrice de décision
 
-| Critère | Config déclarative | Généré (Publicodes) | Codé + API | Backend découplé |
-|---------|-------------------|---------------------|------------|------------------|
-| Contribution non-dev | ✅✅ | ✅ | ❌ | ❌ |
-| Cohérence règles/UI | ✅ | ✅✅ | ⚠️ | ⚠️ |
-| Flexibilité parcours | ✅✅ | ⚠️ | ✅✅ | ✅ |
-| Multi-moteur | ⚠️ (si prévu) | ❌ | ⚠️ | ✅ |
-| Calcul côté client | ✅ | ✅ | ⚠️ | ❌ |
-| Complexité initiale | Faible | Faible | Moyenne | Élevée |
+| Critère | Config déclarative | Généré (Publicodes) | Codé |
+|---------|-------------------|---------------------|------|
+| Contribution non-dev | ✅✅ | ✅ | ❌ |
+| Cohérence règles/UI | ✅ | ✅✅ | ⚠️ |
+| Flexibilité parcours | ✅✅ | ⚠️ | ✅✅ |
+| Traçabilité | ✅ (si Publicodes) | ✅✅ | ⚠️ |
+| Multi-moteur | ⚠️ (si prévu) | ❌ | ✅ |
+
+| Critère | Calcul client | Calcul serveur (proxy) | Calcul serveur (métier) |
+|---------|---------------|------------------------|------------------------|
+| Latence | ✅✅ | ⚠️ | ❌ |
+| Complexité infra | ✅✅ | ⚠️ | ❌ |
+| Scalabilité | ✅ | ✅ | ✅✅ |
+| Sécurité données | ⚠️ | ✅ | ✅✅ |
 
 Légende : ✅✅ Excellent | ✅ Bon | ⚠️ Limité/Dépend | ❌ Non adapté
 
@@ -299,4 +315,5 @@ Légende : ✅✅ Excellent | ✅ Bon | ⚠️ Limité/Dépend | ❌ Non adapté
 
 - [Panorama des projets](./01_panorama.md)
 - [Outils réutilisables](./02_outils.md)
+- [Ressources visuelles](/99_annexe/ressources-visuelles) - Diagrammes d'architecture et de traçabilité
 - [Du modèle au schéma de questionnaire](/01_simulateurs/03_passer-en-code.html#du-modele-au-schema-de-questionnaire)

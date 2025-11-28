@@ -119,84 +119,74 @@ mobili-jeunes . montant:
 
 ## Du modèle au schéma de questionnaire
 
-Une fois le modèle exécuté, il faut le rendre interactif. Les projets de l'écosystème ont développé plusieurs architectures pour connecter formulaires et moteurs de calcul. Le choix dépend du contexte : type de moteur, besoins UX, composition de l'équipe.
+Une fois le modèle exécuté, il faut le rendre interactif. L'architecture qui connecte le formulaire au moteur de calcul repose sur **trois axes orthogonaux** qui se combinent :
 
-### Pattern 1 : Schéma déclaratif multi-moteur
+1. **Définition du formulaire** : Comment les questions sont-elles décrites ?
+2. **Localisation du calcul** : Où le moteur de règles s'exécute-t-il ?
+3. **Couche de mapping** : Quelle transformation entre les réponses utilisateur et le moteur ?
 
-Le formulaire est décrit dans un fichier JSON/YAML indépendant. Il peut alimenter plusieurs moteurs (Publicodes, OpenFisca, custom).
+### Axe 1 : Définition du formulaire
 
-**Exemple** : aides-simplifiees (survey-schema)
+#### Config déclarative (JSON/YAML)
 
-**Caractéristiques** :
-- Découplage total UI / moteur
-- Multi-moteur natif
-- Réutilisable entre frameworks (React, Vue, etc.)
-- Nécessite un système de synchronisation
+Le formulaire est décrit dans un fichier de configuration séparé du code.
 
-### Pattern 2 : Formulaire généré depuis les règles
+**Variantes** :
+- **YAML comme filtre d'ordonnancement** (mes-aides-reno) : le YAML référence des règles Publicodes, les questions sont définies dans le moteur
+- **JSON comme schéma complet** (aides-simplifiees) : le JSON décrit intégralement le formulaire, indépendamment du moteur
 
-L'UI est dérivée automatiquement des métadonnées du moteur. Chaque variable d'entrée devient une question.
+#### Formulaire généré depuis les règles
 
-**Exemples** : mon-entreprise (RuleInput), publicodes-core (@publicodes/forms)
+L'UI est dérivée automatiquement des métadonnées Publicodes.
 
-**Caractéristiques** :
-- Source unique (les règles)
-- Cohérence garantie
-- Personnalisation via extension des règles
-- Couplé au moteur Publicodes
+**Exemples** : mon-entreprise (RuleInput), @publicodes/forms
 
-### Pattern 3 : Config YAML + moteur séparé
+#### Formulaires codés
 
-Les questions ou programmes sont décrits en YAML. Le moteur est invoqué séparément avec les réponses.
+Les questions sont définies en TypeScript/JavaScript.
 
-**Exemples** : mes-aides-reno, transition-widget (213 programmes), nosgestesclimat
+**Exemples** : aides-jeunes (Property classes), a-just (Angular Forms)
 
-**Caractéristiques** :
-- Flexibilité d'ordonnancement
-- Séparation claire données / calcul
-- Adapté aux catalogues de programmes/aides
+### Axe 2 : Localisation du calcul
 
-### Pattern 4 : Formulaires dynamiques codés
+| Localisation | Projets | Avantages | Inconvénients |
+|--------------|---------|-----------|---------------|
+| **Client (navigateur)** | mes-aides-reno, mon-entreprise, nosgestesclimat | Pas de latence, réactivité | Publicodes uniquement |
+| **Serveur (proxy)** | aides-simplifiees (OpenFisca) | Multi-moteur possible | Latence réseau |
+| **Serveur (métier)** | estime (Java), mes-ressources-formation | Logique backend complexe | Traçabilité difficile |
 
-Les questions sont définies en TypeScript/JavaScript avec la logique de transformation intégrée.
+### Axe 3 : Couche de mapping
 
-**Exemples** : aides-jeunes (Property classes), code-du-travail, a-just
+::: warning Point d'attention
+La couche de mapping est souvent **source de difficultés de traçabilité** entre les questions posées à l'utilisateur et les variables calculées par le moteur.
+:::
 
-**Caractéristiques** :
-- Grande flexibilité
-- Couplage fort au code
-- Contribution nécessite compétences dev
-- Adapté aux parcours complexes
+| Type | Description | Traçabilité |
+|------|-------------|-------------|
+| **Aucune** | Publicodes direct | Excellente |
+| **Formatters légers** | Transformation simple des valeurs | Bonne |
+| **Builder complexe** | Dispatchers, entity managers, périodes (aides-simplifiees → OpenFisca) | Moyenne |
+| **Mappeurs multiples** | 16 classes Java (estime) | Difficile |
 
-### Pattern 5 : API backend + formulaire découplé
+### Combinaisons observées
 
-Le formulaire frontend est indépendant. Il appelle une API qui interroge le moteur (OpenFisca, custom).
-
-**Exemples** : estime, leximpact, mes-ressources-formation
-
-**Caractéristiques** :
-- Séparation nette frontend/backend
-- Adapté aux architectures distribuées
-- Le moteur peut être dans un autre langage
-
-### Approches sans moteur déclaratif
-
-Certains projets utilisent des approches spécifiques :
-- envergo : Moulinette Python custom
-- pacoupa : Lookup SQLite + validation Zod
-- impact-co2 : Données JSON + state React
+| Projet | Définition | Calcul | Mapping |
+|--------|------------|--------|---------|------------|
+| **aides-simplifiees** | JSON multi-moteur | Client + Proxy | Builder TypeScript |
+| **mes-aides-reno** | YAML priorités | Client | Direct |
+| **mon-entreprise** | Généré depuis règles | Client | Direct |
+| **aides-jeunes** | Codé (Property classes) | Serveur | Intégré au code |
+| **estime** | Codé (Angular Forms) | Serveur métier | 16 mappeurs Java |
 
 ### Aide au choix
 
-| Besoin | Pattern adapté |
-|--------|----------------|
-| Multi-moteur (Publicodes + OpenFisca) | Schéma déclaratif |
-| Cohérence automatique règles/UI | Formulaire généré |
-| Catalogue de programmes/aides | Config déclarative |
-| Parcours très personnalisé | Formulaires codés |
-| Architecture microservices | Backend découplé |
-| Équipe sans designer | Formulaire généré |
-| Contribution non-dev souhaitée | Config déclarative |
+| Besoin | Définition | Calcul | Mapping |
+|--------|------------|--------|---------|------------|
+| Multi-moteur (Publicodes + OpenFisca) | Config JSON | Client + Serveur | Builder |
+| Cohérence automatique règles/UI | Généré | Client | Direct |
+| Contribution non-dev | Config YAML/JSON | Client | Direct |
+| Parcours très personnalisé | Codé | Variable | Variable |
+| Traçabilité maximale | Généré ou Config | Client | Direct |
 
 ### Exemple de schéma JSON
 

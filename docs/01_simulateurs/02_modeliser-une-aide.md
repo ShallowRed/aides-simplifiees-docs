@@ -100,6 +100,10 @@ Il faut rransformer le langage juridique en questions compréhensibles :
 - **Lucidchart** : Diagrammes professionnels
 - **Mermaid** : Diagrammes en code (versionnables)
 
+::: tip Ressources mutualisées
+Consultez les [templates de diagrammes](/99_annexe/ressources-visuelles) pour réutiliser des modèles Mermaid éprouvés (arbres de décision, graphes de dépendances, timelines).
+:::
+
 ## Exemple pratique
 
 ### Aide au logement étudiante

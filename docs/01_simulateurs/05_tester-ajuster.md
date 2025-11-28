@@ -63,6 +63,57 @@ Ces cas types permettent :
 - Une **validation continue** à chaque modification des règles
 - Une **traçabilité** vers des situations réelles anonymisées
 
+### Formats de cas types dans l'écosystème
+
+L'audit des simulateurs publics révèle deux formats matures pour partager des cas types :
+
+#### Format LexImpact (84 cas types)
+
+Le projet leximpact utilise un format JSON avec expressions calculées et périodes :
+
+```json
+{
+  "id": "007_aah",
+  "description": "Personne en situation de handicap avec AAH",
+  "dixieme": 2,
+  "individus": {
+    "Adulte 1": {
+      "taux_incapacite": { "year": 0.8 },
+      "handicap": { "year": true },
+      "salaire_de_base": { "year": "Math.round(smic * 0.5)" }
+    }
+  }
+}
+```
+
+**Points forts** : 84 cas couvrant les 10 déciles de revenus INSEE, expressions calculées (Math.round, smic), périodes temporelles.
+
+#### Format shared-test-cases (aides-simplifiees)
+
+Format JSON traçant le flux complet formulaire → moteur → résultat :
+
+```json
+{
+  "name": "Alternant éligible APL",
+  "metadata": {
+    "validated_by": "expert_caf",
+    "validated_at": "2025-01-15",
+    "source_reference": "Dossier 2024-1234"
+  },
+  "survey_answers": { "age": 22, "contrat": "alternance" },
+  "openfisca_request": { "individus": { "demandeur": { "age": { "2025-01": 22 } } } },
+  "openfisca_response": { "apl": { "2025-01": 150 } }
+}
+```
+
+**Points forts** : Traçabilité complète du flux, validation experte avec metadata, réutilisable entre projets OpenFisca.
+
+::: tip Recommandation
+Combiner les deux formats pour créer un standard commun de cas types avec :
+- La couverture socio-démographique de LexImpact
+- La traçabilité et validation experte de shared-test-cases
+:::
+
 ### Tests UX et compréhension usager
 
 Même si le calcul est juste, l’interface peut trahir la règle. Les tests utilisateurs visent à mesurer la compréhension, la fluidité et la perception de fiabilité du simulateur.
