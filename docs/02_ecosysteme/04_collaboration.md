@@ -78,7 +78,7 @@ Organiser des sessions régulières où :
 
 #### Les cas types comme contrat
 
-Les [fixtures métier](/01_simulateurs/05_tester-ajuster.html#formaliser-les-cas-types-metier) servent de **contrat** entre équipes :
+Les [fixtures métier](/01_simulateurs/06_tester-ajuster.html#formaliser-les-cas-types-metier) servent de **contrat** entre équipes :
 
 ```yaml
 # cas-types/aide-logement.yaml
@@ -265,9 +265,9 @@ Une réponse avant le [date] nous permettrait de [livraison prévue].
 
 ## Voir aussi
 
-- [Formaliser les cas types métier](/01_simulateurs/05_tester-ajuster.html#formaliser-les-cas-types-metier)
+- [Formaliser les cas types métier](/01_simulateurs/06_tester-ajuster.html#formaliser-les-cas-types-metier)
 - [Tensions à assumer](/00_meta/01_enjeux-rules-as-code.html#des-tensions-a-assumer)
-- [Maintenir un simulateur](/01_simulateurs/06_maintenir)
+- [Maintenir un simulateur](/01_simulateurs/07_maintenir)
 - [Ressources visuelles mutualisables](/99_annexe/ressources-visuelles) - Templates Mermaid pour workflows et traçabilité
 
 ::: tip Contribution

@@ -240,7 +240,7 @@ Les tests servent à :
 - vérifier la cohérence entre les modèles d’aides ;
 - renforcer la confiance des utilisateurs et des partenaires.
 
-[Plus d'infos sur les tests](/01_simulateurs/05_tester-ajuster)
+[Plus d'infos sur les tests](/01_simulateurs/06_tester-ajuster)
 
 ### Gérer les dépendances et les temporalités
 
@@ -280,5 +280,5 @@ Chaque commit doit inclure :
 ## Prochaines étapes
 
 Une fois votre modèle implémenté en code :
-- [Tester et ajuster votre simulateur](/01_simulateurs/05_tester-ajuster) - Valider la conformité et l'UX
-- [Maintenir dans le temps](/01_simulateurs/06_maintenir) - Garantir la pérennité
+- [Tester et ajuster votre simulateur](/01_simulateurs/06_tester-ajuster) - Valider la conformité et l'UX
+- [Maintenir dans le temps](/01_simulateurs/07_maintenir) - Garantir la pérennité

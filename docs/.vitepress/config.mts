@@ -52,9 +52,10 @@ export default defineConfig({
           { text: 'Fondamentaux', link: '/01_simulateurs/01_fondamentaux' },
           { text: 'Modéliser une aide', link: '/01_simulateurs/02_modeliser-une-aide' },
           { text: 'Simulateur multi-aide', link: '/01_simulateurs/03_simulateur-multi-aide' },
-          { text: 'Passer en code', link: '/01_simulateurs/03_passer-en-code' },
-          { text: 'Tester et ajuster', link: '/01_simulateurs/05_tester-ajuster' },
-          { text: 'Maintenir', link: '/01_simulateurs/06_maintenir' }
+          { text: 'Scope des aides', link: '/01_simulateurs/04_scope-des-aides' },
+          { text: 'Passer en code', link: '/01_simulateurs/05_passer-en-code' },
+          { text: 'Tester et ajuster', link: '/01_simulateurs/06_tester-ajuster' },
+          { text: 'Maintenir', link: '/01_simulateurs/07_maintenir' }
         ]
       },
       {

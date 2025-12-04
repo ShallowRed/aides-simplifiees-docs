@@ -176,5 +176,5 @@ Tester et ajuster, c’est :
 
 ## Prochaines étapes
 
-- [Maintenir votre simulateur dans le temps](/01_simulateurs/06_maintenir) - Garantir la pérennité
+- [Maintenir votre simulateur dans le temps](/01_simulateurs/07_maintenir) - Garantir la pérennité
 - [Consulter le glossaire](/99_annexe/glossaire) - Définitions des termes techniques
