@@ -23,12 +23,10 @@ L’ouverture du code et des modèles garantit la transparence, favorise la réu
 
 La réussite d'un simulateur ne repose pas sur la technique seule. Elle dépend de la **convergence des expertises** :
 
-| Domaine | Rôle |
-|----------|----------------------|
-| **Juridique** | Identifier, interpréter et traduire les conditions réglementaires |
-| **Design** | Transformer la logique administrative en parcours utilisateur clair |
-| **Technique** | Implémenter les modèles dans des moteurs de règles exécutables |
-| **Pilotage public** | Garantir la cohérence et la soutenabilité des choix |
+- **Juridique** : Identifier, interpréter et traduire les conditions réglementaires
+- **Design** : Transformer la logique administrative en parcours utilisateur clair
+- **Technique** : Implémenter les modèles dans des moteurs de règles exécutables
+- **Pilotage public** : Garantir la cohérence et la soutenabilité des choix
 
 Cette approche impose une méthode de travail : **co-construire la règle** dès le départ avec ceux qui la traduiront en code.
 

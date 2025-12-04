@@ -8,27 +8,10 @@ Combiner plusieurs aides dans un même simulateur présente des avantages évide
 
 Les usagers ne pensent pas “par dispositif”, mais **par besoin** : se loger, se former, se déplacer, élever un enfant. Un simulateur multi-aide vise donc à **répondre à des situations de vie**, non à des silos administratifs.
 
-Concevoir un simulateur multi-aide, c’est relever plusieurs défis :
-- **Réunir plusieurs modèles d’aides** dans un seul parcours cohérent ;
-- **Mutualiser les variables communes** (revenus, âge, résidence, statut familial) ;
-- **Simplifier la saisie** pour éviter la redondance d’information ;
-- **Garantir la cohérence des résultats** entre les différentes aides.
-
-> Le multi-aide est l’expression la plus concrète du Rules as Code : un écosystème de règles interopérables, pas une collection de simulateurs.
-
 ## 1. Identifier les variables communes
 
 Les aides partagent un certain nombre de **variables transverses**.  
 Avant d’assembler les modèles, il faut recenser ces variables et définir une **grammaire commune**.
-
-| Domaine | Exemple de variable | Type | Commentaire |
-|----------|--------------------|-------|--------------|
-| Identité | âge, nationalité | entrée | Doit suivre les mêmes définitions légales pour toutes les aides |
-| Ressources | revenus_annuels, quotient_familial | calculée | À centraliser dans un module “ressources” |
-| Situation familiale | enfants_a_charge, rattachement_fiscal | booléen | Critères sensibles, souvent divergents selon les aides |
-| Logement | type_logement, résidence_principale | booléen | Sert à plusieurs aides (APL, énergie, mobilité) |
-| Territoire | code_insee, zone_tendue | référence | Permet les différenciations locales |
-
 Chaque variable commune doit être définie **une seule fois** dans un référentiel partagé, puis appelée dans chaque modèle d’aide.
 
 ## 2. Résoudre les tensions
@@ -46,25 +29,15 @@ Chaque aide repose sur ses propres définitions (revenu, foyer, situation profes
 **Bonnes pratiques** :
 - créer un **dictionnaire de correspondance** entre les noms de variables (`revenus_annuels`, `revenu_net_imposable`, etc.) ;
 - documenter les divergences d’interprétation (ex. : “étudiant” ≠ “apprenti”) ;
-- isoler les “zones grises” dans un fichier dédié.
 
 ### Les conflits de règles
 
 Plusieurs aides peuvent se chevaucher ou se contredire. Ces situations doivent être anticipées.
 
 **Types de conflits fréquents :**
-- **Non-cumul légal** (ex. : deux aides au logement exclusives) ;  
-- **Calcul en cascade** (une aide dépend du montant d’une autre) ;  
+- **Non-cumul légal** (ex. : deux aides au logement exclusives) ; 
+- **Calcul en cascade** (une aide dépend du montant d’une autre) ;
 - **Conditions contradictoires** (critères de résidence ou d’âge différents).
-
-**Stratégies de résolution** :
-| Type de conflit | Solution recommandée |
-|------------------|----------------------|
-| Non-cumul | Créer une variable `cumul_autorise` et l’exposer à l’usager |
-| Calcul en cascade | Définir une hiérarchie d’évaluation (`ordre_execution`) |
-| Conditions divergentes | Documenter la différence et afficher une note explicative |
-
-> L’objectif est moins de masquer les contradictions que de les rendre explicites.
 
 ## 3. Concevoir le parcours utilisateur
 
@@ -74,13 +47,13 @@ Cependant, en combinant plusieurs aides dans un seul parcours, la liste des ques
 
 ### Exhaustivité réglementaire vs fluidité du parcours
 
-Certaines questions couvrent des cas particuliers extrêmement minoritaires ou ayant des impacts mineurs sur l'éligibilité.Ne pas les inclure peut réduire le taux d'abandon, mais diminue la précision.
+Certaines questions couvrent des cas particuliers extrêmement minoritaires ou ayant des impacts mineurs sur l'éligibilité. Ne pas les inclure peut réduire le taux d'abandon, mais diminue la précision.
 
 ### Langage clair vs langage juridique
 
-**Problème** : Chercher à améliorer la clarté d'une question peut faire perdre en exactitude réglementaire.
+Chercher à améliorer la clarté d'une question peut faire perdre en exactitude réglementaire.
 
-**Exemple** : Lors de tests utilisateurs, la notion juridique "X" n'est pas comprise. Reformulée en "Y", elle l'est plus mais n'est pas aussi précise juridiquement.
+**Exemple** : Lors de tests utilisateurs, des notion juridiques commes "État matrimonial légal", "concubinage", etc. peuvent être mal comprise. Formuler la question en termes plus simples ("Vivez-vous en couple ?") peut améliorer la compréhension, mais introduit potentiellement une imprécision aux yeux de la règle.
 
 ## Itération entre règles et UX
 
@@ -91,9 +64,22 @@ Il s'agira d'**itérer entre deux pôles** :
 1. **Les règles de calcul et leurs exigences** (identification des variables nécessaires à chaque éligibilité)
 2. **Le parcours utilisateur** (ordonnancement des questions, formulations, raccourcis...)
 
-## Les outils et représentations mobiliser
+## Les outils et représentations à mobiliser
 
-Les représentations visuelles jouent un rôle central dans la conception. Elles rendent visibles les interactions entre modèles et facilitent le dialogue entre juristes, designers et développeurs.
+Les représentations visuelles jouent un rôle central dans la conception. Elles rendent visibles les interactions entre modèles et facilitent le dialogue entre juristes, équipes produits, développeurs, etc.
+
+Des éditeurs comme **Lucidchart**, **Figma** ou **Miro** facilitent la collaboration et permettent de créer des diagrammes clairs et partagés.
+
+Des langages comme **Mermaid**, en revanche, permet un versionnage textuel et une maintenance automatisée.
+- Facilite l'utilisation d'IA pour générer ou analyser des diagrammes.
+- S'intègre dans des workflows de documentation (ex. : GitHub, MkDocs).
+
+- Plugins figma ou extensions VSCode existent pour Mermaid.
+
+- tendance à utiliser ce type de représentation en début de conception.
+- on garde rarement les ressources visuelles synchronisées avec le code source du simulateur, qui passe au second plan par rapport au développement de fonctionnalités.
+- aujurd'hui, on recommande de maintenir une documentation à jour avec des diagrammes Mermaid intégrés.
+- L'ia peut aider à garder ces artefacts synchronisés.
 
 ### Arbres logiques
 
@@ -111,8 +97,43 @@ graph TD
 
 ### Carte visuelle des variables
 
-Les cartes visuelles de variables permettent de représenter les questions, conditions et affichages selon les scénarios.  
-Les éditeurs comme **Lucidchart**, **Figma** ou **Miro** facilitent la collaboration.   **Mermaid**, en revanche, permet un versionnage textuel et une maintenance automatisée.
+Les cartes de variables illustrent les recouvrements et divergences entre les aides.
+
+```mermaid
+graph LR
+    subgraph APL
+        R1[Revenu foyer]
+        T1[Type logement]
+        Z1[Zone géographique]
+    end
+    subgraph Aide Départementale
+        R2[Revenu foyer]
+        T2[Type logement]
+        Z2[Code postal]
+    end
+    subgraph Aide Municipale
+        R3[Revenu actuel]
+        T3[Type logement]
+        Z3[Quartier prioritaire]
+    end
+    R1 --- R2
+    T1 --- T2 --- T3
+```
+
+## Diagramme de flux
+
+Les diagrammes de flux illustrent le parcours utilisateur à travers les différentes étapes de questions et de décisions.
+
+```mermaid
+flowchart TD
+    Start([Début]) --> Q1{Question 1}
+    Q1 -->|Oui| Q2{Question 2}
+    Q1 -->|Non| Q3{Question 3}
+    Q2 --> Result1[Résultat A]
+    Q3 --> Result2[Résultat B]
+    Result1 --> End([Fin])
+    Result2 --> End([Fin])
+```
 
 ## Approche centrée sur les profils
 
@@ -131,7 +152,11 @@ Chaque décision de simplification ou de fusion doit être documentée. Une gril
 |--------------------|-------------------|------------------|---------|------------|
 | “Formation initiale ou continue ?” | Distinction peu claire | Fusionnée en “Êtes-vous étudiant ?” | Perte mineure de précision | Validé par expert métier |
 
-[[note: Ce tableau formalise les choix structurants du parcours et contribue à la traçabilité.]]
+Ce tableau formalise les choix structurants du parcours et contribue à la traçabilité.
+
+## ADR (Architecture Decision Records)
+Les ADR documentent les décisions architecturales majeures prises lors de la conception du simulateur multi-aide. Elles permettent de garder une trace des choix techniques et méthodologiques, facilitant ainsi la maintenance et l'évolution future du simulateur.
+Ils sont particulièrement utiles dans un contexte de conception de simulateur, où de nombreux arbitrages et compromis doivent être faits entre différentes contraintes (techniques, réglementaires, UX, etc.).
 
 ## Étude de cas : modélisation croisée d’aides logement
 
@@ -184,26 +209,8 @@ graph TD
 
 Le simulateur ne se limite pas aux résultats d'éligibilités et de monter : il doit aussi proposer une **restitution claire et segmentée**.
 
-Par ailleursn, quelques bonnes pratiques :
+Par ailleurs, quelques bonnes pratiques :
 - La restitution doit refléter la clarté du calcul et la provenance des données.
 - Les résultats gagnent en lisibilité lorsqu’ils sont regroupés par **thématique de vie** plutôt que par organisme.
 - Chaque aide doit mentionner sa **source réglementaire** et ses **conditions d’incertitude**.
 - Un résumé synthétique, exportable ou imprimable, renforce la transparence.
-
-> La restitution est l’acte final de confiance entre système et usager.
-
-## Gouvernance et maintenance
-
-Un simulateur multi-aide suppose une gouvernance claire. La mutualisation ne peut fonctionner sans :
-- un référentiel centralisé des variables communes ;  
-- une validation croisée entre porteurs d’aides ;  
-- une traçabilité complète des arbitrages et anomalies corrigées.
-
-Chaque mise à jour individuelle doit être testée sur l’ensemble multi-aide afin d’éviter les effets de bord. La maintenance devient ainsi un exercice collectif de cohérence réglementaire
-
-## En résumé
-
-Créer un simulateur multi-aide, c’est :
-- penser en termes de **besoins d’usagers**, pas de dispositifs ;
-- construire des **modèles interopérables** à partir de variables communes ;
-- orchestrer des règles multiples de manière cohérente et transparente.
