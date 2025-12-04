@@ -33,11 +33,11 @@ Les discussions sur les moteurs de règles ou les frameworks JavaScript occulten
 | "On découvre les changements réglementaires au dernier moment" | Pas de canal de veille partagé |
 | "Les experts ne comprennent pas nos questions techniques" | Pas de langage commun |
 | "On ne sait pas qui valide quoi" | Gouvernance floue |
-| "Les partenaires ne répondent plus" | Sollicitations trop techniques ou trop fréquentes |
+| "Les partenaires ne répondent plus" | Sollicitations trop techniques |
 
-### Ce qui manque dans l'écosystème
+### Ce qui peut manquer à un projet
 
-L'observation des projets de simulateurs publics révèle un **déficit d'outillage** sur :
+L'observation des projets de l'écosystème révèle des axes d'amélioration fréquents :
 
 1. **La formalisation des règles** : Comment documenter une interprétation juridique de manière traçable ?
 2. **La validation métier** : Comment faire valider un modèle par un expert sans le noyer dans le code ?
@@ -210,16 +210,72 @@ Qu'en pensez-vous ?
 Une réponse avant le [date] nous permettrait de [livraison prévue].
 ```
 
+## Bonnes pratiques observées dans l'écosystème
+
+L'audit a identifié des pratiques exemplaires chez certains projets :
+
+### ADR (Architecture Decision Records) - mon-entreprise ⭐
+
+Seul projet à documenter ses décisions d'architecture. Exemple de structure :
+
+```markdown
+# ADR-001 : Choix du format de données pour les barèmes
+
+## Contexte
+Nous devons stocker les barèmes de cotisations sociales...
+
+## Décision
+Nous utiliserons des fichiers YAML versionés dans le dépôt.
+
+## Conséquences
++ Versioning automatique via Git
++ Lisibilité pour les experts métier
+- Pas d'interface d'édition graphique
+
+## Statut
+Accepté - 2025-01-15
+```
+
+::: tip Recommandation
+Créer un template ADR et l'adopter dans tous les projets de l'écosystème pour capitaliser les décisions.
+:::
+
+### Validation métier tracée - aides-simplifiees ⭐
+
+Seul projet avec des métadonnées de validation dans les cas de test :
+
+```json
+{
+  "metadata": {
+    "validated_by": "Marie D., experte CAF",
+    "validated_at": "2025-01-15",
+    "source_reference": "Dossier 2024-1234"
+  }
+}
+```
+
+::: tip Recommandation
+Généraliser ce format de metadata pour prouver la conformité aux organismes partenaires.
+:::
+
+### Contribution no-code - aides-jeunes
+
+NetlifyCMS permet aux non-développeurs de contribuer directement :
+- Interface web pour ajouter/modifier des aides
+- Validation avant publication via PR
+- Pas besoin de connaître Git
+
 ## Outils existants et manquants
 
 ### Ce qui existe
 
-| Besoin | Outil actuel | Limite |
-|--------|--------------|--------|
-| Édition collaborative des règles | GitHub, GitLab | Courbe d'apprentissage pour non-devs |
-| Documentation | VitePress, Docusaurus | Pas de workflow de validation intégré |
-| Tests métier | YAML, JSON | Pas d'interface de saisie conviviale |
-| Veille | Alertes Légifrance | Bruit, pas de filtrage intelligent |
+| Besoin | Outil actuel | Limite | Projets utilisant |
+|--------|--------------|--------|-------------------|
+| Édition collaborative des règles | GitHub, GitLab | Courbe d'apprentissage non-devs | Tous |
+| Contribution no-code | NetlifyCMS | Uniquement aides-jeunes | 1/20 |
+| Documentation | VitePress, Docusaurus | Pas de workflow validation | Majorité |
+| Tests métier | YAML, JSON | Pas d'interface conviviale | 18/20 |
+| Veille | Alertes Légifrance | Bruit, pas de filtrage | Variable |
 
 ### Ce qui manquerait
 
@@ -227,16 +283,19 @@ Une réponse avant le [date] nous permettrait de [livraison prévue].
    - Interface web pour éditer des règles Publicodes/OpenFisca
    - Sans passer par Git/npm
    - Avec preview du résultat
+   - **Inspiration** : NetlifyCMS d'aides-jeunes
 
 2. **Plateforme de validation métier**
    - Soumettre des cas types à un expert
-   - Workflow d'approbation
+   - Workflow d'approbation avec metadata
    - Historique des validations
+   - **Inspiration** : shared-test-cases d'aides-simplifiees
 
 3. **Outil de traduction droit → code**
    - Annotation de textes juridiques
    - Lien automatique vers les règles implémentées
    - Détection des incohérences
+   - **Référence** : 1249 refs légales dans code-du-travail
 
 4. **Dashboard de conformité**
    - Couverture des textes par les règles
@@ -248,24 +307,46 @@ Une réponse avant le [date] nous permettrait de [livraison prévue].
 ### Équipe réduite (1-3 personnes)
 
 - **Prioriser** : Un expert métier référent identifié
-- **Formaliser** : 10-20 cas types validés
+- **Formaliser** : 10-20 cas types validés (format shared-test-cases)
 - **Rituel** : Point mensuel avec l'expert
+- **Quick win** : Créer un fichier AGENTS.md pour documenter le projet
 
 ### Équipe moyenne (4-10 personnes)
 
 - **Prioriser** : Glossaire partagé + registre d'interprétations
-- **Formaliser** : Workflow de validation dans le CI
+- **Formaliser** : Workflow de validation dans le CI + ADR
 - **Rituel** : Revue de veille hebdomadaire
+- **Quick win** : Adopter le pattern shared-test-cases
 
 ### Équipe large ou multi-partenaires
 
 - **Prioriser** : Gouvernance explicite (RACI)
-- **Formaliser** : Comité de pilotage réglementaire
+- **Formaliser** : Comité de pilotage réglementaire + validation tracée
 - **Rituel** : Revue trimestrielle avec les partenaires
+- **Quick win** : Dashboard de couverture réglementaire
+
+## Opportunités à fort levier (issues de l'audit)
+
+### Quick wins (< 1 mois)
+
+| Opportunité | Action | Impact |
+|-------------|--------|--------|
+| Template ADR beta.gouv | Créer modèle + l'adopter dans 5 projets | Capitalisation décisions |
+| AGENTS.md généralisé | Copier pattern mon-devis-sans-oublis | Documentation LLM |
+| Promouvoir shared-test-cases | Documentation + exemples | Standards tests métier |
+
+### Moyen terme (1-3 mois)
+
+| Opportunité | Action | Impact |
+|-------------|--------|--------|
+| Glossaire métier partagé | Atelier inter-projets | Médiation juriste/dev |
+| Registre de conformité | Plateforme validation métier | Traçabilité |
 
 ## Voir aussi
 
 - [Formaliser les cas types métier](/01_simulateurs/06_tester-ajuster.html#formaliser-les-cas-types-metier)
+- [Panorama des projets](/02_ecosysteme/01_panorama) - Scores de maturité
+- [Outils réutilisables](/02_ecosysteme/02_outils) - Packages NPM et patterns
 - [Tensions à assumer](/00_meta/01_enjeux-rules-as-code.html#des-tensions-a-assumer)
 - [Maintenir un simulateur](/01_simulateurs/07_maintenir)
 - [Ressources visuelles mutualisables](/99_annexe/ressources-visuelles) - Templates Mermaid pour workflows et traçabilité

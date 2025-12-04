@@ -5,11 +5,15 @@ Il a pour vocation de **clarifier le vocabulaire commun** aux métiers du droit,
 
 ## A
 
+### ADR (Architecture Decision Record)
+Document qui enregistre une décision architecturale importante, son contexte, les alternatives considérées et les conséquences. Permet de capitaliser les choix techniques et de faciliter l'intégration de nouveaux membres.
+
+
 ### Aide publique
-Mesure financière, fiscale ou sociale accordée par une autorité publique (État, collectivité, opérateur) selon des conditions d’éligibilité. Une aide peut être monétaire, en nature ou sous forme d’exonération.
+Mesure financière, fiscale ou sociale accordée par une autorité publique (État, collectivité, opérateur) selon des conditions d'éligibilité. Une aide peut être monétaire, en nature ou sous forme d'exonération.
 
 ### Algorithme
-Suite d’instructions logiques permettant d’exécuter un calcul déterminé. Dans un simulateur, l’algorithme traduit une règle de droit en opération mathématique ou logique.
+Suite d'instructions logiques permettant d'exécuter un calcul déterminé. Dans un simulateur, l'algorithme traduit une règle de droit en opération mathématique ou logique.
 
 ### API (Application Programming Interface)
 Interface permettant à différents logiciels de communiquer entre eux. Dans notre contexte, permet d'intégrer les calculs d'éligibilité dans d'autres services.
@@ -17,7 +21,7 @@ Interface permettant à différents logiciels de communiquer entre eux. Dans not
 ## B
 
 ### Barème
-Tableau ou formule qui détermine un montant d’aide selon un ou plusieurs critères (revenus, nombre d’enfants, situation géographique).
+Tableau ou formule qui détermine un montant d'aide selon un ou plusieurs critères (revenus, nombre d'enfants, situation géographique).
 Exemple : le barème APL selon la zone et les ressources du foyer.
 
 ## C
@@ -39,11 +43,17 @@ Conditions à remplir pour pouvoir bénéficier d'une aide publique (âge, reven
 
 ## D
 
+### Dispatcher
+Fonction qui transforme une réponse utilisateur en une ou plusieurs variables du moteur de calcul. Exemple : "alternance" → `{alternant: true}`. Voir [Patterns architecturaux](/02_ecosysteme/03_patterns).
+
 ### Dispositif (réglementaire)
 Ensemble cohérent de règles juridiques visant à réguler une situation particulière ou produire un effet juridique précis. Exemple : l'aide personnalisée au logement.
 
 ### DMN (Decision Model and Notation)
 Standard de modélisation des règles métier permettant de représenter la logique de décision de manière visuelle et exécutable.
+
+### DSFR (Design System de l'État)
+Système de design officiel de l'État français, garantissant la cohérence visuelle et l'accessibilité des services publics numériques.
 
 ## E
 
@@ -55,7 +65,7 @@ Objet de calcul dans un moteur de règles (ex. : *individu*, *foyer*, *logement*
 Chaque variable est rattachée à une entité pour structurer les dépendances.
 
 ### Expert métier
-Personne disposant d'une connaissance approfondie d'un domaine réglementaire (juriste, agent CAF, conseiller Pôle Emploi, etc.). Dans un projet de simulateur, l'expert métier valide les interprétations et les cas types.
+Personne disposant d'une connaissance approfondie d'un domaine réglementaire (juriste, agent CAF, conseiller France Travail, etc.). Dans un projet de simulateur, l'expert métier valide les interprétations et les cas types.
 
 ## F
 
@@ -69,6 +79,9 @@ Système informatique utilisé par une administration pour calculer et attribuer
 
 ## M
 
+### Mapping (couche de)
+Transformation entre les réponses utilisateur et les variables du moteur de calcul. Peut être directe (Publicodes), légère (formatters) ou complexe (builders, dispatchers).
+
 ### Modèle (de règles)
 Représentation formalisée et structurée des règles d'attribution d'une aide, permettant leur implémentation informatique.
 
@@ -81,7 +94,7 @@ Architecture permettant à un même formulaire ou schéma de questionnaire d'ali
 ## P
 
 ### @publicodes/forms
-Bibliothèque JavaScript permettant de générer automatiquement des formulaires à partir de règles Publicodes. Fait partie de l'écosystème publicodes-core.
+Bibliothèque JavaScript permettant de générer automatiquement des formulaires à partir de règles Publicodes.
 
 ### Personal Regulation Assistant (PRA)
 Concept d'assistant numérique personnel capable d'analyser la situation d'un individu au regard de multiples réglementations pour l'informer de ses droits et obligations.
@@ -105,13 +118,16 @@ Approche consistant à traduire directement les règles juridiques en code infor
 ### Simulateur
 Outil permettant à un utilisateur d'estimer son éligibilité et le montant potentiel d'une ou plusieurs aides publiques, à partir de la description de sa situation.
 
-### Survey-schema
-Format de description déclarative d'un questionnaire, indépendant du moteur de calcul. Permet de définir les questions, leur ordre, les conditions d'affichage et les validations sans coder l'interface. Utilisé notamment par aides-simplifiees.
+### Schema de questionnaire
+Format de description déclarative d'un questionnaire, indépendant du moteur de calcul. Permet de définir les questions, leur ordre, les conditions d'affichage et les validations sans coder l'interface.
 
 ## T
 
 ### Texte réglementaire
 Document juridique officiel (loi, décret, arrêté, circulaire) définissant les règles d'attribution et de calcul d'une aide publique.
+
+### Traçabilité
+Capacité à relier chaque élément de l'interface (question, résultat) à sa source réglementaire et aux variables du moteur de calcul.
 
 ## V
 
@@ -128,12 +144,14 @@ Processus par lequel un expert du domaine vérifie que le modèle informatique r
 
 | Acronyme | Signification | Description |
 |----------|---------------|-------------|
+| **ADR** | Architecture Decision Record | Document de décision architecturale |
 | **APL** | Aide Personnalisée au Logement | Aide au logement calculée selon les revenus et le loyer |
 | **CAF** | Caisse d'Allocations Familiales | Organisme versant de nombreuses aides sociales |
+| **CI/CD** | Continuous Integration/Continuous Deployment | Pratiques d'automatisation du développement |
+| **DSFR** | Design System de l'État Français | Système de design officiel de l'État |
+| **E2E** | End-to-End | Tests de bout en bout simulant le parcours utilisateur |
 | **RSA** | Revenu de Solidarité Active | Aide garantissant un revenu minimum |
 | **UX** | User Experience | Expérience utilisateur, qualité d'usage d'un service |
-| **API** | Application Programming Interface | Interface de programmation permettant l'interopérabilité |
-| **CI/CD** | Continuous Integration/Continuous Deployment | Pratiques d'automatisation du développement |
 
 ## Ressources complémentaires
 
