@@ -1,0 +1,274 @@
+# Aides Simplifiées - LLM Documentation Summary
+
+## Project Philosophy & Mission
+
+Aides simplifiées transforms complex public aid regulations into executable, comprehensible, and reusable digital resources. The project addresses a critical democratic challenge: nearly one-third of eligible citizens don't receive public aid they qualify for due to complexity, fragmentation, and inaccessibility.
+
+**Core Mission**: Make public aid rules understandable by machines AND humans, ensuring equity, transparency, and sustainability through the "Rules as Code" (RaC) approach.
+
+**Target Audiences**: Public operators, territorial communities, technical teams, legal experts, researchers, and institutional partners.
+
+## Foundational Principles
+
+### Rules as Code (RaC) Framework
+- Represent legal rules in **formal and executable** form while preserving readability for lawyers and citizens
+- Create a "digital twin" of regulation enabling simulation, coherence verification, and automated service generation
+- Transform regulations into **operable knowledge**: human-readable, machine-executable, collectively governable
+
+### Five Critical Dimensions
+
+1. **Equity & Accessibility**: Combat non-recourse by making eligibility criteria clear and understandable
+2. **Coherence & Reusability**: Build shared logical building blocks (fiscal reference income, age, status, residence) to avoid redundant definitions
+3. **Transparency & Traceability**: Enable citizen verification, algorithmic auditability, and cross-territory/temporal policy comparisons
+4. **Sustainability**: Transform recurring costs into collective investment through explicit, tested, documented models
+5. **Alignment**: Bridge gap between legal text and user experience
+
+### Core Design Principles
+
+1. **Lisibilité** (Readability): Every rule must be explainable to non-lawyers
+2. **Vérifiabilité** (Verifiability): Every condition traceable to regulatory source
+3. **Maintenabilité** (Maintainability): Models must evolve at the pace of law (modular, versioned, auto-tested)
+4. **Interopérabilité** (Interoperability): Encourage shared models for multi-aid simulators and shared APIs
+5. **Ouverture** (Openness): Open code and models guarantee transparency, reusability, collective learning
+
+## Methodology: Building Public Aid Simulators
+
+### Phase 1: Understand the Rule (Legal Analysis)
+
+**Identify Sources**:
+- Primary: Laws, decrets, ministerial instructions, circulars
+- Secondary: Service-public.fr, operator documentation (CAF, Pôle emploi)
+- Always reference official sources explicitly
+
+**Analyze Regulatory Text**:
+1. Identify eligibility conditions (who qualifies?)
+2. Locate calculation methods (how is amount determined?)
+3. List exceptions (special cases)
+4. Define temporalities (when does rule apply?)
+
+### Phase 2: Model the Aid (Decomposition)
+
+**Variable Typology**:
+- **Input (entrée)**: User-provided or external service data (age, income, residence)
+- **Reference (constante)**: Regulatory values (thresholds, rates, annual updates)
+- **Intermediate (calculée)**: Derived from other variables via formulas (family quotient, net income)
+- **Output (sortie)**: Final results (eligibility, simulated amount)
+- **Temporal**: Version control for evolving rules (fiscal year, request date)
+
+**Document Each Variable**:
+- Clear, consistent name (French or camelCase depending on engine)
+- Type (boolean, numeric, text, date)
+- Source and last update date
+
+**Formalize Logical Conditions**: Translate legal language into decision trees, flowcharts, or mental maps
+
+### Phase 3: Design User Journey (UX Modeling)
+
+Transform legal variables into user-friendly questions:
+- Order questions optimally (general to specific)
+- Apply conditional display logic
+- Group by logical themes
+- Identify early exit points (preemptive elimination)
+
+**Legal → User Translation Examples**:
+- "Personne isolée au sens de l'article L.262-2" → "Vivez-vous seul(e) ?"
+- "Revenus d'activité perçus au cours de l'année N-1" → "Quel était votre salaire l'année dernière ?"
+
+**Tools**: Miro/Figma (visual collaboration), Lucidchart (professional diagrams), Mermaid (version-controlled code diagrams)
+
+### Phase 4: Implement in Code (Technical Translation)
+
+**Two Complementary Formalisms**:
+1. **Algorithmic modeling**: Executable rule form respecting text logic (conditions, thresholds, scales), structure (variables, I/O), inter-aid dependencies
+2. **User journey modeling**: Adapted experience through simplified language, question grouping, contextual results
+
+**Rule Engine Selection**:
+
+| Feature | OpenFisca | Publicodes |
+|---------|-----------|------------|
+| Language | Python | YAML-like |
+| Purpose | Complex socio-fiscal calculations | Readable user-oriented simulations |
+| Structure | Hierarchical variables, modules | Declarative rules, explicit formulas |
+| Testing | Pytest, YAML tests | Playgrounds, test files |
+| Non-technical readability | Medium | Excellent |
+| Typical use case | Tax scales, social benefits | Simple pedagogical aid simulators |
+
+**Code Requirements**:
+- Preserve business logic
+- Reference legal sources
+- Every line traceable to law article, scale, or documented hypothesis
+
+### Phase 5: Multi-Aid Simulators (Composition)
+
+**Challenges**:
+- **Heterogeneous variables**: Income definition varies between housing aid and RSA
+- **Rule conflicts**: Non-cumulative aids, cascading calculations, contradictory conditions
+- **UX tension**: Regulatory exhaustiveness vs. journey fluidity vs. legal language clarity
+
+**Resolution Strategies**:
+- Create correspondence dictionary between variable names
+- Document interpretation divergences in dedicated files
+- Build arbitration grid documenting simplification decisions with business validation
+
+**Shared Variables**: Centralize common variables (identity, resources, family situation, housing, territory) in shared repository
+
+### Phase 6: Testing & Validation
+
+**Three Test Dimensions**:
+1. **Technical**: Unit tests (formulas, conditions), integration tests (multi-aid coherence), non-regression tests (stability over time)
+2. **Legal/Business**: Expert review, real case validation, interpretation documentation
+3. **UX**: User testing for comprehension, fluidity, perceived reliability
+
+**Key Indicators**: Completion time, completion rate, back/abandon count, result comprehension quality
+
+**Tools**: Pytest/Jest/Mocha (unit tests), Cypress/Playwright (browser tests), CI/CD (GitHub Actions), user testing platforms (Maze, Useberry, Hotjar)
+
+### Phase 7: Maintenance (Continuous Evolution)
+
+**Maintenance Types**:
+- **Corrective**: Fix calculation errors (as detected)
+- **Evolutionary**: Integrate new rules/scales (each regulatory change)
+- **Preventive**: Anticipate changes (quarterly)
+- **Improvement**: Optimize performance/readability (continuous)
+
+**Regulatory Monitoring**: Journal officiel, Légifrance, BOFIP, operator notes (CAF, MSA), ministry/collectivity information, field feedback
+
+**Update Process**:
+1. Detect regulatory change
+2. Analyze impact on variables/formulas
+3. Modify model (add, remove, adjust)
+4. Validate via business expert and tests
+5. Deploy to production with monitoring
+6. Publish detailed changelog
+
+**Anticipation Recommendations**:
+- Parameterize scales/thresholds in separate files
+- Document links between rules and decrees
+- Predict known future regulatory revisions
+- Simulate effects of future scales pre-publication
+
+## Interdisciplinary Approach
+
+Success requires convergence of four expertises:
+
+| Domain | Role |
+|--------|------|
+| **Legal** | Identify, interpret, translate regulatory conditions |
+| **Design** | Transform administrative logic into clear user journeys |
+| **Technical** | Implement models in executable rule engines |
+| **Public Governance** | Ensure coherence and sustainability of choices |
+
+**Working Method**: Co-construct rules from the start with those who will translate them into code
+
+## Key Tensions to Manage
+
+| Tension | Description | Proposed Approach |
+|---------|-------------|-------------------|
+| **Readability vs. Exhaustiveness** | Simplify without betraying text | Progressive granularity (level 1: main criteria, level 2: exceptions) |
+| **Automation vs. Human Support** | Simulator doesn't replace counselor | Integrate contact points, redirect to competent services |
+| **Reusability vs. Local Specificity** | Mutualize without uniformizing | Isolate "common" rules, document local "derivatives" |
+| **Innovation vs. Legal Security** | Experiment without weakening law | Work under legal supervision, publish models with explicit disclaimers |
+
+## Technical Ecosystem
+
+**Primary Tools**:
+- **OpenFisca**: Open-source Python engine for complex socio-fiscal systems
+- **Publicodes**: YAML-based engine emphasizing readability and collaborative contribution
+- **Version Control**: Git for rule versioning and collaborative development
+- **Testing**: Automated test frameworks integrated into CI/CD pipelines
+- **Documentation**: Markdown-based, version-controlled, publicly accessible
+
+**Infrastructure Principles**:
+- Open source by default
+- API-first architecture for interoperability
+- Shared rule libraries
+- Automated testing and deployment
+- Transparent documentation
+
+## Governance & Ethics
+
+**Critical Questions**:
+- Who decides the "reference" version of a rule?
+- How to guarantee calculation neutrality?
+- How to signal zones of uncertainty or interpretation?
+
+**Requirements**: Each model must include legal source, validity date, publication responsible party
+
+## Historical Context
+
+**Evolution**: From offline fiscal calculators (1990s) → sectoral social simulators (2000s) → Beta.gouv startup-state paradigm with Mes Aides (2014) → current diversified ecosystem (2020+)
+
+**International Influence**: Nordic pioneers (Finland's Kela Benefits 2010, Estonia's X-Road 2001), OECD "Rules as Code" guidance (2020), New Zealand Better Rules program (2018)
+
+**Innovation**: Aides simplifiées builds on past learnings (user-centered design, open-source engines, iterative methods) while adding methodological documentation, multi-actor collaboration, reusability infrastructure, and shared rule libraries
+
+## Success Factors
+
+**Do**:
+- Involve users from conception
+- Associate business expertise in product team
+- Use open, proven technologies
+- Iterate rapidly, improve continuously
+- Build partnerships with domain institutions
+
+**Avoid**:
+- Reproducing administrative complexity without simplifying experience
+- Working in silos without coordination
+- Techno-solutionism (believing technology solves everything)
+- Neglecting long-term maintenance
+
+## Key Concepts & Glossary
+
+**Dispositif**: Coherent set of legal rules regulating specific situation or producing precise legal effect (e.g., personalized housing aid)
+
+**Règle**: Identifiable portion of regulatory text as precise legislative instruction (e.g., APL eligibility age condition for rental housing)
+
+**Modéliser**: Translate regulatory text from natural/legal language to formal language (mathematical logic, flowchart, algorithm)
+
+**Simulateur**: Tool enabling user to estimate eligibility and potential amount for one or more public aids based on their situation description
+
+**Liquidateur**: Information system used by administration to automatically calculate and attribute benefits (operational, distinct from simulator)
+
+**Variables Types**: Input (user-provided), Reference (regulatory constants), Intermediate (calculated), Output (final results), Temporal (version control)
+
+**Barème**: Table or formula determining aid amount according to criteria (income, children, geography)
+
+**API**: Interface enabling software communication for eligibility calculation integration into other services
+
+**CI/CD**: Continuous Integration/Continuous Deployment for automated testing, building, and code updates
+
+**Personal Regulation Assistant (PRA)**: Digital assistant concept capable of analyzing individual situation across multiple regulations to inform rights and obligations
+
+## Vision (2025-2030)
+
+**Short-term (2025-2027)**:
+- Consolidate existing tools (stability, security, accessibility)
+- Enable adoption by other public actors
+- Establish interoperability standards (common API/data formats)
+
+**Medium-term (2027-2030)**:
+- Develop Personal Regulation Assistants (PRA)
+- Proactive notification of available rights/aids
+- European integration (cross-border aid access, system interconnection)
+
+## Resources & Links
+
+**Technical Documentation**:
+- OpenFisca: https://openfisca.org/
+- Publicodes: https://publi.codes/
+
+**Legal References**:
+- Légifrance: https://www.legifrance.gouv.fr/
+- Service-public.fr: https://www.service-public.fr/
+
+**Methodology**:
+- Guide des algorithmes publics: https://guides.etalab.gouv.fr/algorithmes/
+- OECD Rules as Code Primer: https://oecd-opsi.org/
+
+**Product**:
+- Beta.gouv: https://beta.gouv.fr/startups/droit-data-gouv-fr-simulateurs-de-droits.html
+- GitHub: https://github.com/betagouv/aides-simplifiees-docs
+
+---
+
+**Summary**: Aides simplifiées embodies a democratic and technical ambition—transforming legal complexity into accessible, verifiable, and sustainable digital commons. By bridging law, design, and code through interdisciplinary collaboration, it creates an ecosystem where public aid rules become living, maintainable resources serving equity and transparency.
