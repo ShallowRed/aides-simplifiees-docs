@@ -2,11 +2,11 @@
 
 ## Objectif de cette documentation
 
-L'objectif principal de cette documentation est de **transmettre une méthode reproductible** pour modéliser des aides publiques et créer des simulateurs. Elle s'adresse aux **équipes publiques** souhaitant développer ou améliorer des simulateurs d'aides, ainsi qu'aux **partenaires techniques** intéressés par la réutilisation de nos outils.
+L'objectif principal de cette documentation est de **transmettre une méthode reproductible** pour modéliser des aides publiques et créer des simulateurs. Elle s'adresse aux **équipes** souhaitant développer ou améliorer des simulateurs d'aides, ainsi qu'aux **partenaires** intéressés par la réutilisation et la collaboration autour de ces outils.
 
-Les dispositifs d’aides publiques sont souvent perçus comme complexes, fragmentés et inaccessibles. Pourtant, ils représentent l’un des leviers majeurs de l’action sociale et économique de l’État.
+Les dispositifs d’aides publiques sont souvent perçus comme complexes, fragmentés et inaccessibles. Pourtant, ils représentent l’un des leviers de l’action sociale et économique de l’État.
 
-Notre ambition est de contribuer à la transformation numérique des aides publiques en **ressources numériques partagées et ouvertes** qui :
+Notre ambition est de contribuer à la transcription numérique des droits en **ressources numériques partagées et ouvertes** qui :
 - traduisent les règles administratives en modèles compréhensibles par la machine et par l’humain ;
 - garantissent l’équité et la transparence de l’accès aux droits ;
 - mutualisent les efforts techniques et juridiques entre acteurs publics ;
@@ -14,9 +14,9 @@ Notre ambition est de contribuer à la transformation numérique des aides publi
 
 ## À qui s’adresse cette documentation ?
 
+- **Équipes produits** qui souhaitent modéliser des règles ou contribuer à un produit de simulation d’aides
 - **Experts métier** au sein d'opérateurs d'aides, de tarification solidaire, de réduction de prélèvements
-- **Équipes techniques** qui souhaitent modéliser des règles ou contribuer au produit
-- **Partenaires institutionnels publics et privés** intéressés par la réutilisation de nos outils
+- **Partenaires institutionnels publics et privés** intéressés par la réutilisation de simulateurs d’aides ou la collaboration autour de ces outils
 
 ::: tip
 Cette documentation est en constante évolution. N'hésitez pas à [contribuer](https://github.com/betagouv/aides-simplifiees-docs) pour l'améliorer !

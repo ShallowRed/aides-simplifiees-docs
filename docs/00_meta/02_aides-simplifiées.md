@@ -6,7 +6,7 @@ Cette documentation est née de la volonté de l'équipe porteuse du produit [ai
 
 ## Contexte
 
-En France, il existe une multitude d'aides publiques portées par des acteurs variés (État, collectivités locales, organismes sociaux, etc.), à destination de publics très divers. Ces dispositifs évoluent régulièrement, utilisent des critères souvent proches mais rarement identiques, et ne sont que rarement accessibles via un point d'entrée unique. Les informations relatives aux aides auxquelles un usager peut prétendre sont souvent dispersées, parcellaires et formulées en langage technique.
+En France, il existe une multitude d'aides publiques portées par des acteurs variés (État, collectivités locales, organismes sociaux, etc.), à destination de publics très divers, qui évoluent régulièrement, utilisent des critères parfois proches mais rarement identiques. Les informations relatives aux aides auxquelles un usager peut prétendre sont souvent dispersées, parcellaires et formulées en langage technique.
 
 **Conséquence** : Il est difficile pour une personne de savoir clairement à quelles aides elle est éligible, compte tenu de sa situation réelle.
 
@@ -20,11 +20,7 @@ Pour rendre l'information plus claire et plus actionnable, au bon moment, au bon
 
 ## Notre approche
 
-Nous développons des **outils publics, gratuits, ouverts et réutilisables** délivrant une information personnalisée à l'usager sur les aides auxquelles il peut prétendre : la bonne aide, au bon moment au bon endroit. 
-
-Notre rôle est d'apporter aux personnes concernées une réponse rapide à la question :
-
-> **"À quelles aides puis-je prétendre dans ma situation, ici et à date ?"**
+Nous développons des **outils publics, gratuits, ouverts et réutilisables** délivrant une information personnalisée à l'usager sur les aides auxquelles il peut prétendre : la bonne aide, au bon moment au bon endroit.
 
 ## Nos principes
 

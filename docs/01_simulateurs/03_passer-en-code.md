@@ -123,7 +123,6 @@ Une fois le modèle exécuté, il faut le rendre interactif. Un simulateur repos
 
 ### Cas 1 : le modèle suffit
 
-// merged :
 Le modèle algorithmique peut directement générer les questions si :
 - le parcours est relativement court ;
 - l'ordre de saisie importe peu ;
@@ -163,9 +162,7 @@ Voici un exemple de schéma JSON reprenant l'aide plus haut :
 
 Un tel schéma relie certaines question à une variable du modèle et permet d’automatiser la création de formulaires.
 
-::: tip Conseil pratique
-Commencez toujours par la modélisation algorithmique pure avant d'optimiser l'expérience utilisateur. Cela garantit la cohérence réglementaire.
-:::
+> Conseil pratique : Commencez toujours par la modélisation algorithmique pure avant d'optimiser l'expérience utilisateur. Cela garantit la cohérence réglementaire.
 
 ## [À venir] : Du schéma au front-end
 
@@ -199,14 +196,14 @@ Les tests servent à :
 ### Gérer les dépendances et les temporalités
 
 Chaque aide peut dépendre :
-	•	de valeurs passées (revenus de l’année précédente) ;
-	•	d’aides connexes (APL, RSA, bourses) ;
-	•	de paramètres révisés annuellement.
+- de valeurs passées (revenus de l’année précédente) ;
+- d’aides connexes (APL, RSA, bourses) ;
+- de paramètres révisés annuellement.
 
 Recommandations :
-	•	documenter les périodes de validité (du / au) dans les fichiers YAML ou Python ;
-	•	prévoir une mise à jour automatique via scripts ou pipelines CI/CD ;
-	•	implémenter des tests temporels pour vérifier la cohérence des calculs selon les années.
+- documenter les périodes de validité (du / au) dans les fichiers YAML ou Python ;
+- prévoir une mise à jour automatique via scripts ou pipelines CI/CD ;
+- implémenter des tests temporels pour vérifier la cohérence des calculs selon les années.
 
 ### Séparation des responsabilités
 
@@ -232,6 +229,9 @@ Chaque commit doit inclure :
 - l’impact sur les résultats.
 
 ## Prochaines étapes
+
+Pour des cas plus avancés de simulateurs multiples ou complexes :
+- [Simulateur multi-aide](/01_simulateurs/03_simulateur-multi-aide) - Combiner plusieurs aides dans un même simulateur
 
 Une fois votre modèle implémenté en code :
 - [Tester et ajuster votre simulateur](/01_simulateurs/05_tester-ajuster) - Valider la conformité et l'UX

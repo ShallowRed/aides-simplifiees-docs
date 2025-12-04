@@ -23,22 +23,7 @@ L’ouverture du code et des modèles garantit la transparence, favorise la réu
 
 La réussite d’un simulateur ne repose pas sur la technique seule. Elle dépend de la **convergence des expertises** :
 
-| Domaine | Rôle |
-|----------|----------------------|
-| **Juridique** | Identifier, interpréter et traduire les conditions réglementaires |
-| **Design** | Transformer la logique administrative en parcours utilisateur clair |
-| **Technique** | Implémenter les modèles dans des moteurs de règles exécutables |
-| **Pilotage public** | Garantir la cohérence et la soutenabilité des choix |
-
-Cette approche impose une méthode de travail : **co-construire la règle** dès le départ avec ceux qui la traduiront en code.
-
-Le texte réglementaire est écrit pour le contrôle, pas pour l’usage. Le citoyen, lui, a besoin de comprendre rapidement : *suis-je éligible, et à quoi ?*. En rapprochant juristes, designers et développeurs, on permet d’**aligner la logique du droit sur la logique de l’usager**.
-
-## Les publics concernés
-
-| Public cible | Rôle | Ressources clé |
-|---------------|-----------------|-----------------------|
-| **Administrations centrales et opérateurs** | Sécuriser et maintenir des simulateurs réglementaires | Méthode, outillage, référentiels communs |
-| **Collectivités territoriales** | Développer ou adapter des aides locales | Mutualisation et interopérabilité |
-| **Développeurs et designers publics** | Construire des parcours de droit fiables | Documentation, API et tests |
-| **Chercheurs / observateurs du droit** | Étudier la traduction des politiques publiques en code | Corpus de règles ouvertes et traçables |
+- **Juridique** : Identifier, interpréter et traduire les conditions réglementaires
+- **Design** : Transformer la logique administrative en parcours utilisateur clair
+- **Technique** : Implémenter les modèles dans des moteurs de règles exécutables
+- **Pilotage public** : Garantir la cohérence et la soutenabilité des choix

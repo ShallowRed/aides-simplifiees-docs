@@ -3,7 +3,6 @@
 Modéliser une aide, c’est passer du **texte réglementaire** à une **représentation logique** exploitable par le code. Cette étape est délicate : elle exige de comprendre la règle, de la découper, puis de la traduire sans en altérer le sens.
 
 > La modélisation est à la fois un acte juridique, conceptuel et technique.  
-> C’est ici que le droit devient calculable.
 
 ## 1. Comprendre la règle avant de la formaliser
 
