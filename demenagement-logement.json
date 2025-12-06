@@ -1,0 +1,283 @@
+{
+  "version": "2.0.3",
+  "forceRefresh": false,
+  "id": "demenagement-logement",
+  "title": "Déménagement et logement",
+  "description": "Répondez à ces questions pour découvrir les aides au logement et déménagement auxquelles vous pourriez être éligible",
+  "engine": "openfisca",
+  "questionsToApi": [
+    "locapass-eligibilite",
+    "mobilite-master-1",
+    "mobilite-parcoursup",
+    "aide-personnalisee-logement",
+    "garantie-visale-eligibilite",
+    "garantie-visale"
+  ],
+  "steps": [
+    {
+      "id": "profil",
+      "title": "Votre profil",
+      "questions": [
+        {
+          "id": "statut-professionnel",
+          "title": "Dans quelle situation professionnelle êtes-vous ?",
+          "description": "Sélectionnez votre situation au moment de votre emménagement (ou au moment où vous ferez votre demande d’aide).",
+          "type": "radio",
+          "choices": [
+            {
+              "id": "etudiant",
+              "title": "En études ou en formation (lycée, BTS, université, alternance...)"
+            },
+            {
+              "id": "actif",
+              "title": "Salarié(e) ou Indépendant(e)"
+            },
+            {
+              "id": "chomeur",
+              "title": "Inscrit(e) comme demandeur d'emploi"
+            },
+            {
+              "id": "retraite",
+              "title": "Retraité(e)"
+            },
+            {
+              "id": "inactif",
+              "title": "Autre"
+            }
+          ]
+        },
+        {
+          "id": "situation-professionnelle",
+          "title": "Précisez votre situation professionnelle en tant qu'étudiant",
+          "type": "radio",
+          "visibleWhen": "statut-professionnel=etudiant",
+          "choices": [
+            { "id": "stage", "title": "En stage" },
+            { "id": "alternance", "title": "En alternance" },
+            { "id": "salarie-hors-alternance", "title": "Étudiant salarié" },
+            { "id": "sans-emploi", "title": "Je n'ai pas d'emploi" }
+          ]
+        },
+        {
+          "id": "etudiant-mobilite",
+          "title": "Êtes-vous dans l'un des cas suivants ?",
+          "type": "radio",
+          "visibleWhen": "statut-professionnel=etudiant",
+          "choices": [
+            { "id": "parcoursup-nouvelle-region", "title": "Je commence des études après avoir été accepté(e) sur Parcoursup dans une autre Région" },
+            { "id": "master-nouvelle-zone", "title": "Je commence un Master 1 dans une autre ville ou université" },
+            { "id": "pas-de-mobilite", "title": "Aucun des deux" }
+          ]
+        },
+        {
+          "id": "boursier",
+          "title": "Êtes-vous boursier ?",
+          "type": "boolean",
+          "visibleWhen": "etudiant-mobilite=parcoursup-nouvelle-region||etudiant-mobilite=master-nouvelle-zone"
+        },
+        {
+          "id": "date-naissance",
+          "title": "Quelle est votre date de naissance ?",
+          "description": "Renseignez le jour, le mois et l'année sous le format jj/mm/aaaa (exemple : 15/08/1995)",
+          "type": "date"
+        },
+        {
+          "id": "handicap",
+          "title": "Avez-vous une reconnaissance administrative d'une situation de handicap ?",
+          "description": "Vous disposez d'une reconnaissance administrative de votre situation de handicap lorsque vous avez déposé un dossier à la MDPH (Maison Départementale des personnes handicapées) et que celle-ci vous a attribué un taux d'incapacité lié à votre handicap.",
+          "type": "boolean"
+        },
+        {
+          "id": "statut-marital",
+          "title": "Dans quelle situation maritale êtes-vous ?",
+          "description": "Sélectionnez votre situation actuelle",
+          "type": "radio",
+          "choices": [
+            { "id": "celibataire", "title": "Célibataire ou en union libre" },
+            { "id": "pacse", "title": "Pacsé(e)" },
+            { "id": "marie", "title": "Marié(e)" },
+            { "id": "divorce", "title": "Divorcé(e)" },
+            { "id": "veuf", "title": "Veuf(ve)" },
+            { "id": "jeune_veuf", "title": "Veuf(ve) d'un(e) conjoint(e) décédé(e) dans l'année" },
+            { "id": "non_renseigne", "title": "Je préfère ne pas renseigner cette information" }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "logement",
+      "title": "Votre logement",
+      "questions": [
+        {
+          "id": "code-postal-nouvelle-ville",
+          "title": "Dans quelle ville allez-vous résider ?",
+          "description": "Veuillez saisir le nom ou le code postal de la commune dans laquelle vous envisagez de résider. Appuyez ensuite sur \"Entrée\" ou cliquez sur le bouton loupe pour confirmer votre choix parmi la liste de communes qui s'affiche.",
+          "type": "combobox",
+          "autocompleteFunction": "getInseeNumber"
+        },
+        {
+          "id": "situation-logement",
+          "title": "Quelle sera votre situation dans votre futur logement ?",
+          "description": "Choisissez si vous serez locataire, propriétaire, hébergé(e) gratuitement, etc., dans le logement concerné par cette simulation.",
+          "type": "radio",
+          "choices": [
+            {
+              "id": "locataire",
+              "title": "Locataire (figurant sur le bail, en foyer ou en résidence)"
+            },
+            {
+              "id": "proprietaire",
+              "title": "Propriétaire ou en location-accession",
+              "tooltip": "La location-accession est un dispositif qui permet de devenir propriétaire d'un logement après une période de location. Il s'agit d'un contrat spécifique qui facilite l'accès à la propriété."
+            },
+            {
+              "id": "heberge",
+              "title": "Hébergé(e) chez vos parents, un particulier ou en logement de fonction"
+            },
+            {
+              "id": "sans-domicile",
+              "title": "Sans domicile stable"
+            }
+          ]
+        },
+        {
+          "id": "type-logement",
+          "title": "Quel sera le type de logement ?",
+          "type": "radio",
+          "visibleWhen": "situation-logement=locataire",
+          "choices": [
+            { "id": "logement-non-meuble", "title": "Logement non meublé" },
+            { "id": "logement-meuble", "title": "Logement meublé" },
+            { "id": "logement-foyer", "title": "Foyer (résidence CROUS, etc.)" },
+            { "id": "logement-chambre", "title": "Chambre chez un particulier" }
+          ]
+        },
+        {
+          "id": "logement-conventionne",
+          "title": "Votre logement est-il conventionné pour les Aides Personnalisées au Logement (APL) ?",
+          "description": "Les logements conventionnés sont des logements individuels ou collectifs qui ont fait l'objet d'une convention avec l'État pour recevoir des aides financières. Les logements sociaux, étudiants ou en résidence CROUS sont généralement conventionnés. Dans le parc privé, ce n’est pas toujours le cas. Si vous n’êtes pas sûr(e), vous pouvez choisir \"Oui\".",
+          "type": "boolean",
+          "visibleWhen": "situation-logement=locataire",
+          "notion": {
+            "id": "logement-conventionne",
+            "buttonLabel": "En savoir plus"
+          }
+        },
+        {
+          "id": "colocation",
+          "title": "Allez-vous habiter en colocation ?",
+          "type": "boolean",
+          "visibleWhen": "situation-logement=locataire"
+        },
+        {
+          "id": "logement-parente-proprietaire",
+          "title": "Avez-vous un lien de parenté direct avec le propriétaire ?",
+          "description": "Est-il un(e) ascendant(e) ou un(e) descendant(e) de vous ou de votre conjoint(e), par exemple, parent ou grand-parent ?",
+          "type": "boolean",
+          "visibleWhen": "situation-logement=locataire"
+        },
+        {
+          "id": "loyer-montant-mensuel",
+          "title": "Quel sera le montant de votre part du loyer (hors charges) dans votre futur logement ?",
+          "description": "Indiquez le montant en euros par mois, sans déduire vos aides au logement si vous en recevez. Exemple : pour un studio à Paris, le loyer mensuel peut varier entre 400€ et 900€.",
+          "type": "number",
+          "placeholder": "Ex : 600€",
+          "visibleWhen": "situation-logement=locataire"
+        },
+        {
+          "id": "loyer-montant-charges",
+          "title": "Quel est le montant des charges locatives ?",
+          "description": "Indiquez le montant en euros par mois. Cela peut inclure l'eau froide, le chauffage collectif, l'entretien des parties communes. À titre indicatif, elles varient souvent entre 30€ et 150€ par mois selon le logement.",
+          "type": "number",
+          "placeholder": "Ex : 100€",
+          "visibleWhen": "situation-logement=locataire"
+        },
+        {
+          "id": "primo-accedant",
+          "title": "Êtes-vous un primo-accédant ?",
+          "type": "boolean",
+          "visibleWhen": "situation-logement=proprietaire"
+        }
+      ]
+    },
+    {
+      "id": "revenus",
+      "title": "Vos revenus",
+      "questions": [
+        {
+          "id": "type-revenus",
+          "title": "Quels sont les types de revenus qui s'appliquent à votre situation ? Plusieurs choix possibles.",
+          "description": "Sélectionnez tous les types de revenus que vous avez perçus au cours des 12 derniers mois. Vous pourrez ensuite saisir les montants. Si vous n'avez pas fait votre propre déclaration d'impôts et que vous êtes rattaché(e) à vos parents, sélectionnez Ressources des parents.",
+          "type": "checkbox",
+          "choices": [
+            { "id": "revenus-activite", "title": "Revenus d'activité (salaires, primes)" },
+            { "id": "revenus-chomage", "title": "Chômage" },
+            { "id": "revenus-bourses", "title": "Bourses" },
+            { "id": "revenus-entreprise", "title": "Revenus professionnels non salariés" },
+            {
+              "id": "aucun-revenus",
+              "title": "Aucun revenu à déclarer",
+              "exclusive": true
+            }
+          ]
+        },
+        {
+          "id": "salaire-imposable",
+          "title": "Salaire net imposable : montant total sur les 12 derniers mois (dont primes et indemnités de fin de contrat)",
+          "description": "Indiquez le montant en euros de vos revenus d'activité salariale au cours des 12 derniers mois, net avant impôts.",
+          "notion": {
+            "id": "salaire-imposable",
+            "buttonLabel": "En savoir plus"
+          },
+          "placeholder": "Montant en euros",
+          "type": "number",
+          "visibleWhen": "type-revenus.includes('revenus-activite')"
+        },
+        {
+          "id": "montant-chomage",
+          "title": "Allocations chômage perçues au cours des 12 derniers mois",
+          "description": "Indiquez le montant total des allocations chômage (Allocation de Retour à l'Emploi (ARE), Allocation de Solidarité Spécifique (ASS)) que vous avez perçues au cours des 12 derniers mois.",
+          "type": "number",
+          "visibleWhen": "type-revenus.includes('revenus-chomage')",
+          "placeholder": "Montant en euros",
+          "notion": {
+            "id": "montant-chomage",
+            "buttonLabel": "En savoir plus"
+          }
+        },
+        {
+          "id": "montant-bourse-lycee",
+          "title": "Bourses de lycée perçues au cours des 12 derniers mois",
+          "description": "Indiquez le montant total des bourses de lycée que vous avez perçues au cours des 12 derniers mois. Indiquez 0 si vous n'en avez pas perçu. Si vous n'avez pas perçu de bourse de lycée, mais une bourse d'enseignement supérieur, veuillez indiquer 0 et passer à la question suivante.",
+          "type": "number",
+          "placeholder": "Montant en euros",
+          "visibleWhen": "type-revenus.includes('revenus-bourses')"
+        },
+        {
+          "id": "montant-bourse-superieur",
+          "title": "Bourses d'enseignement supérieur perçues au cours des 12 derniers mois",
+          "description": "Indiquez le montant total des bourses d'enseignement supérieur que vous avez perçues au cours des 12 derniers mois. Indiquez 0 si vous n'en avez pas perçu.",
+          "type": "number",
+          "visibleWhen": "type-revenus.includes('revenus-bourses')",
+          "placeholder": "Montant en euros",
+          "notion": {
+            "id": "montant-chomage",
+            "buttonLabel": "En savoir plus"
+          }
+        },
+        {
+          "id": "montant-ca-micro-entreprise",
+          "title": "Chiffre d'affaires généré via une micro-entreprise",
+          "description": "Indiquez le dernier chiffre d'affaires annuel déclaré au service des impôts.",
+          "type": "number",
+          "visibleWhen": "type-revenus.includes('revenus-entreprise')",
+          "placeholder": "Montant en euros",
+          "notion": {
+            "id": "montant-ca-micro-entreprise",
+            "buttonLabel": "En savoir plus"
+          }
+        }
+      ]
+    }
+  ]
+}

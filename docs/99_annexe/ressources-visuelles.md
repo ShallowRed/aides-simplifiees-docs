@@ -1,64 +1,32 @@
-# Ressources visuelles mutualisables
+# Ressources visuelles
 
-Ce document recense des exemples de diagrammes et templates visuels réutilisables pour améliorer la traçabilité entre texte réglementaire et code, faciliter la collaboration entre équipes métier, produit et technique, et documenter les architectures de simulateurs.
+Cette page regroupe des diagrammes réutilisables pour représenter les objets manipulés dans un projet de simulateur. Ces schémas servent de **support de discussion** entre développeurs, experts métier, designers, product owners et autres parties prenantes.
 
+Ils sont organisés selon les phases de conception d'un simulateur :
 
----
+1. **Modélisation** : comprendre et formaliser les règles juridiques
+2. **Conception du parcours** : définir les questions et leur enchaînement
+3. **Implémentation** : documenter l'architecture technique
+4. **Maintenance** : suivre la couverture et les évolutions
 
-## Modélisation des règles
+## Phase 1 : Modélisation des règles
 
-### Arbre de décision d'éligibilité
+### Arbre de décision avec sources légales
 
-Ce diagramme permet de visualiser les conditions d'éligibilité d'une aide de manière accessible pour validation par un expert métier.
-
-```mermaid
-flowchart TD
-    START((Début)) --> Q1{Condition 1 ?}
-    Q1 -->|Oui| Q2{Condition 2 ?}
-    Q1 -->|Non| REJECT[❌ Non éligible]
-    Q2 -->|Oui| Q3{Condition 3 ?}
-    Q2 -->|Non| REJECT
-    Q3 -->|Oui| ELIGIBLE[✅ Éligible]
-    Q3 -->|Non| REJECT
-    
-    REJECT --> FIN1((Fin))
-    ELIGIBLE --> CALCUL[Calcul du montant]
-    CALCUL --> FIN2((Fin))
-    
-    style ELIGIBLE fill:#d4edda,stroke:#28a745
-    style REJECT fill:#f8d7da,stroke:#dc3545
-    style CALCUL fill:#cce5ff,stroke:#004085
-```
-
-**Template personnalisable** :
-
-```
-flowchart TD
-    START((Début)) --> Q1{[CONDITION_1] ?}
-    Q1 -->|Oui| Q2{[CONDITION_2] ?}
-    Q1 -->|Non| REJECT[❌ Non éligible<br/>Motif: [MOTIF_1]]
-    Q2 -->|Oui| ELIGIBLE[✅ Éligible]
-    Q2 -->|Non| REJECT2[❌ Non éligible<br/>Motif: [MOTIF_2]]
-```
-
----
-
-### Logigramme avec références légales
-
-Ce format documente explicitement la traçabilité entre chaque condition et son article de loi source.
+Les conditions d'éligibilité sont souvent décrites en prose juridique. Ce format les traduit en structure logique, avec annotation de la source pour chaque branche :
 
 ```mermaid
 flowchart TD
     subgraph "Art. L.351-1 CCH"
-        A1[Résidence principale ?]
+        A1{Résidence principale ?}
     end
     
     subgraph "Art. R.351-3 CCH"
-        A2[Non rattaché au foyer fiscal parents ?]
+        A2{Non rattaché au foyer<br/>fiscal des parents ?}
     end
     
     subgraph "Art. D.351-5 CCH"
-        A3[Ressources < plafond ?]
+        A3{Ressources < plafond ?}
     end
     
     A1 -->|Oui| A2
@@ -67,305 +35,213 @@ flowchart TD
     A2 -->|Non| X2[❌ Rejet Art. R.351-3]
     A3 -->|Oui| OK[✅ Éligible APL]
     A3 -->|Non| X3[❌ Rejet Art. D.351-5]
-    
-    click A1 "https://legifrance.gouv.fr/codes/article_lc/LEGIARTI..."
-    click A2 "https://legifrance.gouv.fr/codes/article_lc/LEGIARTI..."
 ```
 
----
+**Quand l'utiliser** : en début de modélisation, pour valider avec l'expert métier que la logique d'éligibilité est correcte.
 
 ### Graphe de dépendances entre variables
 
-Ce graphe explicite les relations entre variables d'un modèle : entrées utilisateur, variables intermédiaires calculées, et résultats finaux.
+Dans un modèle de calcul, certaines variables dépendent d'autres. Ce schéma explicite ces relations :
 
 ```mermaid
-flowchart LR
+flowchart TD
     subgraph Entrées
-        E1[âge]
-        E2[revenus_bruts]
-        E3[nb_enfants]
-        E4[loyer]
+        E1[revenus_bruts]
+        E2[nb_enfants]
+        E3[loyer]
+        E4[âge]
     end
     
     subgraph Intermédiaires
         I1[revenus_nets]
-        I2[quotient_familial]
-        I3[plafond_ressources]
+        I2[nb_parts]
+        I3[quotient_familial]
+        I4[plafond]
     end
     
     subgraph Sorties
         S1[éligibilité]
-        S2[montant_aide]
+        S2[montant]
     end
     
-    E2 --> I1
-    E3 --> I2
-    I1 --> I2
-    E3 --> I3
-    I2 --> S1
+    E1 --> I1
+    E2 --> I2
+    I1 --> I3
+    I2 --> I3
+    I2 --> I4
+    E4 --> S1
     I3 --> S1
+    I4 --> S1
     S1 --> S2
-    E4 --> S2
-    E1 --> S1
-    
-    style E1 fill:#e1f5fe
-    style E2 fill:#e1f5fe
-    style E3 fill:#e1f5fe
-    style E4 fill:#e1f5fe
-    style S1 fill:#c8e6c9
-    style S2 fill:#c8e6c9
+    E3 --> S2
 ```
 
----
+**Quand l'utiliser** : pour comprendre l'impact d'une modification réglementaire ("si le plafond change, quelles règles sont affectées ?"), ou pour expliquer à un non-technicien comment le calcul fonctionne.
 
-### Timeline des périodes de calcul
+### Périodes de référence
 
-Ce diagramme de Gantt clarifie les temporalités dans le calcul : revenus de référence (année N-1, N-2), situation actuelle, et période de versement.
+Les aides sociales utilisent des revenus décalés dans le temps. Ce diagramme clarifie les temporalités :
 
 ```mermaid
 gantt
-    title Périodes de référence pour le calcul
+    title Périodes de référence pour le calcul APL
     dateFormat  YYYY-MM
     
     section Revenus
-    Année N-2 (déclaration)    :done, rev2, 2023-01, 2023-12
-    Année N-1 (actualisation)  :active, rev1, 2024-01, 2024-12
+    Année N-2 (déclaration fiscale)    :done, rev2, 2023-01, 2023-12
+    Année N-1 (actualisation CAF)      :active, rev1, 2024-01, 2024-12
     
     section Situation
-    Situation actuelle         :crit, sit, 2025-01, 2025-03
+    Situation actuelle                 :crit, sit, 2025-01, 2025-03
     
     section Aide
-    Période de versement       :aid, 2025-04, 2025-12
+    Période de versement               :aid, 2025-04, 2025-12
 ```
 
----
+**Quand l'utiliser** : pour expliquer aux utilisateurs pourquoi le simulateur demande des revenus de 2023 en 2025, ou pour clarifier avec l'équipe technique quelle période utiliser pour chaque variable.
 
-## Architecture technique
+## Phase 2 : Conception du parcours
 
-### Flux formulaire → moteur → résultat
+### Parcours déclaratif (aides-simplifiées)
 
-Ce schéma documente l'architecture complète d'un simulateur, depuis le formulaire utilisateur jusqu'aux résultats affichés.
+L'approche déclarative consiste à décrire le formulaire dans un fichier JSON autonome, indépendant du moteur de règles. Ce schéma définit les étapes, les questions, et les **conditions d'affichage** qui déterminent quand une question apparaît.
+
+Le schéma JSON se découpe en **steps** (étapes) contenant des **questions**. Chaque question peut avoir une propriété `visibleWhen` qui conditionne son affichage selon les réponses précédentes.
+
+Exemple extrait du simulateur "Déménagement et logement" :
 
 ```mermaid
-flowchart LR
-    subgraph Frontend
-        F1[📝 Formulaire]
-        F2[🔄 State Management]
+flowchart TD
+    subgraph "Step 1 : Profil"
+        direction TB
+        Q1{{"Situation professionnelle ?"}}
+        Q1_choices["Études/formation | Salarié | Demandeur d'emploi | Retraité | Autre"]
+        Q2["Précision situation étudiante"]
+        Q3["Cas de mobilité ?"]
+        Q4["Boursier ?"]
+        Q5["Date de naissance"]
     end
-    
-    subgraph Mapping
-        M1[📋 Request Builder]
-        M2[🔀 Dispatchers]
-        M3[📅 Périodisation]
+
+    subgraph "Step 2 : Logement"
+        direction TB
+        Q6{{"Situation dans le logement ?"}}
+        Q6_choices["Locataire | Propriétaire | Hébergé | Sans domicile"]
+        Q7["Type de logement"]
+        Q8["Logement conventionné ?"]
+        Q9["Montant du loyer"]
     end
-    
-    subgraph Moteur
-        E1[⚙️ OpenFisca API]
-        E2[📜 Publicodes Engine]
+
+    subgraph "Step 3 : Revenus"
+        direction TB
+        Q10{{"Types de revenus ?"}}
+        Q10_choices["Activité | Chômage | Bourses | Aucun"]
+        Q11["Salaire imposable"]
+        Q12["Allocations chômage"]
     end
-    
-    subgraph Résultats
-        R1[📊 Calcul éligibilité]
-        R2[💰 Montant aide]
-        R3[📄 Explications]
-    end
-    
-    F1 --> F2
-    F2 --> M1
-    M1 --> M2
-    M2 --> M3
-    M3 --> E1
-    M3 --> E2
-    E1 --> R1
-    E2 --> R1
-    R1 --> R2
-    R2 --> R3
-    R3 --> F1
+
+    %% Flux principal (questions toujours affichées)
+    Q1 --> Q1_choices
+    Q1_choices --> Q5
+    Q5 --> Q6
+    Q6 --> Q6_choices
+    Q6_choices --> Q10
+    Q10 --> Q10_choices
+
+    %% Affichage conditionnel
+    Q1_choices -.->|"Études/formation"| Q2
+    Q1_choices -.->|"Études/formation"| Q3
+    Q3 -.->|"Parcoursup ou Master"| Q4
+    Q6_choices -.->|"Locataire"| Q7
+    Q6_choices -.->|"Locataire"| Q8
+    Q6_choices -.->|"Locataire"| Q9
+    Q10_choices -.->|"Activité"| Q11
+    Q10_choices -.->|"Chômage"| Q12
 ```
 
----
+**Légende** : les flèches pleines représentent le flux principal (questions toujours affichées). Les flèches pointillées représentent l'affichage conditionnel (`visibleWhen`).
 
-### Détail de la couche de mapping
+**Quand l'utiliser** : avant l'implémentation, pour que PO, designer et expert métier valident ensemble le parcours. Permet de vérifier que les questions pertinentes sont posées aux bonnes personnes (un retraité ne devrait pas voir les questions sur les bourses).
 
-Ce diagramme détaille la transformation entre les réponses utilisateur et les variables du moteur de règles, point souvent critique pour la traçabilité.
+### Depuis le JSON vers le diagramme
 
-```mermaid
-flowchart TB
-    subgraph "Réponse utilisateur"
-        U1["situation-professionnelle: 'alternance'"]
-    end
-    
-    subgraph "MappingResolver"
-        MR1["variables.ts<br/>Trouve: dispatchSituationProfessionnelle"]
-    end
-    
-    subgraph "Dispatcher"
-        D1["case 'alternance':<br/>return { alternant: true }"]
-    end
-    
-    subgraph "EntityManager"
-        EM1["IndividuManager.addVariable()<br/>'alternant', true, '2025-01'"]
-    end
-    
-    subgraph "Requête OpenFisca"
-        OF1["individus:<br/>  demandeur:<br/>    alternant:<br/>      2025-01: true"]
-    end
-    
-    U1 --> MR1
-    MR1 --> D1
-    D1 --> EM1
-    EM1 --> OF1
-    
-    style U1 fill:#fff3cd
-    style OF1 fill:#d1ecf1
+Le schéma JSON contient toutes les informations nécessaires pour générer ce diagramme :
+
+```json
+{
+  "id": "situation-professionnelle",
+  "title": "Précisez votre situation professionnelle",
+  "type": "radio",
+  "visibleWhen": "statut-professionnel=etudiant",
+  "choices": [...]
+}
 ```
 
----
+La propriété `visibleWhen` se traduit directement en flèche conditionnelle. Cette approche déclarative permet de **découpler le parcours utilisateur du moteur de calcul** : le même schéma JSON peut interroger OpenFisca ou Publicodes selon le champ `engine`.
 
-### Architecture multi-moteur
+## Phase 3 : Implémentation
 
-Ce schéma illustre une architecture hybride capable de fonctionner avec Publicodes ou OpenFisca selon le contexte.
+### Explicabilité des calculs
+
+Un simulateur qui donne un résultat sans explication inspire peu confiance. L'explicabilité consiste à montrer à l'utilisateur **comment** le calcul a été fait, pas seulement le résultat final.
+
+#### L'exemple de @publicodes/react-ui
+
+Le package `@publicodes/react-ui` fournit des composants React qui affichent automatiquement la documentation interactive d'un moteur Publicodes. Quelques composants clés :
+
+- **`RulePage`** : affiche la page de documentation complète d'une règle, avec sa valeur calculée, ses dépendances, et le détail du calcul
+- **`Explanation`** : affiche le détail d'un nœud de calcul, avec décomposition récursive des sous-règles
+- **`RuleLink`** : crée un lien cliquable vers la documentation d'une règle, permettant la navigation dans le graphe de calcul
+
+L'idée : depuis un résultat de simulation, l'utilisateur peut "remonter" le calcul pour comprendre d'où vient chaque valeur intermédiaire.
 
 ```mermaid
-flowchart TB
-    subgraph "Schéma JSON"
-        S1["{ engine: 'publicodes' }"]
-        S2["{ engine: 'openfisca' }"]
-    end
+flowchart TD
+    R["Résultat : 180€/mois"]
+    R --> D1["Comment cette donnée<br/>est-elle calculée ?"]
     
-    subgraph "Router"
-        R1{engine ?}
-    end
+    D1 --> V1["loyer_reference : 350€"]
+    D1 --> V2["taux_participation : 0.85"]
+    D1 --> V3["forfait_charges : 50€"]
     
-    subgraph "Publicodes (Client)"
-        P1[Engine JS]
-        P2[Règles YAML]
-        P1 --> P2
-    end
+    V1 --> S1["Valeur saisie par l'utilisateur"]
+    V2 --> S2["Barème zone géographique"]
+    V3 --> S3["Valeur forfaitaire réglementaire"]
     
-    subgraph "OpenFisca (Serveur)"
-        O1[Backend Proxy]
-        O2[API Python]
-        O1 --> O2
-    end
-    
-    S1 --> R1
-    S2 --> R1
-    R1 -->|publicodes| P1
-    R1 -->|openfisca| O1
-    
-    P1 --> RES[Résultats]
-    O2 --> RES
+    click V1 href "#" "Voir la règle loyer_reference"
+    click V2 href "#" "Voir le barème des taux"
 ```
 
----
+#### Explicabilité en pratique
 
-## Collaboration métier-produit
+Concrètement, intégrer l'explicabilité dans un simulateur implique :
 
-### Workflow de validation métier
+1. **Lien vers la documentation** : depuis la page de résultat, proposer un lien "Comprendre ce calcul" qui ouvre la documentation de la règle principale
+2. **Navigation dans les dépendances** : chaque variable intermédiaire est cliquable et montre sa propre explication
+3. **Références juridiques** : les règles Publicodes peuvent contenir une propriété `références` qui liste les articles de loi sources
 
-Ce diagramme de séquence représente le processus de validation des règles par un expert métier.
+Cette transparence permet à l'utilisateur de vérifier que le calcul correspond à sa situation, et aux partenaires institutionnels de valider que l'implémentation respecte les textes.
 
-```mermaid
-sequenceDiagram
-    participant Dev as 👩‍💻 Développeur
-    participant PR as 📋 Pull Request
-    participant Expert as 👨‍⚖️ Expert métier
-    participant CI as 🤖 CI/Tests
-    participant Prod as 🚀 Production
-    
-    Dev->>PR: Crée cas type + règle
-    PR->>CI: Déclenche tests auto
-    CI-->>PR: ✅ Tests passent
-    PR->>Expert: Demande review
-    
-    alt Validation OK
-        Expert->>PR: ✅ Approuve + commente
-        PR->>Prod: Merge
-    else Correction nécessaire
-        Expert->>PR: ❌ Demande modification
-        PR->>Dev: Retour avec commentaires
-        Dev->>PR: Corrige
-    end
-```
+## Phase 4 : Maintenance et suivi
 
----
+### Traçabilité droit → code
 
-### Matrice RACI projet simulateur
-
-Ce quadrant clarifie les responsabilités selon deux axes : technique/métier et opérationnel/stratégique.
+Ce schéma établit la correspondance entre articles réglementaires, règles implémentées et cas de test :
 
 ```mermaid
-quadrantChart
-    title Responsabilités par domaine
-    x-axis Technique --> Métier
-    y-axis Opérationnel --> Stratégique
-    
-    quadrant-1 Expert juridique
-    quadrant-2 Product Owner
-    quadrant-3 Developpeur
-    quadrant-4 Designer UX
-    
-    Interpretation regles: [0.85, 0.7]
-    Validation cas types: [0.75, 0.4]
-    Veille reglementaire: [0.9, 0.6]
-    Architecture technique: [0.15, 0.5]
-    Implementation code: [0.1, 0.3]
-    Tests automatises: [0.2, 0.4]
-    Parcours utilisateur: [0.5, 0.5]
-    Priorisation features: [0.6, 0.8]
-```
-
----
-
-### Cycle de vie d'une règle
-
-Ce diagramme d'états représente le cycle de vie complet d'une règle, de son identification à sa mise en production ou sa dépréciation.
-
-```mermaid
-stateDiagram-v2
-    [*] --> Identifiee: Texte repéré
-    Identifiee --> Modelisee: Analyse terminée
-    Modelisee --> Implementee: Code écrit
-    Implementee --> Testee: Cas types créés
-    Testee --> Validee: Expert approuve
-    Validee --> Production: Déployée
-    
-    Production --> MiseAJour: Évolution réglementaire
-    MiseAJour --> Modelisee
-    
-    Production --> Deprecie: Règle abrogée
-    Deprecie --> [*]
-    
-    note right of Validee
-        Cas types conservés
-        comme tests de régression
-    end note
-```
-
----
-
-## Traçabilité
-
-### Carte de correspondance texte → code
-
-Ce diagramme établit la correspondance entre articles réglementaires, règles implémentées et cas de test.
-
-```mermaid
-flowchart LR
+flowchart TD
     subgraph "Texte réglementaire"
         T1["Art. L.821-1<br/>Conditions AAH"]
         T2["Art. R.821-4<br/>Taux incapacité"]
         T3["Art. D.821-1<br/>Plafond ressources"]
     end
     
-    subgraph "Règles Publicodes"
+    subgraph "Règles implémentées"
         R1["aah . eligibilite"]
         R2["aah . taux_incapacite"]
         R3["aah . plafond"]
     end
     
-    subgraph "Tests"
+    subgraph "Cas de test"
         C1["cas-aah-01.yaml"]
         C2["cas-aah-02.yaml"]
     end
@@ -378,202 +254,37 @@ flowchart LR
     R3 -.->|testé par| C2
 ```
 
----
+**Quand l'utiliser** : lors des revues métier pour répondre à "est-ce que l'article R.351-3 est bien couvert ?", ou lors d'une mise à jour réglementaire pour identifier les règles à modifier.
 
-### Diagramme de conformité
+## Ce qui existe et ce qui manque
 
-Ce graphique circulaire offre une vue synthétique de la couverture réglementaire du simulateur.
+### Outils textuels
+**Mermaid** est un format texte versionnable, intégrable dans des fichiers Markdown, supporté par plusieurs outils, notamment GitHub et GitLab. Un diagramme mermaid à l'avantage de pouvoir être versionné, et potentiellemnt généré automatiquement à partir de sources existantes (fichiers JSON, code Publicodes/OpenFisca).
 
-```mermaid
-pie showData
-    title Couverture du dispositif APL
-    "Implémenté et testé" : 75
-    "Implémenté non testé" : 15
-    "Non implémenté" : 10
-```
+### Outils graphiques
+Plusieurs outils comme **Excalidraw** ou **Draw.io** sont utilisés pour créer des diagrammes graphiques. Ils sont utiles en atelier pour explorer des idées, mais moins adaptés pour la documentation pérenne car difficiles à versionner et à maintenir.
 
----
+### Ce qui pourrait exister
 
-### Historique des interprétations
+Les diagrammes présentés ici sont créés manuellement. Or, les informations nécessaires existent déjà dans le code ou les fichiers de configuration. Des outils pourraient les générer automatiquement :
 
-Ce graphe Git documente l'évolution des règles et les décisions d'interprétation majeures.
+- **Générateur de parcours depuis le JSON** : transformer automatiquement un schéma déclaratif aides-simplifiées en diagramme Mermaid, avec les conditions d'affichage
+- **Visualiseur de dépendances Publicodes** : générer le graphe de dépendances entre variables depuis les règles, avec navigation interactive
+- **Carte de couverture réglementaire** : croiser les articles de loi annotés dans le code avec les cas de test existants, pour identifier les zones non couvertes
+- **Timeline interactive des périodes** : permettre à l'utilisateur de voir quelles données le concernent selon sa date de simulation
+- **Outils IA** : utiliser l'IA pour générer des diagrammes à partir de descriptions textuelles ou de code source
 
-```mermaid
-gitGraph
-    commit id: "v1.0 - Règle initiale"
-    commit id: "v1.1 - Ajout exception A"
-    branch interpretation-revenus
-    commit id: "Question: inclure revenus exceptionnels ?"
-    commit id: "Décision: exclure (validé DGCS)"
-    checkout main
-    merge interpretation-revenus id: "v1.2 - Clarification revenus"
-    commit id: "v1.3 - Nouveau barème 2025"
-```
+Ces outils n'existent pas encore sous forme packagée. Leur développement pourrait significativement réduire l'effort de documentation et améliorer la collaboration métier-technique.
 
----
+## Bonnes pratiques
 
-## Parcours utilisateur
+**Versionner** : un diagramme Mermaid peut être reviewé dans une PR. Les modifications sont traçables.
 
-### Funnel de simulation
+**Lier aux sources** : chaque diagramme devrait pointer vers les documents de référence (articles de loi, fichiers de code).
 
-Ce diagramme analyse les taux de conversion et d'abandon à chaque étape du parcours de simulation.
-
-```mermaid
-flowchart TD
-    E1["👤 1000 visiteurs"] --> E2["📝 800 démarrent<br/>(80%)"]
-    E2 --> E3["✏️ 600 complètent Q1-Q3<br/>(75%)"]
-    E3 --> E4["📊 450 voient résultat<br/>(75%)"]
-    E4 --> E5["✅ 200 cliquent 'Faire demande'<br/>(44%)"]
-    
-    E2 -.-> A1["❌ 200 abandons<br/>Page d'accueil"]
-    E3 -.-> A2["❌ 200 abandons<br/>Questions complexes"]
-    E4 -.-> A3["❌ 150 abandons<br/>Résultat incompris"]
-    
-    style E5 fill:#c8e6c9
-    style A1 fill:#ffcdd2
-    style A2 fill:#ffcdd2
-    style A3 fill:#ffcdd2
-```
-
----
-
-### Parcours conditionnel
-
-Ce schéma représente la logique de branchement du formulaire selon les réponses de l'utilisateur.
-
-```mermaid
-flowchart TD
-    Q1[Êtes-vous étudiant ?] -->|Oui| Q2A[Êtes-vous boursier ?]
-    Q1 -->|Non| Q2B[Êtes-vous salarié ?]
-    
-    Q2A -->|Oui| Q3A[Échelon de bourse ?]
-    Q2A -->|Non| Q3B[Revenus des parents ?]
-    
-    Q2B -->|Oui| Q3C[Salaire mensuel ?]
-    Q2B -->|Non| Q3D[Êtes-vous au chômage ?]
-    
-    Q3A --> RESULT[Calcul résultat]
-    Q3B --> RESULT
-    Q3C --> RESULT
-    Q3D --> RESULT
-    
-    style Q1 fill:#e3f2fd
-    style RESULT fill:#c8e6c9
-```
-
----
-
-## Templates réutilisables
-
-### Template générique d'aide
-
-Ce template standardise la documentation d'une nouvelle aide. Il peut être copié et adapté :
-
-```markdown
-## [NOM DE L'AIDE]
-
-### Références légales
-- Article principal : [LIEN LÉGIFRANCE]
-- Décret d'application : [LIEN]
-- Circulaire : [LIEN]
-
-### Arbre de décision
-
-\`\`\`mermaid
-flowchart TD
-    START((Début)) --> C1{[CONDITION_1] ?}
-    C1 -->|Oui| C2{[CONDITION_2] ?}
-    C1 -->|Non| REJECT[❌ Non éligible]
-    C2 -->|Oui| ELIGIBLE[✅ Éligible]
-    C2 -->|Non| REJECT
-\`\`\`
-
-### Variables
-
-| Variable | Type | Source | Période |
-|----------|------|--------|---------|
-| [var_1] | nombre | Saisie | N |
-| [var_2] | booléen | Calculé | N-1 |
-
-### Cas types de validation
-
-| Cas | Situation | Résultat attendu | Validé par |
-|-----|-----------|------------------|------------|
-| 001 | [description] | Éligible, 150€ | [expert] |
-| 002 | [description] | Non éligible | [expert] |
-```
-
----
-
-### Checklist visuelle de conformité
-
-Ce diagramme offre une vue d'ensemble de l'avancement d'une modélisation, du texte réglementaire à la mise en production.
-
-```mermaid
-flowchart LR
-    subgraph "Texte"
-        T1[✅ Source identifiée]
-        T2[✅ Articles listés]
-        T3[⚠️ Interprétations documentées]
-    end
-    
-    subgraph "Code"
-        C1[✅ Règles implémentées]
-        C2[✅ Tests unitaires]
-        C3[❌ Tests régression]
-    end
-    
-    subgraph "Validation"
-        V1[✅ Cas types créés]
-        V2[⚠️ Expert a reviewé]
-        V3[❌ En production]
-    end
-    
-    T1 --> C1
-    T2 --> C1
-    T3 --> C1
-    C1 --> V1
-    C2 --> V1
-    C3 --> V1
-```
-
----
-
-## Ressources complémentaires
-
-### Outils recommandés
-
-| Outil | Usage | Format |
-|-------|-------|--------|
-| **Mermaid** | Diagrammes versionnables | Code dans Markdown |
-| **Excalidraw** | Schémas collaboratifs rapides | SVG/PNG |
-| **Figma** | Maquettes UI, design system | Figma |
-| **Whimsical** | Flowcharts, wireframes | Cloud |
-| **draw.io** | Diagrammes techniques | XML/SVG |
-
-### Intégrations
-
-- **VitePress** : Support Mermaid natif avec plugin
-- **GitHub** : Rendu Mermaid dans les Markdown
-- **Notion** : Embed via code block
-- **Confluence** : Plugin Mermaid
-
-### Bonnes pratiques
-
-**Versionner les diagrammes** : privilégier Mermaid (format texte) plutôt que des images binaires pour faciliter la revue de code et le suivi des modifications.
-
-**Lier aux sources** : ajouter des liens cliquables vers Légifrance ou les documents de référence pour améliorer la traçabilité.
-
-**Maintenir à jour** : un diagramme obsolète peut induire en erreur. Mieux vaut le supprimer que le conserver s'il n'est plus maintenu.
-
-**Simplifier** : un diagramme doit clarifier, pas ajouter de la complexité. Si un schéma nécessite trop d'explications, il manque probablement sa cible.
-
-**Tester le rendu** : vérifier l'affichage sur différents supports (web, PDF, impression) avant de considérer un diagramme comme finalisé.
-
----
 
 ## Voir aussi
 
-- [Patterns architecturaux](/02_ecosysteme/03_patterns)
-- [Collaboration métier-produit](/02_ecosysteme/04_collaboration)
-- [Modéliser une aide](/01_simulateurs/02_modeliser-une-aide)
+- [Collaboration métier-produit](/02_ecosysteme/04_collaboration) — Formats de cas types, glossaire, registre d'interprétations
+- [Modéliser une aide](/01_simulateurs/02_modeliser-une-aide) — Processus complet de modélisation
+- [Patterns architecturaux](/02_ecosysteme/03_patterns) — Choix techniques formulaire/moteur

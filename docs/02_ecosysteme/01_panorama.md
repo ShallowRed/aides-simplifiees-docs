@@ -7,9 +7,9 @@ Une vingtaine de simulateurs d'aides et de droits sont développés dans la sph�
 
 ### Aides sociales et prestations
 
-**aides-jeunes** centralise les aides pour les jeunes via 1jeune1solution. Le simulateur modélise 539 aides avec OpenFisca et propose un système de contribution no-code via NetlifyCMS.
+**aides-jeunes** centralise les aides pour les jeunes via 1jeune1solution. Le simulateur modélise plusieurs centaines d'aides, en grande partie avec OpenFisca, et propose un système de contribution no-code via NetlifyCMS.
 
-**estime** aide les demandeurs d'emploi à estimer leurs ressources lors d'une reprise d'activité. Développé par Pôle Emploi avec OpenFisca.
+**estime** aide les demandeurs d'emploi à estimer leurs ressources lors d'une reprise d'activité. Développé par France Travail avec OpenFisca.
 
 **mes-ressources-formation** calcule les ressources financières disponibles pendant une formation professionnelle, également basé sur OpenFisca.
 

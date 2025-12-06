@@ -2,7 +2,7 @@
 
 Comment connecter un formulaire web et un moteur de règles ? Cette question apparemment simple cache plusieurs décisions d'architecture qui impactent la maintenabilité et la traçabilité du simulateur.
 
-L'analyse des 20 projets beta.gouv révèle qu'il n'y a pas *une* architecture type mais des combinaisons de choix sur trois axes :
+L'analyse des projets beta.gouv révèle qu'il n'y a pas *une* architecture type mais des combinaisons de choix sur trois axes :
 
 1. **Où sont définies les questions du formulaire ?** Dans un fichier de config, dérivées automatiquement des règles, ou codées en dur ?
 2. **Où s'exécute le calcul ?** Côté navigateur ou côté serveur ?
@@ -45,7 +45,7 @@ prioritaires:
 }
 ```
 
-Le champ `engine` permet de router vers Publicodes ou OpenFisca. C'est le seul projet de l'écosystème qui peut basculer de moteur sans réécrire le frontend.
+Le champ `engine` permet de router vers Publicodes ou OpenFisca. Les avantages sont multiples, de la flexibilité pour l'UX à la capacité de générer des diagrammes automatiquement à partir du schéma. Le principal inconvénient est la nécessité de maintenir deux sources de vérité (formulaire et règles), avec une couche de mapping entre les deux.
 
 ### Approche 2 : Génération depuis les règles
 
@@ -73,7 +73,7 @@ Cette approche maximise la flexibilité du parcours utilisateur mais disperse la
 
 La plupart des projets Publicodes (mes-aides-reno, mon-entreprise, nosgestesclimat) exécutent le moteur directement côté client. Avantages : réactivité instantanée, pas de latence réseau, pas de backend à maintenir.
 
-Inconvénient : toutes les règles sont téléchargées dans le navigateur. Si le modèle est volumineux, ça peut ralentir le chargement initial.
+Inconvénient : toutes les règles sont téléchargées dans le navigateur. Si le modèle est volumineux, ça peut ralentir le chargement initial. La gestion d'entités complexes (individus, foyers) est aussi plus délicate avec Publicodes.
 
 ### OpenFisca côté serveur
 
@@ -81,7 +81,7 @@ OpenFisca étant en Python, il s'exécute obligatoirement côté serveur. Deux v
 
 **Proxy simple** (aides-simplifiées) : le backend fait un relais transparent vers l'API OpenFisca. Le frontend construit la requête, le backend la transmet. Aucune logique métier dans le backend.
 
-**Backend avec logique métier** (estime) : le backend Java Spring transforme les objets métier en requêtes OpenFisca. 16 mappeurs différents convertissent les données. Plus sécurisé mais beaucoup plus complexe à maintenir.
+**Backend avec logique métier** (estime) : le backend Java Spring transforme les objets métier en requêtes OpenFisca, ce qui est plus sécurisé mais plus complexe à maintenir.
 
 ## La couche de mapping : point critique
 
@@ -99,7 +99,7 @@ Traçabilité excellente : la variable du formulaire a le même nom que la règl
 
 ### Mapping avec formatters
 
-aides-simplifiées utilise des fonctions simples pour formater les valeurs :
+aides-simplifiées utilise des fonctions plus ou moins simples pour formater les valeurs :
 
 ```typescript
 export function formatSurveyAnswerToRequest(
@@ -110,10 +110,6 @@ export function formatSurveyAnswerToRequest(
   return { [variableName]: { [period]: value } }
 }
 ```
-
-### Mapping avec builders complexes
-
-Pour OpenFisca, la transformation est plus complexe. aides-simplifiées utilise un `OpenFiscaRequestBuilder` avec plusieurs couches :
 
 1. **MappingResolver** : résout une clé de réponse vers son mapping OpenFisca
 2. **Dispatchers** : transforme une valeur en plusieurs variables (ex: "alternance" → `alternant: true`)
@@ -140,7 +136,7 @@ case FORM_VALUES.ALTERNANCE:
 }
 ```
 
-Cette complexité est inévitable avec OpenFisca mais rend la traçabilité difficile.
+Cette complexité est inévitable pour faire correspondre un formulaire flexible à un moteur sophistiqué et précis, mais rend la traçabilité difficile.
 
 ## Projets sans moteur déclaratif
 
@@ -158,7 +154,9 @@ Pour la **traçabilité**, Publicodes avec mapping direct peut-être une soltion
 
 Si vous devez **supporter plusieurs moteurs**, seule l'approche aides-simplifiées (schéma déclaratif + builder adapté) permet de basculer entre Publicodes et OpenFisca.
 
-Pour la **latence**, le calcul client (Publicodes) est imbattable. Pour la **sécurité des données**, le calcul serveur est préférable.
+Pour la **latence**, le calcul client (Publicodes) est souvent un meilleur choix. Pour la **sécurité des données**, le calcul serveur est préférable.
+
+Pour la gestion de **modèles complexes** avec plusieurs entités (individus, foyers), OpenFisca est généralement plus adapté.
 
 ## Voir aussi
 
