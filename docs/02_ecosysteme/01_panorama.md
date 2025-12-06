@@ -1,146 +1,84 @@
 ```markdown
 # Panorama des simulateurs publics
 
-L'écosystème français des simulateurs de droits sociaux et d'aides publiques est riche et diversifié. Cette page présente les principaux projets actifs.
+Une vingtaine de simulateurs d'aides et de droits sont développés dans la sphère publique française, principalement au sein de beta.gouv.fr et de ses partenaires. Ils couvrent des domaines variés : prestations sociales, fiscalité, transition écologique, droit du travail.
 
-## Vue d'ensemble
-
-L'écosystème compte une vingtaine de projets de simulateurs, utilisant différentes technologies et approches. La majorité utilise le Design System de l'État (DSFR) et dispose de tests automatisés.
-
-## Par domaine
+## Par domaine de politique publique
 
 ### Aides sociales et prestations
 
-| Projet | Description | Moteur |
-|--------|-------------|--------|
-| **aides-jeunes** | Simulateur 1jeune1solution pour les jeunes (539 aides YAML) | OpenFisca |
-| **aides-simplifiees** | Simulateur multi-aides avec validation tracée | Publicodes + OpenFisca |
-| **estime** | Estimation des aides à la reprise d'emploi (France Travail) | OpenFisca |
-| **mes-ressources-formation** | Ressources financières pendant une formation | OpenFisca |
+**aides-jeunes** centralise les aides pour les jeunes via 1jeune1solution. Le simulateur modélise 539 aides avec OpenFisca et propose un système de contribution no-code via NetlifyCMS.
+
+**estime** aide les demandeurs d'emploi à estimer leurs ressources lors d'une reprise d'activité. Développé par Pôle Emploi avec OpenFisca.
+
+**mes-ressources-formation** calcule les ressources financières disponibles pendant une formation professionnelle, également basé sur OpenFisca.
 
 ### Fiscalité et entreprise
 
-| Projet | Description | Moteur |
-|--------|-------------|--------|
-| **mon-entreprise** | Simulateurs pour créateurs et dirigeants | Publicodes |
-| **leximpact** | Impact budgétaire des réformes fiscales | OpenFisca |
-| **portail-rse** | Obligations RSE des entreprises | Django |
+**mon-entreprise** propose plusieurs simulateurs pour créateurs et dirigeants d'entreprise.
+
+**leximpact** permet d'analyser l'impact budgétaire de réformes fiscales.
+
+**portail-rse** informe les entreprises de leurs obligations en matière de responsabilité sociétale.
 
 ### Logement et rénovation
 
-| Projet | Description | Moteur |
-|--------|-------------|--------|
-| **mes-aides-reno** | Aides à la rénovation énergétique | Publicodes |
-| **pacoupa** | Recommandations de pompes à chaleur | SQLite + Zod |
-| **mon-devis-sans-oublis** | Vérification devis rénovation | Next.js |
+**mes-aides-reno** simule les aides à la rénovation énergétique.
+
+**pacoupa** recommande des solutions de pompes à chaleur adaptées.
 
 ### Environnement et transition
 
-| Projet | Description | Moteur |
-|--------|-------------|--------|
-| **nosgestesclimat** | Bilan carbone personnel (5 langues) | Publicodes |
-| **impact-co2** | Comparateur d'empreinte carbone | Publicodes |
-| **transition-widget** | Widget multi-aides transition écologique | Publicodes |
-| **envergo** | Évaluation environnementale des projets | Python |
+**nosgestesclimat** permet de calculer son bilan carbone personnel.
+
+**impact-co2** compare l'empreinte carbone de différents choix du quotidien.
+
+**transition-widget** est un web component embarquable qui affiche les aides à la transition écologique.
+
+**envergo** évalue l'impact environnemental des projets d'aménagement.
 
 ### Justice et droit du travail
 
-| Projet | Description | Moteur |
-|--------|-------------|--------|
-| **a-just** | Aide à la décision pour la justice | Koa.js |
-| **code-du-travail-numerique** | Simulateurs droit du travail (47 conventions) | Publicodes |
+**code-du-travail-numérique** propose des simulateurs sur le droit du travail, notamment pour une cinquantaine de conventions collectives.
 
-### Agriculture et territoires
+**a-just** aide à la décision pour l'allocation des moyens dans les tribunaux, avec des algorithmes métier sur mesure.
 
-| Projet | Description | Moteur |
-|--------|-------------|--------|
-| **aides-agri** | Aides agricoles de la PAC | Django |
-| **sparte** | Diagnostic artificialisation des sols | Django |
-| **terristory** | Données territoriales | Python/Sanic |
+### Agriculture et urbanisme
 
-### Socle technique
+**aides-agri** recense les aides agricoles de la PAC sous forme de catalogue.
 
-| Projet | Description | Moteur |
-|--------|-------------|--------|
-| **publicodes-core** | Moteur officiel Publicodes (6 packages NPM) | Publicodes |
+**terristory** analyse les données territoriales avec du calcul Python et des modèles de machine learning.
 
-## Par technologie
+**sparte** diagnostique l'artificialisation des sols avec Django et des données géospatiales du CEREMA.
 
-### Répartition des moteurs de règles
+## Deux familles technologiques dominent
 
-L'écosystème utilise principalement trois familles de moteurs : Publicodes (environ 40%), OpenFisca (environ 25%) et des solutions custom adaptées à des besoins spécifiques.
+**Les projets Publicodes** représentent environ un tiers des simulateurs. Le moteur Publicodes, développé par beta.gouv, privilégie la lisibilité des règles et la contribution par des non-développeurs. On trouve notamment :
 
-### Publicodes
+- **mon-entreprise** — le simulateur phare pour les entrepreneurs
+- **mes-aides-reno** — simulateur des aides à la rénovation énergétique
+- **nosgestesclimat** — bilan carbone personnel de l'ADEME, disponible en 5 langues
+- **code-du-travail-numérique** — qui l'utilise pour 47 conventions collectives
 
-Publicodes est un langage déclaratif développé par beta.gouv.fr, privilégiant la lisibilité et la contribution par des non-techniques.
+**Les projets OpenFisca** représentent environ un tiers des projets de l'écosystème. Ce moteur Python de microsimulation économique est adapté aux systèmes socio-fiscaux complexes avec plusieurs entités (individu, foyer, ménage). Projets notables :
 
-**Projets** : mon-entreprise, mes-aides-reno, nosgestesclimat, transition-widget, code-du-travail, impact-co2, aides-simplifiees (dual), publicodes-core
+- **aides-jeunes** — 539 aides modélisées, avec un système de contribution no-code via NetlifyCMS
+- **leximpact** — analyse d'impact budgétaire des réformes fiscales, avec une centaine de cas types JSON
+- **estime** — estimation des aides au retour à l'emploi par Pôle Emploi
 
-**Packages NPM publiés dans ce cluster** :
+Le reste de l'écosystème utilise soit des solutions hybrides (comme aides-simplifiées qui peut fonctionner avec les deux moteurs), soit des approches sur mesure adaptées à des besoins très spécifiques.
 
-| Projet | Package NPM | Version |
-|--------|-------------|---------|
-| publicodes-core | @publicodes/core, @publicodes/forms, @publicodes/react-ui, @publicodes/rest-api | 1.9.1 |
-| mon-entreprise | modele-social | 9.0.0 |
-| code-du-travail | @socialgouv/modeles-social | 4.202.0 |
-| mes-aides-reno | mesaidesreno | 1.6.1 |
-| nosgestesclimat | @incubateur-ademe/nosgestesclimat | 1.9.1 |
-| aides-simplifiees | @betagouv/survey-schema, @shallowred/publicodes-entreprise-innovation | 2.0.0 |
-| impact-co2 | @incubateur-ademe/impactco2-react, @incubateur-ademe/publicodes-acv-numerique | 1.4.0 |
+## Les approches sans moteur déclaratif
 
-**Caractéristiques** :
-- Syntaxe YAML lisible
-- Documentation intégrée aux règles
-- Écosystème JavaScript/TypeScript
-- Le package `@publicodes/forms` résout le problème de liaison formulaire↔moteur
+Environ un tiers des projets n'utilisent ni Publicodes ni OpenFisca. Ces choix sont généralement motivés par des besoins très spécifiques qui ne justifient pas l'adoption d'un moteur générique :
 
-### OpenFisca
+**envergo** a développé une "moulinette" Python avec PostGIS pour évaluer l'impact environnemental des projets d'aménagement. Les règles sont trop liées aux données géospatiales pour bénéficier d'un moteur déclaratif.
 
-OpenFisca est un moteur de microsimulation économique, utilisé pour modéliser les systèmes socio-fiscaux.
+**pacoupa** utilise simplement une base SQLite avec de la validation Zod. Il s'agit davantage de recommandation basée sur une base de données produits que de calcul réglementaire.
 
-**Projets utilisateurs** : aides-jeunes, estime, leximpact, mes-ressources-formation, aides-simplifiees (dual)
+**terristory** fait du calcul Python avec des modèles de machine learning pour analyser les données territoriales.
 
-| Projet | Version OpenFisca | Type d'intégration |
-|--------|-------------------|-------------------|
-| aides-jeunes | France 174.2.12 + Local + Paris | API locale |
-| leximpact | France-with-indirect-taxation (fork) | API backend |
-| aides-simplifiees | France standard | API externe |
-| estime | France (fork Pôle emploi) | API externe |
-| mes-ressources-formation | France (via HTTP) | API externe |
-
-**Caractéristiques** :
-- Modélisation fine des entités (individu, foyer, ménage)
-- Python côté serveur
-- Adapté aux calculs complexes multi-entités
-
-### Approches custom
-
-Certains projets développent leurs propres solutions adaptées à leurs besoins spécifiques.
-
-| Projet | Approche | Justification |
-|--------|----------|---------------|
-| **envergo** | Moulinette Python + PostGIS | Règles environnementales très spécifiques, données géospatiales |
-| **pacoupa** | Lookup SQLite + validation Zod + Turso edge | Recommandation basée sur base de données |
-| **a-just** | Algorithmes JavaScript custom | Calculs de charge tribunaux très spécifiques |
-| **terristory** | Python/Sanic + ML (scikit-learn) | Données territoriales + prédiction |
-| **sparte** | Django + Airflow ETL | Données CEREMA, géospatial |
-| **portail-rse** | Django ORM + ProConnect | Questionnaires RSE, intégration État |
-| **aides-agri** | Django ORM | Catalogue d'aides agricoles |
-
-## Bonnes pratiques observées
-
-Plusieurs projets de l'écosystème ont développé des pratiques qui méritent d'être partagées :
-
-| Pratique | Exemple de mise en œuvre | Bénéfice |
-|----------|--------------------------|----------|
-| **ADR (Architecture Decision Records)** | mon-entreprise | Pérennité des décisions techniques |
-| **Validation métier tracée** | aides-simplifiees (shared-test-cases) | Conformité prouvable aux organismes |
-| **Références juridiques** | code-du-travail, mes-aides-reno | Traçabilité règle→texte de loi |
-| **Packages NPM réutilisables** | modele-social, mesaidesreno | Partage entre projets |
-
-::: tip Recommandation
-Ces pratiques (glossaire métier, ADR, validation tracée) gagneraient à devenir des standards de l'écosystème. Voir [Collaboration métier-produit](./04_collaboration.md) pour des modèles.
-:::
+Ces projets montrent qu'il n'y a pas de solution unique : le choix technologique doit répondre au besoin métier, pas l'inverse.
 
 ## Voir aussi
 

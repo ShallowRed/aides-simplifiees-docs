@@ -1,47 +1,13 @@
 ````markdown
 # Outils et briques réutilisables
 
-L'écosystème des simulateurs publics a produit de nombreux outils open source réutilisables. Cette page recense les principales briques disponibles.
+L'écosystème des simulateurs publics produit des outils open source qu'on peut réutiliser dans d'autres projets. Cette page fait le tour de ce qui est disponible.
 
-::: info Packages NPM de l'écosystème
-Plusieurs packages NPM sont publiés et réutilisables, répartis entre le cluster Publicodes officiel et les règles métier packagées.
-:::
-
-## Vue d'ensemble des packages NPM
-
-```mermaid
-graph TB
-    subgraph "Cluster Publicodes officiel (4 packages)"
-        P1["@publicodes/core<br/>Moteur officiel"]
-        P2["@publicodes/forms ⭐<br/>UI déclarative"]
-        P3["@publicodes/react-ui<br/>Composants React"]
-        P4["@publicodes/rest-api<br/>Serveur REST"]
-    end
-    
-    subgraph "Règles métier packagées (10 packages)"
-        R1["modele-social<br/>mon-entreprise"]
-        R2["@socialgouv/modeles-social<br/>code-du-travail"]
-        R3["mesaidesreno<br/>mes-aides-reno"]
-        R4["@incubateur-ademe/nosgestesclimat<br/>Bilan carbone"]
-        R5["@incubateur-ademe/impactco2-react<br/>Widgets CO2"]
-        R6["@betagouv/survey-schema ⭐<br/>aides-simplifiees"]
-    end
-    
-    P1 --> P2
-    P1 --> P3
-    P1 --> P4
-    
-    style P2 fill:#d4edda
-    style R6 fill:#d4edda
-```
-
-## Moteurs de règles
+## Les deux moteurs de règles principaux
 
 ### Publicodes
 
-**Dépôt** : [github.com/publicodes/publicodes](https://github.com/publicodes/publicodes)
-
-Moteur de règles déclaratif en YAML, optimisé pour la lisibilité et la contribution collaborative.
+Développé initialement pour mon-entreprise, Publicodes est un langage déclaratif qui s'écrit en YAML. Son principal atout : les règles restent lisibles par quelqu'un qui ne code pas. Ça facilite la collaboration avec les experts métier.
 
 ```yaml
 # Exemple de règle Publicodes
@@ -52,30 +18,17 @@ aide . montant:
       - bonus si: conditions . prioritaire
 ```
 
-**Packages NPM du cluster officiel** :
+Le projet fournit maintenant plusieurs packages NPM officiels :
+- `@publicodes/core` — le moteur lui-même
+- `@publicodes/forms` — génération automatique de formulaires React
+- `@publicodes/react-ui` — composants d'interface
+- `@publicodes/rest-api` — serveur REST pour exposer les calculs
 
-| Package | Version | Description |
-|---------|---------|-------------|
-| `@publicodes/core` | 1.9.1 | Moteur d'évaluation des règles |
-| `@publicodes/forms` ⭐ | 1.9.1 | **Génération automatique de formulaires** |
-| `@publicodes/react-ui` | 1.9.1 | Composants React (documentation, explications) |
-| `@publicodes/rest-api` | 1.9.1 | Serveur REST auto-généré |
-
-**Points forts** :
-- Syntaxe accessible aux non-développeurs
-- Documentation intégrée aux règles
-- Écosystème JavaScript riche
-- **@publicodes/forms résout le problème de liaison formulaire↔moteur**
-
-**Limitations** :
-- Moins adapté aux modèles multi-entités complexes
-- Écosystème npm (nécessite compétences JS)
+L'écosystème JavaScript rend Publicodes adapté aux projets web modernes. En revanche, il est moins adapté quand on doit modéliser plusieurs entités interdépendantes (individu, foyer, ménage). Pour ces cas complexes, OpenFisca est généralement préférable.
 
 ### OpenFisca
 
-**Dépôt** : [github.com/openfisca](https://github.com/openfisca)
-
-Moteur de microsimulation économique, référence pour les systèmes socio-fiscaux.
+OpenFisca vient du monde de la microsimulation économique. C'est un moteur Python conçu pour modéliser finement les systèmes socio-fiscaux avec leurs multiples entités.
 
 ```python
 # Exemple de variable OpenFisca
@@ -88,14 +41,9 @@ class aide_montant(Variable):
         return individu('revenu', period) * 0.1
 ```
 
-**Points forts** :
-- Modélisation fine des entités (individu, foyer, ménage)
-- Validation économique et juridique solide
-- API REST native
+Il expose nativement une API REST, ce qui permet de garder la logique métier en Python côté serveur tout en développant le frontend avec n'importe quelle techno.
 
-**Limitations** :
-- Courbe d'apprentissage plus longue
-- Stack Python côté serveur
+La contrepartie : la courbe d'apprentissage est plus raide. Il faut comprendre les concepts de périodes, d'entités, de formules paramétrées. Mais pour modéliser des aides qui dépendent de la composition du foyer ou des revenus de plusieurs personnes, c'est souvent le bon choix.
 
 ## Règles métier packagées (10 packages)
 
@@ -116,37 +64,25 @@ L'audit a identifié 10 packages NPM contenant des règles métier réutilisable
 
 ## Génération de formulaires
 
-### @publicodes/forms ⭐ STRATÉGIQUE
+Le grand défi dans un simulateur, c'est de garder le formulaire synchronisé avec les règles de calcul. Plusieurs approches existent.
 
-**Dépôt** : [github.com/publicodes/publicodes](https://github.com/publicodes/publicodes) (packages/forms)
+### @publicodes/forms
 
-Génère automatiquement des formulaires React à partir de règles Publicodes. Identifié comme **asset stratégique** pour le cluster Publicodes.
+Ce package officiel génère automatiquement des formulaires React à partir des métadonnées des règles Publicodes. L'idée : si une règle a besoin d'une information pour calculer, le formulaire devrait poser la question correspondante.
 
-**Caractéristiques** :
-- Questions dérivées des métadonnées des règles
-- Gestion des conditions d'affichage (`applicable si`)
-- Personnalisation via composants React
-- **Résout le problème de liaison formulaire↔moteur pour Publicodes**
+Le système gère les questions conditionnelles : si une réponse précédente rend certaines questions inutiles, elles ne sont pas affichées. On peut personnaliser l'interface en fournissant ses propres composants React.
 
-**Projets utilisant ce pattern** : mon-entreprise (RuleInput), publicodes-core
+### RuleInput (pattern mon-entreprise)
 
-### RuleInput (mon-entreprise)
+mon-entreprise a développé un pattern de composants React typés qui se connectent directement aux règles. Chaque type de donnée (montant, pourcentage, date, choix) a son composant dédié qui sait comment afficher et valider l'entrée utilisateur.
 
-Pattern développé par mon-entreprise pour générer des inputs typés depuis les règles Publicodes.
-
-**Caractéristiques** :
-- Composants React spécialisés par type de donnée
-- Intégration design system
-- Extensible
+Ce pattern est moins automatique que `@publicodes/forms` mais offre plus de contrôle sur l'UX.
 
 ## Schémas déclaratifs
 
 ### @betagouv/survey-schema ⭐ STRATÉGIQUE
 
-**Source** : aides-simplifiees  
-**Version** : 2.0.0
-
-Format JSON/YAML pour décrire des questionnaires **indépendamment du moteur de calcul**. Identifié comme **asset stratégique** pour l'interopérabilité Publicodes/OpenFisca.
+Ce format JSON/YAML décrit un questionnaire indépendamment du moteur de calcul. L'intérêt : on peut utiliser le même formulaire avec Publicodes ou OpenFisca, ou même changer de moteur sans réécrire l'UI.
 
 ```json
 {
@@ -167,71 +103,13 @@ Format JSON/YAML pour décrire des questionnaires **indépendamment du moteur de
 }
 ```
 
-**Caractéristiques** :
-- Découplage formulaire / moteur
-- **Multi-moteur natif** (Publicodes OU OpenFisca via champ `engine`)
-- Génération UI agnostique au framework
-- Validation JSON Schema
+Le schéma est agnostique au framework frontend. En théorie, on pourrait générer le même formulaire en React, Vue, ou Svelte.
 
-::: tip Recommandation
-Ce format est le seul à permettre le dual-engine (Publicodes + OpenFisca) dans le même projet. Recommandé pour les nouveaux projets multi-aides.
-:::
+## Tests et validation métier
 
-## Tests et validation
+### Cas types en YAML
 
-### Formats de cas types dans l'écosystème
-
-L'audit a identifié deux formats matures pour partager des cas types métier :
-
-#### Format shared-test-cases (aides-simplifiees) ⭐ STRATÉGIQUE
-
-Format JSON traçant le flux complet formulaire → moteur → résultat avec **validation experte tracée**.
-
-```json
-{
-  "name": "Alternant éligible APL",
-  "metadata": {
-    "validated_by": "expert_caf",
-    "validated_at": "2025-01-15",
-    "source_reference": "Dossier 2024-1234"
-  },
-  "survey_answers": { "age": 22, "contrat": "alternance" },
-  "openfisca_request": { 
-    "individus": { "demandeur": { "age": { "2025-01": 22 } } } 
-  },
-  "openfisca_response": { "apl": { "2025-01": 150 } }
-}
-```
-
-**Points forts** :
-- Traçabilité complète du flux (formulaire → moteur → résultat)
-- **Validation experte avec metadata** (`validated_by`, `validated_at`)
-- Réutilisable entre projets OpenFisca
-- **Seul format avec validation métier tracée** (1/20 projets)
-
-#### Format LexImpact (~100 cas types)
-
-Format JSON avec expressions calculées et périodes.
-
-```json
-{
-  "id": "007_aah",
-  "description": "Personne en situation de handicap avec AAH",
-  "dixieme": 2,
-  "individus": {
-    "Adulte 1": {
-      "taux_incapacite": { "year": 0.8 },
-      "salaire_de_base": { "year": "Math.round(smic * 0.5)" }
-    }
-  }
-}
-```
-
-**Points forts** : 84 cas couvrant les 10 déciles de revenus INSEE, expressions calculées.
-
-### Cas types YAML (Publicodes)
-
-Format émergent pour formaliser des fixtures métier lisibles par les experts.
+Plusieurs projets (leximpact, aides-simplifiees) formalisent des cas types métier en YAML. Le principe : décrire une situation concrète avec les entrées et les sorties attendues, dans un format lisible par un expert métier.
 
 ```yaml
 cas_types:
@@ -244,16 +122,11 @@ cas_types:
       montant: 150
 ```
 
-**Avantages** :
-- Lisible par les experts métier
-- Exécutable comme tests automatisés
-- Traçable vers des situations réelles
+Ces fichiers servent à la fois de documentation ("voilà les situations qu'on couvre") et de tests automatisés. L'expert métier peut les valider sans lire le code.
 
-**Projets utilisant ce format** : mon-entreprise (11 fichiers), code-du-travail, transition-widget
+### Format de test OpenFisca
 
-### OpenFisca Test
-
-Format de test intégré à OpenFisca pour valider les calculs.
+OpenFisca a son propre format YAML pour les tests :
 
 ```yaml
 - name: Test aide logement
@@ -264,85 +137,33 @@ Format de test intégré à OpenFisca pour valider les calculs.
     aide_logement: 200
 ```
 
-::: tip Recommandation
-Combiner les deux formats pour créer un standard commun de cas types avec :
-- La couverture socio-démographique de LexImpact
-- La traçabilité et validation experte de shared-test-cases
-:::
+Ces tests s'exécutent directement avec l'outil en ligne de commande d'OpenFisca.
 
-## Widgets et intégration
+## Packages de règles métier publiés sur NPM
 
-### transition-widget
+Plusieurs projets publient leurs règles de calcul sous forme de packages NPM réutilisables :
 
-**Source** : transition-widget  
-Widget embarquable pour afficher les aides à la transition écologique.
+- `modele-social` (mon-entreprise) — règles sociales et fiscales françaises, version 9.0.0
+- `@socialgouv/modeles-social` (code-du-travail) — 47 conventions collectives
+- `mesaidesreno` — règles pour les aides à la rénovation énergétique
+- `@incubateur-ademe/nosgestesclimat` — calcul du bilan carbone personnel
+- `@shallowred/publicodes-entreprise-innovation` — CIR, CII, statut JEI
 
-**Caractéristiques** :
-- Web component autonome
-- **~180 programmes configurés** (YAML)
-- Intégrable en quelques lignes HTML
-- NX monorepo, OpenAPI tsoa
+Ces packages permettent de réutiliser les règles sans dupliquer la modélisation. Si MaPrimeRénov' évolue, une mise à jour de `mesaidesreno` suffit.
 
-### impact-co2 widgets
+## Widgets embarquables
 
-**Package** : `@incubateur-ademe/impactco2-react`
+**transition-widget** est un web component autonome qui affiche les aides à la transition écologique. Il configure 213 programmes d'aides et s'intègre en quelques lignes de HTML dans n'importe quel site.
 
-**Caractéristiques** :
-- Widgets React pour afficher l'empreinte carbone
-- Extension Chrome disponible
-- Embeddable dans n'importe quel site
+## Design System de l'État (DSFR)
 
-### Composants DSFR
-
-L'audit montre que **14/20 projets** (70%) utilisent le Design System de l'État (DSFR) :
-
-| Package | Framework | Projets utilisant |
-|---------|-----------|-------------------|
-| `@codegouvfr/react-dsfr` | React | mon-entreprise, aides-simplifiees, pacoupa, mes-aides-reno |
-| `@gouvfr/dsfr` | vanilla | aides-jeunes, code-du-travail |
-| `vue-dsfr` | Vue.js | transition-widget |
-
-## Patterns réutilisables identifiés
-
-L'audit a identifié plusieurs patterns transférables entre projets :
-
-| Pattern | Source | Transférabilité |
-|---------|--------|-----------------|
-| **ADR (Architecture Decision Records)** | mon-entreprise | ⭐⭐⭐⭐⭐ Tous projets |
-| **Tests régression YAML** | mon-entreprise | ⭐⭐⭐⭐⭐ Publicodes |
-| **Dual-engine Publicodes+OpenFisca** | aides-simplifiees | ⭐⭐⭐⭐ Nouveaux projets |
-| **NetlifyCMS contribution no-code** | aides-jeunes | ⭐⭐⭐⭐ Projets multi-aides |
-| **Clean Architecture Java** | mes-ressources-formation | ⭐⭐⭐⭐ Spring Boot |
-| **Cookiecutter-Django** | envergo | ⭐⭐⭐⭐ Django |
-| **Multi-frontend (public/admin/offline)** | a-just | ⭐⭐⭐ Angular monorepo |
-| **AGENTS.md (doc LLM)** | mon-devis-sans-oublis | ⭐⭐⭐⭐⭐ Tous projets |
-
-::: tip ADR : une pratique à généraliser
-Seul **1/20 projet** (mon-entreprise) documente ses décisions d'architecture via des ADR. Cette pratique devrait être généralisée pour éviter la perte de connaissance lors des rotations d'équipe.
-:::
+Environ 70% des simulateurs utilisent le DSFR. Plusieurs implémentations existent selon le framework :
+- `@codegouvfr/react-dsfr` pour React
+- `vue-dsfr` pour Vue.js
+- `@gouvfr/dsfr` pour du JavaScript vanilla
 
 ## Données et référentiels
 
-### france-chaleur-urbaine
+**Base Adresse Nationale (BAN)** — l'API d'autocomplétion d'adresses est intégrée dans la plupart des simulateurs qui demandent une localisation.
 
-Données géographiques sur les réseaux de chaleur, réutilisées par plusieurs simulateurs.
-
-### Base Adresse Nationale (BAN)
-
-API d'autocomplétion d'adresses, intégrée dans de nombreux simulateurs.
-
-## Bonnes pratiques de réutilisation
-
-1. **Vérifier la licence** : la plupart sont sous licence MIT ou AGPL
-2. **Évaluer la maintenance** : activité récente du dépôt, réactivité aux issues
-3. **Contribuer en retour** : signaler les bugs, proposer des améliorations
-4. **Documenter les adaptations** : faciliter la synchronisation avec l'upstream
-
-::: tip Contribution
-Vous connaissez un outil réutilisable non listé ? Proposez un ajout via [notre dépôt GitHub](https://github.com/betagouv/aides-simplifiees-docs).
-:::
-
-## Voir aussi
-
-- [Panorama des projets](./01_panorama.md)
-- [Patterns architecturaux](./03_patterns.md)
+**france-chaleur-urbaine** — données géographiques sur les réseaux de chaleur, réutilisées par plusieurs projets.

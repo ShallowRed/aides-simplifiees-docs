@@ -1,60 +1,34 @@
 # Collaboration métier, produit et partenaires
 
-Cette page aborde un enjeu souvent sous-estimé dans les projets de simulateurs : **l'outillage de la relation entre les équipes techniques, les experts métier et les partenaires institutionnels**.
+Cette page aborde un enjeu souvent sous-estimé : comment organiser la relation entre les équipes techniques, les experts métier et les partenaires institutionnels.
 
-Les discussions sur les moteurs de règles ou les frameworks JavaScript occultent parfois l'essentiel : un simulateur ne vaut que par la **qualité de sa modélisation réglementaire**, qui dépend elle-même de la fluidité des échanges entre ceux qui connaissent le droit et ceux qui l'implémentent.
+Les discussions sur Publicodes vs OpenFisca ou React vs Vue occultent parfois l'essentiel : un simulateur ne vaut que par la qualité de sa modélisation réglementaire, qui dépend elle-même de la fluidité des échanges entre ceux qui connaissent le droit et ceux qui l'implémentent.
 
-## Le problème
+## Le problème : des mondes qui ne se parlent pas
 
-### Des mondes qui ne se parlent pas
+D'un côté, des partenaires institutionnels qui maîtrisent les textes juridiques, les circulaires, les cas particuliers. De l'autre, des équipes techniques qui parlent en variables, en tests unitaires, en pull requests. Entre les deux, une équipe produit qui essaie de faire le lien avec des user stories et des maquettes.
 
-```
-┌─────────────────┐          ┌─────────────────┐          ┌─────────────────┐
-│   Partenaire    │          │   Équipe        │          │   Équipe        │
-│   institution-  │    ?     │   produit       │    ?     │   technique     │
-│   nel (CAF,     │◄────────►│   (PO, design)  │◄────────►│   (dev, data)   │
-│   DINUM, etc.)  │          │                 │          │                 │
-└─────────────────┘          └─────────────────┘          └─────────────────┘
-        │                            │                            │
-        │  Textes juridiques         │  User stories              │  Code, tests
-        │  Circulaires               │  Maquettes                 │  Pull requests
-        │  Cas particuliers          │  Roadmap                   │  Documentation
-        └────────────────────────────┴────────────────────────────┘
-                              Outils différents
-                              Vocabulaires différents
-                              Temporalités différentes
-```
+Symptômes courants :
+- "Le simulateur ne correspond pas à la réglementation" → pas de validation métier formalisée
+- "On découvre les changements réglementaires au dernier moment" → pas de canal de veille partagé
+- "Les experts ne comprennent pas nos questions techniques" → pas de langage commun
+- "On ne sait pas qui valide quoi" → gouvernance floue
 
-### Les symptômes courants
 
-| Symptôme | Cause profonde |
-|----------|----------------|
-| "Le simulateur ne correspond pas à la réglementation" | Pas de validation métier formalisée |
-| "On découvre les changements réglementaires au dernier moment" | Pas de canal de veille partagé |
-| "Les experts ne comprennent pas nos questions techniques" | Pas de langage commun |
-| "On ne sait pas qui valide quoi" | Gouvernance floue |
-| "Les partenaires ne répondent plus" | Sollicitations trop techniques |
-
-### Ce qui peut manquer à un projet
-
-L'observation des projets de l'écosystème révèle des axes d'amélioration fréquents :
-
-1. **La formalisation des règles** : Comment documenter une interprétation juridique de manière traçable ?
-2. **La validation métier** : Comment faire valider un modèle par un expert sans le noyer dans le code ?
-3. **La gestion des cas ambigus** : Comment arbitrer quand le texte est flou ?
-4. **La veille réglementaire** : Comment être informé des changements à venir ?
-5. **La communication avec les partenaires** : Comment maintenir un dialogue productif ?
+Nous pourrions faire mieux en structurant la collaboration autour de cinq piliers :
+1. La formalisation des règles (comment documenter une interprétation juridique de manière traçable ?)
+2. La validation métier (comment faire valider un modèle par un expert sans le noyer dans le code ?)
+3. La gestion des cas ambigus (comment arbitrer quand le texte est flou ?)
+4. La veille réglementaire (comment être informé des changements à venir ?)
+5. La communication avec les partenaires (comment maintenir un dialogue productif ?)
 
 ## Solutions et bonnes pratiques
 
 ### 1. Créer un langage commun
 
-#### Le glossaire partagé
-
-Avant tout projet, établir un **glossaire commun** entre équipes tech et métier :
+Avant de parler de moteur de règles, il faut établir un glossaire partagé entre équipes tech et métier. Exemple simple :
 
 ```yaml
-# Exemple de glossaire projet
 termes:
   - terme: "foyer fiscal"
     définition_juridique: "Ensemble des personnes inscrites sur une même déclaration de revenus"
@@ -67,21 +41,12 @@ termes:
     attention: "≠ bénéficiaire (qui a effectivement reçu l'aide)"
 ```
 
-#### Les ateliers de traduction
-
-Organiser des sessions régulières où :
-- Un expert métier **lit le texte à voix haute**
-- L'équipe technique **reformule** en pseudo-code
-- On **identifie les zones grises** ensemble
 
 ### 2. Formaliser la validation métier
 
-#### Les cas types comme contrat
-
-Les [fixtures métier](/01_simulateurs/06_tester-ajuster.html#formaliser-les-cas-types-metier) servent de **contrat** entre équipes :
+Les cas types servent de contrat entre équipes. Ils décrivent des situations concrètes avec les entrées et sorties attendues, dans un format lisible par un expert métier :
 
 ```yaml
-# cas-types/aide-logement.yaml
 cas_types:
   - nom: "Étudiant boursier en colocation"
     source: "Dossier réel CAF anonymisé - Réf. 2024-XXX"
@@ -101,32 +66,18 @@ cas_types:
       de loyer individuelle, pas du loyer total.
 ```
 
-#### Le workflow de validation
-
-```
-┌──────────────┐     ┌──────────────┐     ┌──────────────┐     ┌──────────────┐
-│   Dev crée   │────►│  Expert      │────►│  Correction  │────►│   Merge      │
-│   cas type   │     │  review      │     │  si besoin   │     │   validé     │
-└──────────────┘     └──────────────┘     └──────────────┘     └──────────────┘
-                            │
-                            ▼
-                     ┌──────────────┐
-                     │  Commentaire │
-                     │  explicatif  │
-                     └──────────────┘
-```
+Workflow simple : le dev crée un cas type, l'expert le revoit, on corrige si besoin, puis on merge une fois validé. L'expert laisse des commentaires explicatifs pour tracer sa validation.
 
 ### 3. Gérer les zones grises
 
-#### Le registre des interprétations
+### 3. Gérer les zones grises
 
-Quand le texte est ambigu, documenter la décision :
+Quand le texte légal est ambigu, documenter la décision dans un registre d'interprétations :
 
 ```yaml
-# interpretations/revenus-pris-en-compte.yaml
 question: "Les revenus exceptionnels sont-ils inclus dans le calcul ?"
 texte_source: "Article X - les revenus de l'année N-1..."
-ambiguïté: "Le texte ne précise pas 'revenus courants' vs 'revenus totaux'"
+ambiguité: "Le texte ne précise pas 'revenus courants' vs 'revenus totaux'"
 options:
   - option_a: "Inclure tous les revenus (lecture littérale)"
   - option_b: "Exclure les revenus exceptionnels (intention probable)"
@@ -139,208 +90,20 @@ date: "2024-02-20"
 réversible: true
 ```
 
-#### L'escalade structurée
-
-Définir qui tranche selon le niveau d'ambiguïté :
-
-| Niveau | Type d'ambiguïté | Qui tranche | Délai |
-|--------|------------------|-------------|-------|
-| 1 | Formulation équivalente | Équipe produit | Immédiat |
-| 2 | Interprétation plausible | Expert métier référent | 1 semaine |
-| 3 | Zone grise réglementaire | Partenaire institutionnel | 2-4 semaines |
-| 4 | Contradiction entre textes | Direction juridique | Variable |
-
 ### 4. Organiser la veille réglementaire
 
-#### Les canaux à surveiller
 
-| Source | Contenu | Fréquence |
-|--------|---------|-----------|
-| Légifrance | Textes officiels | Quotidien (alertes) |
-| Circulaires.gouv.fr | Instructions d'application | Hebdomadaire |
-| Bulletins ministériels | Interprétations | Mensuel |
-| Partenaires directs | Changements prévus | Trimestriel |
+## Ce qui existe et ce qui manque
 
-#### Le rituel de veille
+Pour l'édition collaborative des règles ou le suivi des formulaires utilisateurs, on peut utiliser GitHub ou GitLab, mais la courbe d'apprentissage peut être est raide pour les non-devs.
 
-```
-Lundi matin (30 min) :
-├── Revue des alertes Légifrance
-├── Check des issues GitHub "veille-réglementaire"
-└── Point avec l'expert métier si changement détecté
+Ce qui pourrait exister :
 
-Mensuel (2h) :
-├── Revue des modifications du trimestre passé
-├── Anticipation des évolutions connues
-└── Mise à jour de la roadmap réglementaire
-```
+1. Un éditeur de règles accessible en interface web, sans passer par Git/npm, avec preview du résultat
+2. Une plateforme de validation métier pour soumettre des cas types à un expert, avec workflow d'approbation et historique
+3. Un outil de traduction droit → code avec annotation de textes juridiques et lien vers les règles implémentées
+4. Un dashboard de conformité montrant la couverture des textes par les règles et les alertes sur les textes non modélisés
 
-### 5. Maintenir le dialogue avec les partenaires
-
-#### La posture recommandée
-
-| À faire | À éviter |
-|---------|----------|
-| Poser des questions **fermées** avec contexte | Envoyer des extraits de code |
-| Proposer **2-3 options** avec leurs implications | Demander "comment ça marche ?" |
-| Partager les **cas types** validés précédemment | Solliciter pour chaque micro-question |
-| Grouper les questions en **lots mensuels** | Harceler au fil de l'eau |
-| Valoriser leur contribution (mentions, remerciements) | Considérer comme acquis leur disponibilité |
-
-#### Le template de sollicitation
-
-```markdown
-## Contexte
-Nous développons un simulateur de [aide X] pour [public Y].
-Nous avons modélisé les conditions d'éligibilité à partir de [texte Z].
-
-## Question précise
-Concernant la condition "[extrait du texte]", nous hésitons entre :
-- Interprétation A : [description + exemple]
-- Interprétation B : [description + exemple]
-
-## Impact
-Cette décision affecte ~[N] situations par an sur notre simulateur.
-
-## Notre recommandation
-Nous pencherions pour l'interprétation [A/B] car [justification].
-Qu'en pensez-vous ?
-
-## Délai souhaité
-Une réponse avant le [date] nous permettrait de [livraison prévue].
-```
-
-## Bonnes pratiques observées dans l'écosystème
-
-L'audit a identifié des pratiques exemplaires chez certains projets :
-
-### ADR (Architecture Decision Records) - mon-entreprise ⭐
-
-Seul projet à documenter ses décisions d'architecture. Exemple de structure :
-
-```markdown
-# ADR-001 : Choix du format de données pour les barèmes
-
-## Contexte
-Nous devons stocker les barèmes de cotisations sociales...
-
-## Décision
-Nous utiliserons des fichiers YAML versionés dans le dépôt.
-
-## Conséquences
-+ Versioning automatique via Git
-+ Lisibilité pour les experts métier
-- Pas d'interface d'édition graphique
-
-## Statut
-Accepté - 2025-01-15
-```
-
-::: tip Recommandation
-Créer un template ADR et l'adopter dans tous les projets de l'écosystème pour capitaliser les décisions.
-:::
-
-### Validation métier tracée - aides-simplifiees ⭐
-
-Seul projet avec des métadonnées de validation dans les cas de test :
-
-```json
-{
-  "metadata": {
-    "validated_by": "Marie D., experte CAF",
-    "validated_at": "2025-01-15",
-    "source_reference": "Dossier 2024-1234"
-  }
-}
-```
-
-::: tip Recommandation
-Généraliser ce format de metadata pour prouver la conformité aux organismes partenaires.
-:::
-
-### Contribution no-code - aides-jeunes
-
-NetlifyCMS permet aux non-développeurs de contribuer directement :
-- Interface web pour ajouter/modifier des aides
-- Validation avant publication via PR
-- Pas besoin de connaître Git
-
-## Outils existants et manquants
-
-### Ce qui existe
-
-| Besoin | Outil actuel | Limite | Projets utilisant |
-|--------|--------------|--------|-------------------|
-| Édition collaborative des règles | GitHub, GitLab | Courbe d'apprentissage non-devs | Tous |
-| Contribution no-code | NetlifyCMS | Uniquement aides-jeunes | 1/20 |
-| Documentation | VitePress, Docusaurus | Pas de workflow validation | Majorité |
-| Tests métier | YAML, JSON | Pas d'interface conviviale | 18/20 |
-| Veille | Alertes Légifrance | Bruit, pas de filtrage | Variable |
-
-### Ce qui manquerait
-
-1. **Éditeur de règles accessible**
-   - Interface web pour éditer des règles Publicodes/OpenFisca
-   - Sans passer par Git/npm
-   - Avec preview du résultat
-   - **Inspiration** : NetlifyCMS d'aides-jeunes
-
-2. **Plateforme de validation métier**
-   - Soumettre des cas types à un expert
-   - Workflow d'approbation avec metadata
-   - Historique des validations
-   - **Inspiration** : shared-test-cases d'aides-simplifiees
-
-3. **Outil de traduction droit → code**
-   - Annotation de textes juridiques
-   - Lien automatique vers les règles implémentées
-   - Détection des incohérences
-   - **Référence** : 1249 refs légales dans code-du-travail
-
-4. **Dashboard de conformité**
-   - Couverture des textes par les règles
-   - Alertes sur les textes non modélisés
-   - Rapport pour les partenaires
-
-## Recommandations par taille d'équipe
-
-### Équipe réduite (1-3 personnes)
-
-- **Prioriser** : Un expert métier référent identifié
-- **Formaliser** : 10-20 cas types validés (format shared-test-cases)
-- **Rituel** : Point mensuel avec l'expert
-- **Quick win** : Créer un fichier AGENTS.md pour documenter le projet
-
-### Équipe moyenne (4-10 personnes)
-
-- **Prioriser** : Glossaire partagé + registre d'interprétations
-- **Formaliser** : Workflow de validation dans le CI + ADR
-- **Rituel** : Revue de veille hebdomadaire
-- **Quick win** : Adopter le pattern shared-test-cases
-
-### Équipe large ou multi-partenaires
-
-- **Prioriser** : Gouvernance explicite (RACI)
-- **Formaliser** : Comité de pilotage réglementaire + validation tracée
-- **Rituel** : Revue trimestrielle avec les partenaires
-- **Quick win** : Dashboard de couverture réglementaire
-
-## Opportunités à fort levier (issues de l'audit)
-
-### Quick wins (< 1 mois)
-
-| Opportunité | Action | Impact |
-|-------------|--------|--------|
-| Template ADR beta.gouv | Créer modèle + l'adopter dans 5 projets | Capitalisation décisions |
-| AGENTS.md généralisé | Copier pattern mon-devis-sans-oublis | Documentation LLM |
-| Promouvoir shared-test-cases | Documentation + exemples | Standards tests métier |
-
-### Moyen terme (1-3 mois)
-
-| Opportunité | Action | Impact |
-|-------------|--------|--------|
-| Glossaire métier partagé | Atelier inter-projets | Médiation juriste/dev |
-| Registre de conformité | Plateforme validation métier | Traçabilité |
 
 ## Voir aussi
 
@@ -349,8 +112,3 @@ NetlifyCMS permet aux non-développeurs de contribuer directement :
 - [Outils réutilisables](/02_ecosysteme/02_outils) - Packages NPM et patterns
 - [Tensions à assumer](/00_meta/01_enjeux-rules-as-code.html#des-tensions-a-assumer)
 - [Maintenir un simulateur](/01_simulateurs/07_maintenir)
-- [Ressources visuelles mutualisables](/99_annexe/ressources-visuelles) - Templates Mermaid pour workflows et traçabilité
-
-::: tip Contribution
-Ce sujet est en construction. Partagez vos retours d'expérience et bonnes pratiques via [notre dépôt GitHub](https://github.com/betagouv/aides-simplifiees-docs).
-:::

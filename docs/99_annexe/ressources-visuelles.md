@@ -1,19 +1,15 @@
 # Ressources visuelles mutualisables
 
-Ce document recense les **diagrammes et templates visuels** utiles pour :
-- Améliorer la traçabilité entre texte réglementaire et code
-- Faciliter la collaboration métier / produit / tech
-- Documenter les architectures de simulateurs
+Ce document recense des exemples de diagrammes et templates visuels réutilisables pour améliorer la traçabilité entre texte réglementaire et code, faciliter la collaboration entre équipes métier, produit et technique, et documenter les architectures de simulateurs.
 
-Tous les templates sont en **Mermaid** (versionnables, intégrables dans VitePress/GitHub).
 
 ---
 
-## 1. MODÉLISATION DES RÈGLES
+## Modélisation des règles
 
-### 1.1 Arbre de décision d'éligibilité
+### Arbre de décision d'éligibilité
 
-**Usage** : Visualiser les conditions d'éligibilité d'une aide pour validation métier.
+Ce diagramme permet de visualiser les conditions d'éligibilité d'une aide de manière accessible pour validation par un expert métier.
 
 ```mermaid
 flowchart TD
@@ -47,9 +43,9 @@ flowchart TD
 
 ---
 
-### 1.2 Logigramme avec références légales
+### Logigramme avec références légales
 
-**Usage** : Documenter la traçabilité condition → article de loi.
+Ce format documente explicitement la traçabilité entre chaque condition et son article de loi source.
 
 ```mermaid
 flowchart TD
@@ -78,9 +74,9 @@ flowchart TD
 
 ---
 
-### 1.3 Graphe de dépendances entre variables
+### Graphe de dépendances entre variables
 
-**Usage** : Comprendre les relations entre variables d'un modèle.
+Ce graphe explicite les relations entre variables d'un modèle : entrées utilisateur, variables intermédiaires calculées, et résultats finaux.
 
 ```mermaid
 flowchart LR
@@ -122,9 +118,9 @@ flowchart LR
 
 ---
 
-### 1.4 Timeline des périodes de calcul
+### Timeline des périodes de calcul
 
-**Usage** : Clarifier les temporalités (revenus N-1, N-2, projection).
+Ce diagramme de Gantt clarifie les temporalités dans le calcul : revenus de référence (année N-1, N-2), situation actuelle, et période de versement.
 
 ```mermaid
 gantt
@@ -144,11 +140,11 @@ gantt
 
 ---
 
-## 2. ARCHITECTURE TECHNIQUE
+## Architecture technique
 
-### 2.1 Flux formulaire → moteur → résultat
+### Flux formulaire → moteur → résultat
 
-**Usage** : Documenter l'architecture complète d'un simulateur.
+Ce schéma documente l'architecture complète d'un simulateur, depuis le formulaire utilisateur jusqu'aux résultats affichés.
 
 ```mermaid
 flowchart LR
@@ -189,9 +185,9 @@ flowchart LR
 
 ---
 
-### 2.2 Détail de la couche de mapping (traçabilité)
+### Détail de la couche de mapping
 
-**Usage** : Documenter la transformation réponses utilisateur → variables moteur.
+Ce diagramme détaille la transformation entre les réponses utilisateur et les variables du moteur de règles, point souvent critique pour la traçabilité.
 
 ```mermaid
 flowchart TB
@@ -226,9 +222,9 @@ flowchart TB
 
 ---
 
-### 2.3 Architecture multi-moteur
+### Architecture multi-moteur
 
-**Usage** : Documenter un système hybride (Publicodes + OpenFisca).
+Ce schéma illustre une architecture hybride capable de fonctionner avec Publicodes ou OpenFisca selon le contexte.
 
 ```mermaid
 flowchart TB
@@ -264,11 +260,11 @@ flowchart TB
 
 ---
 
-## 3. COLLABORATION MÉTIER-PRODUIT
+## Collaboration métier-produit
 
-### 3.1 Workflow de validation métier
+### Workflow de validation métier
 
-**Usage** : Documenter le processus de validation des règles.
+Ce diagramme de séquence représente le processus de validation des règles par un expert métier.
 
 ```mermaid
 sequenceDiagram
@@ -295,9 +291,9 @@ sequenceDiagram
 
 ---
 
-### 3.2 Matrice RACI projet simulateur
+### Matrice RACI projet simulateur
 
-**Usage** : Clarifier les responsabilités dans l'équipe.
+Ce quadrant clarifie les responsabilités selon deux axes : technique/métier et opérationnel/stratégique.
 
 ```mermaid
 quadrantChart
@@ -322,9 +318,9 @@ quadrantChart
 
 ---
 
-### 3.3 Cycle de vie d'une règle
+### Cycle de vie d'une règle
 
-**Usage** : Visualiser les états d'une règle dans le système.
+Ce diagramme d'états représente le cycle de vie complet d'une règle, de son identification à sa mise en production ou sa dépréciation.
 
 ```mermaid
 stateDiagram-v2
@@ -349,11 +345,11 @@ stateDiagram-v2
 
 ---
 
-## 4. TRAÇABILITÉ
+## Traçabilité
 
-### 4.1 Carte de correspondance texte → code
+### Carte de correspondance texte → code
 
-**Usage** : Tableau de traçabilité pour audit.
+Ce diagramme établit la correspondance entre articles réglementaires, règles implémentées et cas de test.
 
 ```mermaid
 flowchart LR
@@ -384,9 +380,9 @@ flowchart LR
 
 ---
 
-### 4.2 Diagramme de conformité
+### Diagramme de conformité
 
-**Usage** : Dashboard visuel de couverture réglementaire.
+Ce graphique circulaire offre une vue synthétique de la couverture réglementaire du simulateur.
 
 ```mermaid
 pie showData
@@ -398,9 +394,9 @@ pie showData
 
 ---
 
-### 4.3 Historique des interprétations
+### Historique des interprétations
 
-**Usage** : Documenter les choix d'interprétation dans le temps.
+Ce graphe Git documente l'évolution des règles et les décisions d'interprétation majeures.
 
 ```mermaid
 gitGraph
@@ -416,11 +412,11 @@ gitGraph
 
 ---
 
-## 5. PARCOURS UTILISATEUR
+## Parcours utilisateur
 
-### 5.1 Funnel de simulation
+### Funnel de simulation
 
-**Usage** : Analyser les abandons dans le parcours.
+Ce diagramme analyse les taux de conversion et d'abandon à chaque étape du parcours de simulation.
 
 ```mermaid
 flowchart TD
@@ -441,9 +437,9 @@ flowchart TD
 
 ---
 
-### 5.2 Parcours conditionnel
+### Parcours conditionnel
 
-**Usage** : Documenter la logique de branchement du formulaire.
+Ce schéma représente la logique de branchement du formulaire selon les réponses de l'utilisateur.
 
 ```mermaid
 flowchart TD
@@ -467,11 +463,11 @@ flowchart TD
 
 ---
 
-## 6. TEMPLATES RÉUTILISABLES
+## Templates réutilisables
 
-### 6.1 Template générique d'aide
+### Template générique d'aide
 
-Copier-coller ce template pour documenter une nouvelle aide :
+Ce template standardise la documentation d'une nouvelle aide. Il peut être copié et adapté :
 
 ```markdown
 ## [NOM DE L'AIDE]
@@ -509,7 +505,9 @@ flowchart TD
 
 ---
 
-### 6.2 Checklist visuelle de conformité
+### Checklist visuelle de conformité
+
+Ce diagramme offre une vue d'ensemble de l'avancement d'une modélisation, du texte réglementaire à la mise en production.
 
 ```mermaid
 flowchart LR
@@ -541,7 +539,7 @@ flowchart LR
 
 ---
 
-## 7. RESSOURCES COMPLÉMENTAIRES
+## Ressources complémentaires
 
 ### Outils recommandés
 
@@ -562,11 +560,15 @@ flowchart LR
 
 ### Bonnes pratiques
 
-1. **Versionner les diagrammes** : Préférer Mermaid (code) à des images
-2. **Lier aux sources** : Ajouter des liens cliquables vers Légifrance
-3. **Maintenir à jour** : Un diagramme obsolète est pire que pas de diagramme
-4. **Simplifier** : Un diagramme doit clarifier, pas complexifier
-5. **Tester le rendu** : Vérifier sur différents supports (web, PDF, print)
+**Versionner les diagrammes** : privilégier Mermaid (format texte) plutôt que des images binaires pour faciliter la revue de code et le suivi des modifications.
+
+**Lier aux sources** : ajouter des liens cliquables vers Légifrance ou les documents de référence pour améliorer la traçabilité.
+
+**Maintenir à jour** : un diagramme obsolète peut induire en erreur. Mieux vaut le supprimer que le conserver s'il n'est plus maintenu.
+
+**Simplifier** : un diagramme doit clarifier, pas ajouter de la complexité. Si un schéma nécessite trop d'explications, il manque probablement sa cible.
+
+**Tester le rendu** : vérifier l'affichage sur différents supports (web, PDF, impression) avant de considérer un diagramme comme finalisé.
 
 ---
 
