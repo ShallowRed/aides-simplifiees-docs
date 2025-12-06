@@ -13,12 +13,12 @@ La maintenance assure :
 
 ## Les types de maintenance
 
-| Type | Objectif | Fréquence |
-|------|-----------|-----------|
-| **Corrective** | Corriger une erreur ou incohérence de calcul | Dès détection |
-| **Évolutive** | Intégrer une nouvelle règle, barème ou exception | À chaque modification réglementaire |
-| **Préventive** | Anticiper les changements (structure, dépendances) | Trimestrielle |
-| **Améliorative** | Optimiser les performances ou la lisibilité | Continue |
+Quatre types de maintenance coexistent :
+
+- **Corrective** : corriger une erreur ou incohérence de calcul, dès détection.
+- **Évolutive** : intégrer une nouvelle règle, un barème ou une exception, à chaque modification réglementaire.
+- **Préventive** : anticiper les changements de structure ou de dépendances, typiquement chaque trimestre.
+- **Améliorative** : optimiser performances ou lisibilité, en continu.
 
 Chaque version doit être **datée, testée et publiée** avec un changelog clair.
 
@@ -34,12 +34,12 @@ La maintenance débute par la **veille juridique et administrative**.
 
 ### Organiser la veille
 
-| Fréquence | Action | Responsable suggéré |
-|-----------|--------|---------------------|
-| Quotidien | Alertes Légifrance automatisées | Équipe technique |
-| Hebdomadaire | Revue des circulaires pertinentes | Expert métier |
-| Mensuel | Point avec les partenaires institutionnels | Product owner |
-| Trimestriel | Revue des évolutions anticipées | Comité de pilotage |
+La veille s'organise à plusieurs échelles :
+
+- **Quotidien** : alertes Légifrance automatisées, gérées par l'équipe technique.
+- **Hebdomadaire** : revue des circulaires pertinentes par l'expert métier.
+- **Mensuel** : point avec les partenaires institutionnels, porté par le product owner.
+- **Trimestriel** : revue des évolutions anticipées en comité de pilotage.
 
 > La veille est un travail collectif : chaque acteur du réseau contribue à la mise à jour.
 
@@ -62,7 +62,35 @@ Recommandations :
 - Paramétrer les barèmes et seuils dans des fichiers séparés ;
 - Documenter les liens entre règles et décrets ;
 - Prévoir les prochaines révisions réglementaires connues ;
-- Simuler les effets d’un futur barème avant sa publication ;
+- Simuler les effets d'un futur barème avant sa publication ;
+
+## Suivre le simulateur en production
+
+La veille réglementaire ne suffit pas. Il faut aussi surveiller ce qui se passe en production.
+
+### Métriques à suivre
+
+Cinq indicateurs méritent un suivi régulier :
+
+- **Taux de complétion** : un taux faible signale un parcours trop long ou une question bloquante. Outils : Matomo, Plausible.
+- **Abandon par étape** : permet d'identifier précisément quelle question pose problème. Nécessite un tracking par événements.
+- **Taux de rejet** : si 95% des utilisateurs sont inéligibles, le parcours cible-t-il le bon public ?
+- **Erreurs JavaScript** : bugs non détectés en dev. Outils : Sentry, LogRocket.
+- **Temps de calcul** : dégradation de performance du moteur. Outils : APM (Datadog, New Relic).
+
+### Détecter les incohérences
+
+Certaines anomalies ne génèrent pas d'erreur technique mais signalent un problème :
+
+- **Montants aberrants** : un APL de 2000€/mois indique probablement une erreur de saisie ou de calcul
+- **Taux de rejet anormalement haut**
+- **Pics d'usage inattendus** : campagne de communication non anticipée, article de presse
+
+### Retours utilisateurs
+
+Le formulaire de contact ou de feedback en fin de parcours est une source d'information sous-exploitée. Les retours révèlent souvent des cas non couverts ou des formulations confuses.
+
+Organiser une revue mensuelle des retours avec l'équipe produit permet d'alimenter le backlog.
 
 ## En résumé
 Maintenir, c'est :

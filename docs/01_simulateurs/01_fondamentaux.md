@@ -32,6 +32,58 @@ L'ouverture du code et des modèles garantit la transparence, favorise la réuti
 
 Les projets de l'écosystème beta.gouv sont généralement open source, ce qui facilite le partage et la mutualisation.
 
+## Protection des données personnelles
+
+Les simulateurs d'aides collectent des données sensibles : revenus, situation familiale, santé, logement. Le cadre RGPD impose des obligations spécifiques.
+
+### Minimisation des données
+
+Ne demander que ce qui est strictement nécessaire au calcul. Un simulateur d'éligibilité n'a pas besoin du numéro de sécurité sociale. Si une question sert uniquement à affiner un montant de 5€, son utilité est discutable.
+
+Trois approches coexistent :
+
+- **Simulation anonyme** : aucune donnée stockée, calcul exécuté côté client. C'est le cas de [mon-entreprise](https://beta.gouv.fr/startups/mon-entreprise.html).
+- **Pré-remplissage sans stockage** : les données sont récupérées via FranceConnect ou API Particulier, utilisées pour le calcul, puis oubliées.
+- **Sauvegarde temporaire** : stockage chiffré pour permettre la reprise du parcours.
+
+### FranceConnect et API Particulier
+
+L'authentification FranceConnect permet de pré-remplir certaines données (revenus fiscaux, composition du foyer) via l'[API Particulier](https://particulier.api.gouv.fr/). Cela réduit la saisie et les erreurs, mais implique :
+
+- Une habilitation préalable (délai : 2-4 semaines)
+- Un périmètre de données justifié dans la demande
+- Une gestion des cas où l'usager refuse ou n'a pas de compte
+
+### Arbitrage précision vs confidentialité
+
+Parfois, une question précise améliore le calcul mais peut être perçue comme intrusive. Exemple : demander le montant exact des pensions alimentaires versées permet un calcul juste, mais certains usagers préfèrent répondre par tranches.
+
+La transparence aide : expliquer pourquoi une donnée est demandée, ce qu'elle permet de calculer, et ce qui se passe si on ne répond pas.
+
+## Accessibilité numérique
+
+Les simulateurs publics doivent respecter le [RGAA](https://accessibilite.numerique.gouv.fr/) (Référentiel Général d'Amélioration de l'Accessibilité). C'est une obligation légale, pas une option.
+
+### Pièges fréquents des formulaires dynamiques
+
+Les formulaires de simulation posent des défis spécifiques :
+
+- **Questions dynamiques** : quand une question apparaît après une réponse, le lecteur d'écran ne l'annonce pas automatiquement. Solution : utiliser `aria-live` ou déplacer le focus.
+- **Validation en temps réel** : les erreurs affichées au fil de la saisie peuvent ne pas être perçues. Regrouper les erreurs en résumé et les annoncer.
+- **Résultats qui changent** : un montant qui se met à jour à chaque réponse est confusant pour la navigation clavier. Indiquer clairement les mises à jour.
+
+### Le DSFR comme point de départ
+
+Le [Système de Design de l'État](https://www.systeme-de-design.gouv.fr/) (DSFR) fournit des composants accessibles par défaut : champs de formulaire, boutons, alertes. Les utiliser réduit le risque d'erreur.
+
+Attention : le DSFR couvre les composants de base, pas les interactions complexes spécifiques aux simulateurs (parcours conditionnels, résultats dynamiques). Ces parties restent à tester.
+
+### Tester l'accessibilité
+
+- **Automatique** : axe-core, Lighthouse (détecte ~30% des problèmes)
+- **Manuel** : navigation clavier, lecteur d'écran (NVDA, VoiceOver)
+- **Utilisateurs** : tests avec personnes concernées
+
 ## Une approche interdisciplinaire
 
 La réussite d'un simulateur ne repose pas sur la technique seule. Elle dépend de la **convergence des expertises** :
@@ -68,9 +120,10 @@ Voir [Collaboration métier-produit](/02_ecosysteme/04_collaboration) pour un gu
 
 ## Les publics concernés
 
-| Public cible | Rôle | Ressources clé |
-|---------------|-----------------|-----------------------|
-| **Administrations centrales et opérateurs** | Sécuriser et maintenir des simulateurs réglementaires | Méthode, outillage, référentiels communs |
-| **Collectivités territoriales** | Développer ou adapter des aides locales | Mutualisation et interopérabilité |
-| **Développeurs et designers publics** | Construire des parcours de droit fiables | Documentation, API et tests |
-| **Chercheurs / observateurs du droit** | Étudier la traduction des politiques publiques en code | Corpus de règles ouvertes et traçables |
+**Administrations centrales et opérateurs** : sécuriser et maintenir des simulateurs réglementaires. Cette documentation fournit méthode, outillage et référentiels communs.
+
+**Collectivités territoriales** : développer ou adapter des aides locales. L'enjeu est la mutualisation et l'interopérabilité avec les dispositifs nationaux.
+
+**Développeurs et designers publics** : construire des parcours de droit fiables. La documentation, les API et les tests sont les ressources clés.
+
+**Chercheurs et observateurs du droit** : étudier la traduction des politiques publiques en code. Le corpus de règles ouvertes et traçables constitue un matériau d'analyse.

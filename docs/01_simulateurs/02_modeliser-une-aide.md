@@ -47,6 +47,8 @@ Chaque variable doit être documentée avec :
 - son **type** (booléen, numérique, textuel, date…) ;
 - sa **source** et sa **dernière mise à jour**.
 
+> Voir le [glossaire](/99_annexe/glossaire) pour les définitions précises des termes (barème, dispositif, éligibilité, etc.).
+
 ## 3. Formaliser les conditions logiques
 
 Une fois les variables identifiées, on traduit les règles en **conditions logiques**.
@@ -148,6 +150,33 @@ Voir le [Panorama des simulateurs](/02_ecosysteme/01_panorama) pour découvrir c
 ::: tip Conseil pratique
 Commencez par modéliser les cas les plus fréquents (80% des situations) avant de traiter les cas particuliers.
 :::
+
+## Quand l'usager n'est pas éligible
+
+La modélisation ne s'arrête pas au calcul du montant. Le parcours de non-éligibilité mérite autant d'attention.
+
+### Ce qu'il faut prévoir
+
+Un parcours de non-éligibilité complet inclut :
+
+- **Motif de rejet clair** : l'usager doit comprendre *pourquoi* il n'est pas éligible, pas seulement qu'il ne l'est pas.
+- **Référence légale** : citer l'article permet de vérifier ou de contester.
+- **Aides alternatives** : rediriger vers d'autres dispositifs possibles.
+- **Contact humain** : numéro ou guichet pour les cas complexes.
+- **Voies de recours** : informer sur les possibilités de contestation.
+
+### Formulation du rejet
+
+Privilégier une formulation factuelle plutôt qu'un refus sec. À éviter : "Vous n'êtes pas éligible" ou "Demande rejetée". Préférer : "Selon vos réponses, vous ne remplissez pas les conditions de l'article X" ou "Votre situation actuelle ne correspond pas aux critères, mais d'autres aides pourraient vous concerner."
+
+### Élimination précoce vs complète
+
+Deux stratégies possibles :
+
+- **Élimination précoce** : arrêter le parcours dès qu'un critère éliminatoire est détecté. Avantage : moins de questions inutiles. Risque : l'usager ne voit pas les autres aides potentielles.
+- **Parcours complet** : poser toutes les questions, puis afficher les résultats pour chaque aide. Avantage : vue d'ensemble. Risque : parcours plus long.
+
+Le choix dépend du scope du simulateur (mono-aide vs multi-aides) et du public cible.
 
 ## Prochaines étapes
 

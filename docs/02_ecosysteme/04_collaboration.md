@@ -107,6 +107,39 @@ Quelques pratiques observées dans l'écosystème :
 - Suivi des circulaires ministérielles et notes de service des opérateurs
 - Alertes sur les projets de loi en cours d'examen
 
+## Contribuer à un modèle partagé
+
+Plusieurs simulateurs utilisent les mêmes modèles (`openfisca-france` pour les minima sociaux, `publicodes` pour les aides à la rénovation). Contribuer à ces modèles partagés bénéficie à tout l'écosystème, mais demande de comprendre leur gouvernance.
+
+### Processus de contribution
+
+Le parcours type d'une contribution :
+
+1. **Issue** : décrire le problème ou l'évolution souhaitée. Interlocuteurs : mainteneurs du repo.
+2. **Discussion** : valider l'interprétation juridique avec un expert métier et les mainteneurs.
+3. **PR** : soumettre le code avec tests et documentation. Review technique par les mainteneurs.
+4. **Review métier** : validation par un expert du domaine identifié.
+5. **Merge** : intégration et release par les mainteneurs.
+
+### Gouvernance d'`openfisca-france`
+
+Le modèle `openfisca-france` est maintenu par une communauté de contributeurs issus de plusieurs projets. Quelques points à connaître :
+
+- Les PR doivent inclure des **cas de test** validant le comportement attendu
+- Les modifications de barèmes ou plafonds nécessitent une **référence légale**
+- Les changements structurels (nouvelles entités, refactoring) sont discutés en issue avant implémentation
+- Le changelog doit être mis à jour
+
+### Quand forker vs contribuer upstream
+
+**Contribuer upstream** (au modèle source) : correction d'erreur, ajout d'un barème manquant. C'est la voie à privilégier.
+
+**Fork ou extension séparée** : extension locale (aide régionale), modification expérimentale en cours de validation.
+
+**Discussion préalable en issue** : interprétation divergente d'un texte. Ne pas coder avant d'avoir un consensus.
+
+Le fork crée une dette de maintenance : à chaque mise à jour du modèle source, il faut re-merger. Privilégier la contribution upstream quand c'est possible.
+
 ## Ce qui existe et ce qui manque
 
 Pour l'édition collaborative des règles ou le suivi des cas types, on peut utiliser GitHub ou GitLab. Mais la courbe d'apprentissage est raide pour les non-développeurs : créer une branche, ouvrir une PR, laisser un commentaire sur une ligne de code.

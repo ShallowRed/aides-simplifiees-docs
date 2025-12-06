@@ -12,11 +12,17 @@ Notre ambition est de contribuer à la transcription numérique des droits en **
 - mutualisent les efforts techniques et juridiques entre acteurs publics ;
 - renforcent la capacité de réutilisation et d’amélioration continue.
 
-## À qui s’adresse cette documentation ?
+## À qui s'adresse cette documentation ?
 
-- **Équipes produits** qui souhaitent modéliser des règles ou contribuer à un produit de simulation d’aides
-- **Experts métier** au sein d'opérateurs d'aides, de tarification solidaire, de réduction de prélèvements
-- **Partenaires institutionnels publics et privés** intéressés par la réutilisation de simulateurs d’aides ou la collaboration autour de ces outils
+**Équipe produit beta.gouv** : vous trouverez la méthode complète pour concevoir un simulateur. Commencez par le [Guide des simulateurs](/01_simulateurs/).
+
+**Développeur** : choix techniques, patterns, outils réutilisables. Allez directement à [Passer en code](/01_simulateurs/05_passer-en-code).
+
+**Expert métier ou juriste** : comment collaborer avec l'équipe tech, formaliser les règles. Voir [Modéliser une aide](/01_simulateurs/02_modeliser-une-aide).
+
+**Administration** : panorama de l'écosystème, mutualisation possible. Consultez la section [Écosystème](/02_ecosysteme/).
+
+**Partenaire externe** : réutilisation, contribution. Direction [Outils](/02_ecosysteme/02_outils).
 
 ::: tip
 Cette documentation est en constante évolution. N'hésitez pas à [contribuer](https://github.com/betagouv/aides-simplifiees-docs) pour l'améliorer !
@@ -27,6 +33,7 @@ Cette documentation est en constante évolution. N'hésitez pas à [contribuer](
 - [Découvrir aides simplifiées](/00_meta/02_aides-simplifiées)
 - [Les enjeux du Rules as Code](/00_meta/01_enjeux-rules-as-code)
 - [Guide de conception simulateurs](/01_simulateurs/)
+- [Écosystème des simulateurs](/02_ecosysteme/)
 
 ## Ressources utiles
 

@@ -19,6 +19,8 @@ Chaque ligne doit pouvoir être reliée à un article de loi, un barème ou une 
 
 **Une règle** : Une portion d'un texte réglementaire (une ou plusieurs *mesures*) que l'on peut identifier comme étant une instruction émise par les législateurs. *Exemple : règle d'éligibilité d'une personne à l'APL en cas de location en foyer*
 
+> Pour les définitions complètes, voir le [glossaire](/99_annexe/glossaire) (dispatcher, entité, foyer fiscal, etc.).
+
 ## Deux formalismes complémentaires
 
 Pour mettre en production un simulateur fonctionnel et adapté à son public, il faut souvent deux formalismes de modélisation complémentaires :
@@ -153,11 +155,11 @@ Les questions sont définies en TypeScript/JavaScript.
 
 ### Axe 2 : Localisation du calcul
 
-| Localisation | Projets | Avantages | Inconvénients |
-|--------------|---------|-----------|---------------|
-| **Client (navigateur)** | [mes-aides-reno](https://beta.gouv.fr/startups/mesaidesreno.html), [mon-entreprise](https://beta.gouv.fr/startups/mon-entreprise.html), [nosgestesclimat](https://github.com/incubateur-ademe/nosgestesclimat) | Pas de latence, réactivité | Publicodes uniquement |
-| **Serveur (proxy)** | aides-simplifiees (OpenFisca) | Multi-moteur possible | Latence réseau |
-| **Serveur (métier)** | [estime](https://beta.gouv.fr/startups/estime.html) (Java), [mes-ressources-formation](https://beta.gouv.fr/startups/estime.formation.html) | Logique backend complexe | Traçabilité difficile |
+Trois approches :
+
+- **Client (navigateur)** : le moteur s'exécute dans le navigateur. Aucune latence, réactivité maximale, mais limité à Publicodes. Exemples : [mes-aides-reno](https://beta.gouv.fr/startups/mesaidesreno.html), [mon-entreprise](https://beta.gouv.fr/startups/mon-entreprise.html), [nosgestesclimat](https://github.com/incubateur-ademe/nosgestesclimat).
+- **Serveur (proxy)** : le front envoie les réponses à un serveur qui interroge le moteur (OpenFisca ou autre). Permet le multi-moteur, mais introduit une latence réseau. Exemple : aides-simplifiees.
+- **Serveur (métier)** : la logique de calcul est entièrement côté backend, souvent en Java ou Python. Permet des règles complexes, mais rend la traçabilité plus difficile. Exemples : [estime](https://beta.gouv.fr/startups/estime.html), [mes-ressources-formation](https://beta.gouv.fr/startups/estime.formation.html).
 
 ### Axe 3 : Couche de mapping
 
@@ -165,19 +167,48 @@ Les questions sont définies en TypeScript/JavaScript.
 La couche de mapping est souvent **source de difficultés de traçabilité** entre les questions posées à l'utilisateur et les variables calculées par le moteur.
 :::
 
-| Type | Description | Traçabilité |
-|------|-------------|-------------|
-| **Aucune** | Publicodes direct | Excellente |
-| **Formatters légers** | Transformation simple des valeurs | Bonne |
-| **Builder complexe** | Dispatchers, entity managers, périodes (aides-simplifiees → OpenFisca) | Moyenne |
-| **Mappeurs multiples** | 16 classes Java (estime) | Difficile |
+Quatre niveaux de complexité :
+
+- **Aucun mapping** : les réponses alimentent directement Publicodes. Traçabilité excellente.
+- **Formatters légers** : transformation simple des valeurs (conversion de types, renommage). Traçabilité bonne.
+- **Builder complexe** : dispatchers, entity managers, gestion des périodes. C'est le cas d'aides-simplifiees vers OpenFisca. Traçabilité moyenne.
+- **Mappeurs multiples** : plusieurs classes ou modules de transformation, traçabilité difficile.
 
 ### Combinaisons observées
 
-| Projet | Définition | Calcul | Mapping |
-|--------|------------|--------|---------|------------|
-| **aides-simplifiees** | JSON multi-moteur | Client + Proxy | Builder TypeScript |
-| **[mes-aides-reno](https://beta.gouv.fr/startups/mesaidesreno.html)** | YAML priorités | Client | Direct |
+- **aides-simplifiees** : définition JSON multi-moteur, calcul client + proxy, builder TypeScript.
+- **[mes-aides-reno](https://beta.gouv.fr/startups/mesaidesreno.html)** : définition YAML (priorités), calcul client, mapping direct.
+
+## Performance et montée en charge
+
+Un simulateur lent dégrade l'expérience et augmente le taux d'abandon. En période de pic (campagne de com', rentrée, déclarations fiscales), le serveur peut saturer.
+
+### Temps de réponse cible
+
+Ordres de grandeur à viser :
+
+- **Affichage d'une question** : < 100ms (au-delà de 300ms, l'interface paraît lente).
+- **Calcul d'éligibilité simple** : < 200ms (critique au-delà de 500ms).
+- **Calcul multi-aides complet** : < 1s (critique au-delà de 3s).
+- **Appel API externe** : < 2s (critique au-delà de 5s).
+
+### Stratégies d'optimisation
+
+Selon le contexte :
+
+- **Calcul côté client** : pour Publicodes et règles légères. [mon-entreprise](https://beta.gouv.fr/startups/mon-entreprise.html) l'utilise.
+- **Requête OpenFisca idempotentes** : normaliser certaines requête (par exemple les dates de naissances), et cacher les réponses associées.
+- **Calcul incrémental** : mettre à jour uniquement ce qui change à chaque réponse. Publicodes le fait nativement.
+
+### Montée en charge
+
+Prévoir les pics d'usage :
+
+- **Campagne média** : x10 à x50 du trafic habituel en quelques heures
+- **Rentrée / Fin d'année** : pics prévisibles sur les aides étudiantes, fiscales
+- **Changement réglementaire** : afflux après annonce gouvernementale
+
+Solutions : auto-scaling, file d'attente pour les calculs lourds, mode dégradé (estimation rapide avant calcul précis).
 | **[mon-entreprise](https://beta.gouv.fr/startups/mon-entreprise.html)** | Généré depuis règles | Client | Direct |
 | **[aides-jeunes](https://beta.gouv.fr/startups/aides.jeunes.html)** | Codé (Property classes) | Serveur | Intégré au code |
 | **[estime](https://beta.gouv.fr/startups/estime.html)** | Codé (Angular Forms) | Serveur métier | 16 mappeurs Java |

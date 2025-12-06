@@ -160,6 +160,7 @@ Pour la gestion de **modèles complexes** avec plusieurs entités (individus, fo
 
 ## Voir aussi
 
+- [Glossaire](/99_annexe/glossaire) — Définitions des termes techniques (dispatcher, mapping, entité...)
 - [Outils et briques réutilisables](./02_outils) — Inventaire des packages disponibles
 - [Panorama des projets](./01_panorama) — Qui utilise quelle architecture
 - [Du modèle au schéma de questionnaire](/01_simulateurs/05_passer-en-code) — Mise en pratique
