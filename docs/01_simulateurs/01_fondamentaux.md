@@ -12,7 +12,7 @@ Toute règle doit pouvoir être expliquée à un non-juriste. Une modélisation 
 ### 2. Vérifiabilité
 Chaque condition de calcul doit être **traçable** jusqu'à sa source réglementaire. Les formules et variables doivent être documentées et testables.
 
-**Approches éprouvées** : références légales systématiques (code-du-travail, mon-entreprise, mes-aides-reno).
+**Approches éprouvées** : références légales systématiques ([code-du-travail](https://beta.gouv.fr/startups/codedutravail.html), [mon-entreprise](https://beta.gouv.fr/startups/mon-entreprise.html), [mes-aides-reno](https://beta.gouv.fr/startups/mesaidesreno.html)).
 
 ### 3. Maintenabilité
 Le simulateur doit pouvoir **évoluer au rythme du droit**. Cela suppose des modèles modulaires, versionnés et testés automatiquement.

@@ -43,11 +43,11 @@ Expose une API REST native. Courbe d'apprentissage plus raide (périodes, entit�
 
 | Package | Projet source | Domaine |
 |---------|---------------|--------|
-| `modele-social` | mon-entreprise | Cotisations, statuts, fiscalité |
-| `@socialgouv/modeles-social` | code-du-travail | 47 conventions collectives |
-| `mesaidesreno` | mes-aides-reno | Rénovation énergétique (MaPrimeRénov', etc.) |
-| `@incubateur-ademe/nosgestesclimat` | nosgestesclimat | Bilan carbone personnel |
-| `@betagouv/aides-velo` | aides-jeunes | Aides à l'achat vélo |
+| `modele-social` | [mon-entreprise](https://beta.gouv.fr/startups/mon-entreprise.html) | Cotisations, statuts, fiscalité |
+| `@socialgouv/modeles-social` | [code-du-travail](https://beta.gouv.fr/startups/codedutravail.html) | 47 conventions collectives |
+| `mesaidesreno` | [mes-aides-reno](https://beta.gouv.fr/startups/mesaidesreno.html) | Rénovation énergétique (MaPrimeRénov', etc.) |
+| `@incubateur-ademe/nosgestesclimat` | [nosgestesclimat](https://github.com/incubateur-ademe/nosgestesclimat) | Bilan carbone personnel |
+| `@betagouv/aides-velo` | [aides-jeunes](https://beta.gouv.fr/startups/aides.jeunes.html) | Aides à l'achat vélo |
 | `@shallowred/publicodes-entreprise-innovation` | aides-simplifiées | CIR, CII, statut JEI |
 
 Ces packages permettent de réutiliser des règles sans dupliquer la modélisation. Si MaPrimeRénov' évolue, une mise à jour de `mesaidesreno` suffit.
@@ -123,3 +123,5 @@ OpenFisca utilise son propre format YAML exécutable en ligne de commande :
 
 - [Patterns architecturaux](./03_patterns) — Comment combiner ces outils
 - [Panorama des projets](./01_panorama) — Qui utilise quoi
+- [Passer en code](/01_simulateurs/05_passer-en-code) — Implémenter avec OpenFisca ou Publicodes
+- [Tester et ajuster](/01_simulateurs/06_tester-ajuster) — Formats de cas types détaillés

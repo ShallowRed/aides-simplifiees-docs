@@ -20,6 +20,10 @@ flowchart LR
     style D fill:#f8d7da
 ```
 
+::: info Exemples dans l'écosystème
+Voir le [Panorama des simulateurs](/02_ecosysteme/01_panorama) pour des exemples concrets à chaque niveau de scope.
+:::
+
 | Niveau | Exemples | Nb aides | Porteurs | Validation |
 |--------|----------|----------|----------|------------|
 | **Aide unique** | Simulateur APL CAF, Prime Rénov' | 1 | 1 | Expert dédié |

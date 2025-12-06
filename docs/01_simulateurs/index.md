@@ -20,3 +20,7 @@ Cette section présente la méthode de création de simulateurs d'aides publique
 | **Designer / UX** | [Fondamentaux](01_fondamentaux.md) puis [Modéliser](02_modeliser-une-aide.md) |
 | **Développeur** | [Passer en code](05_passer-en-code.md) |
 | **Chef de projet** | [Fondamentaux](01_fondamentaux.md) puis [Scope des aides](04_scope-des-aides.md) |
+
+## Compléments
+
+Cette section décrit la **méthode**. Pour explorer les **outils et projets existants**, consultez la section [Écosystème](/02_ecosysteme/) qui présente le panorama des simulateurs publics, les patterns architecturaux et les briques réutilisables.

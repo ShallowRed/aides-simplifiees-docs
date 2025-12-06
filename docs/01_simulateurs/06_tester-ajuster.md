@@ -98,6 +98,11 @@ Format JSON traçant le flux complet formulaire → moteur → résultat :
   "metadata": {
     "validated_by": "expert_caf",
     "validated_at": "2025-01-15",
+```
+
+::: info Projets de référence
+Le projet [leximpact](https://beta.gouv.fr/startups/leximpact.html) utilise 84 cas types couvrant les 10 déciles de revenus INSEE. Voir [Collaboration métier-produit](/02_ecosysteme/04_collaboration) pour les bonnes pratiques de validation.
+:::
     "source_reference": "Dossier 2024-1234"
   },
   "survey_answers": { "age": 22, "contrat": "alternance" },

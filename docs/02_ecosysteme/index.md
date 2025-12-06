@@ -17,3 +17,7 @@ Analyse des différentes architectures pour connecter formulaires et moteurs de 
 
 ### [Collaboration métier-produit](./04_collaboration.md)
 Comment organiser la relation entre équipes techniques, experts métier et partenaires institutionnels. Un enjeu souvent sous-estimé mais déterminant pour la qualité de la modélisation réglementaire.
+
+## Compléments
+
+Cette section présente l'**écosystème existant**. Pour la **méthode de conception** d'un simulateur, consultez le [Guide des simulateurs](/01_simulateurs/) qui détaille les étapes de modélisation, d'implémentation et de maintenance.

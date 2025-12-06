@@ -1,6 +1,6 @@
 # Patterns architecturaux
 
-Comment connecter un formulaire web et un moteur de règles ? Cette question apparemment simple cache plusieurs décisions d'architecture qui impactent la maintenabilité et la traçabilité du simulateur.
+Comment connecter un formulaire web et un moteur de règles ? Cette question cache plusieurs décisions d'architecture qui impactent la maintenabilité et la traçabilité du simulateur. Cette page traite des choix à faire ; pour l'inventaire des outils disponibles, voir [Outils et briques réutilisables](./02_outils).
 
 L'analyse des projets beta.gouv révèle qu'il n'y a pas *une* architecture type mais des combinaisons de choix sur trois axes :
 
@@ -14,7 +14,7 @@ L'analyse des projets beta.gouv révèle qu'il n'y a pas *une* architecture type
 
 Les questions sont décrites dans un fichier YAML ou JSON séparé du code applicatif. Deux variantes coexistent.
 
-**mes-aides-reno** utilise un YAML comme filtre d'ordonnancement. Les règles Publicodes contiennent déjà les métadonnées des questions (label, type). Le YAML ne fait que filtrer et ordonner les `missingVariables` du moteur :
+**[mes-aides-reno](https://beta.gouv.fr/startups/mesaidesreno.html)** utilise un YAML comme filtre d'ordonnancement. Les règles Publicodes contiennent déjà les métadonnées des questions (label, type). Le YAML ne fait que filtrer et ordonner les `missingVariables` du moteur :
 
 ```yaml
 # simulationConfig.yaml
@@ -49,13 +49,13 @@ Le champ `engine` permet de router vers Publicodes ou OpenFisca. Les avantages s
 
 ### Approche 2 : Génération depuis les règles
 
-**mon-entreprise** génère l'UI automatiquement depuis les métadonnées Publicodes. Les composants `RuleInput` déterminent le type d'input selon la règle, affichent les suggestions et unités, gèrent les conditions d'applicabilité.
+**[mon-entreprise](https://beta.gouv.fr/startups/mon-entreprise.html)** génère l'UI automatiquement depuis les métadonnées Publicodes. Les composants `RuleInput` déterminent le type d'input selon la règle, affichent les suggestions et unités, gèrent les conditions d'applicabilité.
 
 L'avantage : garantie de cohérence entre les règles et l'interface. Si une règle devient inutile, la question disparaît.
 
 ### Approche 3 : Formulaires codés
 
-**aides-jeunes** définit des Property classes en TypeScript avec les transformations intégrées :
+**[aides-jeunes](https://beta.gouv.fr/startups/aides.jeunes.html)** définit des Property classes en TypeScript avec les transformations intégrées :
 
 ```typescript
 export const age: Property = {
@@ -71,7 +71,7 @@ Cette approche maximise la flexibilité du parcours utilisateur mais disperse la
 
 ### Publicodes dans le navigateur
 
-La plupart des projets Publicodes (mes-aides-reno, mon-entreprise, nosgestesclimat) exécutent le moteur directement côté client. Avantages : réactivité instantanée, pas de latence réseau, pas de backend à maintenir.
+La plupart des projets Publicodes ([mes-aides-reno](https://beta.gouv.fr/startups/mesaidesreno.html), [mon-entreprise](https://beta.gouv.fr/startups/mon-entreprise.html), [nosgestesclimat](https://github.com/incubateur-ademe/nosgestesclimat)) exécutent le moteur directement côté client. Avantages : réactivité instantanée, pas de latence réseau, pas de backend à maintenir.
 
 Inconvénient : toutes les règles sont téléchargées dans le navigateur. Si le modèle est volumineux, ça peut ralentir le chargement initial. La gestion d'entités complexes (individus, foyers) est aussi plus délicate avec Publicodes.
 
@@ -81,7 +81,7 @@ OpenFisca étant en Python, il s'exécute obligatoirement côté serveur. Deux v
 
 **Proxy simple** (aides-simplifiées) : le backend fait un relais transparent vers l'API OpenFisca. Le frontend construit la requête, le backend la transmet. Aucune logique métier dans le backend.
 
-**Backend avec logique métier** (estime) : le backend Java Spring transforme les objets métier en requêtes OpenFisca, ce qui est plus sécurisé mais plus complexe à maintenir.
+**Backend avec logique métier** ([estime](https://beta.gouv.fr/startups/estime.html)) : le backend Java Spring transforme les objets métier en requêtes OpenFisca, ce qui est plus sécurisé mais plus complexe à maintenir.
 
 ## La couche de mapping : point critique
 
@@ -140,7 +140,7 @@ Cette complexité est inévitable pour faire correspondre un formulaire flexible
 
 ## Projets sans moteur déclaratif
 
-Certains projets n'utilisent ni Publicodes ni OpenFisca. **envergo** a développé une moulinette Python spécifique aux règles environnementales. **pacoupa** fait du lookup dans une base SQLite. **impact-co2** utilise des données JSON statiques. Ces approches sont justifiées quand les règles sont trop spécifiques pour bénéficier d'un moteur générique.
+Certains projets n'utilisent ni Publicodes ni OpenFisca. **[envergo](https://beta.gouv.fr/startups/envergo.html)** a développé une moulinette Python spécifique aux règles environnementales. **[pacoupa](https://beta.gouv.fr/startups/pacoupa.html)** fait du lookup dans une base SQLite. **[impact-co2](https://beta.gouv.fr/startups/impact.co2.html)** utilise des données JSON statiques. Ces approches sont justifiées quand les règles sont trop spécifiques pour bénéficier d'un moteur générique.
 
 ## Quelques repères pour choisir
 
@@ -150,7 +150,7 @@ Si vous cherchez la **cohérence entre règles et UI**, la génération automati
 
 Si vous avez besoin de **flexibilité sur le parcours utilisateur**, une config déclarative ou des formulaires codés donnent plus de liberté.
 
-Pour la **traçabilité**, Publicodes avec mapping direct peut-être une soltion. OpenFisca demande souvent une couche de transformation plus complexe.
+Pour la **traçabilité**, Publicodes avec mapping direct est souvent le meilleur choix. OpenFisca demande une couche de transformation plus complexe.
 
 Si vous devez **supporter plusieurs moteurs**, seule l'approche aides-simplifiées (schéma déclaratif + builder adapté) permet de basculer entre Publicodes et OpenFisca.
 
@@ -160,6 +160,6 @@ Pour la gestion de **modèles complexes** avec plusieurs entités (individus, fo
 
 ## Voir aussi
 
-- [Panorama des projets](./01_panorama.md)
-- [Outils réutilisables](./02_outils.md)
-- [Du modèle au schéma de questionnaire](/01_simulateurs/05_passer-en-code.html#du-modele-au-schema-de-questionnaire)
+- [Outils et briques réutilisables](./02_outils) — Inventaire des packages disponibles
+- [Panorama des projets](./01_panorama) — Qui utilise quelle architecture
+- [Du modèle au schéma de questionnaire](/01_simulateurs/05_passer-en-code) — Mise en pratique

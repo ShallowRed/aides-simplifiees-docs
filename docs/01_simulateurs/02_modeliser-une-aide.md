@@ -103,6 +103,10 @@ Il faut rransformer le langage juridique en questions compréhensibles :
 Consultez les [templates de diagrammes](/99_annexe/ressources-visuelles) pour réutiliser des modèles Mermaid éprouvés (arbres de décision, graphes de dépendances, timelines).
 :::
 
+::: info Projets de référence
+Voir le [Panorama des simulateurs](/02_ecosysteme/01_panorama) pour découvrir comment d'autres projets ont modélisé leurs aides.
+:::
+
 ## Exemple pratique
 
 ### Aide au logement étudiante

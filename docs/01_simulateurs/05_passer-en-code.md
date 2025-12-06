@@ -54,6 +54,10 @@ Le moteur détermine la manière dont le modèle est traduit en code. Deux moteu
 
 > Le choix du moteur dépend du niveau de complexité du dispositif, de la durée de vie du simulateur et du public cible.
 
+::: info Outils disponibles
+Voir [Outils et briques réutilisables](/02_ecosysteme/02_outils) pour l'inventaire des packages NPM, des moteurs de règles et des composants de formulaire.
+:::
+
 ## Exemple pratique : Mobili-jeunes
 
 Prenons l'exemple de l'aide Mobili-jeunes et voyons comment elle se décline selon les moteurs.
@@ -132,28 +136,28 @@ Une fois le modèle exécuté, il faut le rendre interactif. L'architecture qui 
 Le formulaire est décrit dans un fichier de configuration séparé du code.
 
 **Variantes** :
-- **YAML comme filtre d'ordonnancement** (mes-aides-reno) : le YAML référence des règles Publicodes, les questions sont définies dans le moteur
+- **YAML comme filtre d'ordonnancement** ([mes-aides-reno](https://beta.gouv.fr/startups/mesaidesreno.html)) : le YAML référence des règles Publicodes, les questions sont définies dans le moteur
 - **JSON comme schéma complet** (aides-simplifiees) : le JSON décrit intégralement le formulaire, indépendamment du moteur
 
 #### Formulaire généré depuis les règles
 
 L'UI est dérivée automatiquement des métadonnées Publicodes.
 
-**Exemples** : mon-entreprise (RuleInput), @publicodes/forms
+**Exemples** : [mon-entreprise](https://beta.gouv.fr/startups/mon-entreprise.html) (RuleInput), @publicodes/forms
 
 #### Formulaires codés
 
 Les questions sont définies en TypeScript/JavaScript.
 
-**Exemples** : aides-jeunes (Property classes), a-just (Angular Forms)
+**Exemples** : [aides-jeunes](https://beta.gouv.fr/startups/aides.jeunes.html) (Property classes), [a-just](https://beta.gouv.fr/startups/a-just.html) (Angular Forms)
 
 ### Axe 2 : Localisation du calcul
 
 | Localisation | Projets | Avantages | Inconvénients |
 |--------------|---------|-----------|---------------|
-| **Client (navigateur)** | mes-aides-reno, mon-entreprise, nosgestesclimat | Pas de latence, réactivité | Publicodes uniquement |
+| **Client (navigateur)** | [mes-aides-reno](https://beta.gouv.fr/startups/mesaidesreno.html), [mon-entreprise](https://beta.gouv.fr/startups/mon-entreprise.html), [nosgestesclimat](https://github.com/incubateur-ademe/nosgestesclimat) | Pas de latence, réactivité | Publicodes uniquement |
 | **Serveur (proxy)** | aides-simplifiees (OpenFisca) | Multi-moteur possible | Latence réseau |
-| **Serveur (métier)** | estime (Java), mes-ressources-formation | Logique backend complexe | Traçabilité difficile |
+| **Serveur (métier)** | [estime](https://beta.gouv.fr/startups/estime.html) (Java), [mes-ressources-formation](https://beta.gouv.fr/startups/estime.formation.html) | Logique backend complexe | Traçabilité difficile |
 
 ### Axe 3 : Couche de mapping
 
@@ -173,10 +177,10 @@ La couche de mapping est souvent **source de difficultés de traçabilité** ent
 | Projet | Définition | Calcul | Mapping |
 |--------|------------|--------|---------|------------|
 | **aides-simplifiees** | JSON multi-moteur | Client + Proxy | Builder TypeScript |
-| **mes-aides-reno** | YAML priorités | Client | Direct |
-| **mon-entreprise** | Généré depuis règles | Client | Direct |
-| **aides-jeunes** | Codé (Property classes) | Serveur | Intégré au code |
-| **estime** | Codé (Angular Forms) | Serveur métier | 16 mappeurs Java |
+| **[mes-aides-reno](https://beta.gouv.fr/startups/mesaidesreno.html)** | YAML priorités | Client | Direct |
+| **[mon-entreprise](https://beta.gouv.fr/startups/mon-entreprise.html)** | Généré depuis règles | Client | Direct |
+| **[aides-jeunes](https://beta.gouv.fr/startups/aides.jeunes.html)** | Codé (Property classes) | Serveur | Intégré au code |
+| **[estime](https://beta.gouv.fr/startups/estime.html)** | Codé (Angular Forms) | Serveur métier | 16 mappeurs Java |
 
 ### Aide au choix
 

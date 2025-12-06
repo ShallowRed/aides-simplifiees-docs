@@ -73,4 +73,6 @@ Maintenir, c'est :
 ## Pour approfondir
 
 - [Les fondamentaux de la fabrique de simulateurs](/01_simulateurs/01_fondamentaux)
-- [Consulter le glossaire](/99_annexe/glossaire).
+- [Collaboration métier-produit](/02_ecosysteme/04_collaboration) — Organisation de la veille réglementaire
+- [Panorama des simulateurs](/02_ecosysteme/01_panorama) — Comment les autres projets gèrent la maintenance
+- [Consulter le glossaire](/99_annexe/glossaire)

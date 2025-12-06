@@ -81,6 +81,10 @@ Des langages comme **Mermaid**, en revanche, permet un versionnage textuel et un
 - aujurd'hui, on recommande de maintenir une documentation à jour avec des diagrammes Mermaid intégrés.
 - L'ia peut aider à garder ces artefacts synchronisés.
 
+::: info Projets multi-aides existants
+Voir le [Panorama des simulateurs](/02_ecosysteme/01_panorama) pour des exemples concrets : [aides-jeunes](https://beta.gouv.fr/startups/aides.jeunes.html) (500+ aides), [mes-aides-reno](https://beta.gouv.fr/startups/mesaidesreno.html) (bouquet rénovation).
+:::
+
 ### Arbres logiques
 
 Les arbres de décision sont adaptés aux aides simples ou bien superposables.
