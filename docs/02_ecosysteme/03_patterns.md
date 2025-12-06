@@ -38,8 +38,11 @@ flowchart TB
 | **mes-aides-reno** | YAML priorités | Client | Direct | Publicodes |
 | **mon-entreprise** | Généré depuis règles | Client | Direct | Publicodes |
 | **nosgestesclimat** | YAML ordre | Client | Direct | Publicodes |
-| **aides-jeunes** | Codé (Property classes) | Serveur (proxy) | Intégré au code | OpenFisca |
+| **code-du-travail-numerique** | Généré depuis règles | Client | Direct | Publicodes |
+| **aides-jeunes** | Codé (Property classes) | Hybride (serveur + client) | Intégré au code | OpenFisca + JavaScript |
 | **estime** | Codé (Angular Forms) | Serveur (backend métier) | 16 mappeurs Java | OpenFisca |
+| **leximpact** | Données JSON | Serveur (API) | Builder JavaScript | OpenFisca |
+| **impact-co2** | Hybride (JSON + règles) | Client | Direct | Publicodes + données statiques |
 
 ---
 
@@ -232,21 +235,6 @@ flowchart TB
     DP --> OF
 ```
 
-#### Composants du builder
-
-| Fichier | Rôle |
-|---------|------|
-| `mapping_resolver.ts` | Résout une clé de réponse vers son mapping OpenFisca |
-| `variables.ts` | Table de correspondance clé formulaire → variable OpenFisca |
-| `questions_variables.ts` | Variables à calculer (résultats) |
-| `dispatchers.ts` | Transforme une valeur en plusieurs variables (ex: "alternance" → `alternant: true`) |
-| `entity_manager.ts` | Classe abstraite pour gérer les entités OpenFisca |
-| `individu_manager.ts` | Gère l'entité `individus` |
-| `menage_manager.ts` | Gère l'entité `menages` |
-| `famille_manager.ts` | Gère l'entité `familles` |
-| `foyer_fiscal_manager.ts` | Gère l'entité `foyers_fiscaux` |
-| `date_periods.ts` | Calcule les périodes (MONTH, YEAR, YEAR_ROLLING, ETERNITY) |
-
 #### Exemple de transformation complexe
 
 ```typescript
@@ -287,8 +275,11 @@ Certains projets n'utilisent pas de moteur de règles générique :
 |--------|----------|---------------|
 | **envergo** | Moulinette Python (matrices, evaluators) | Règles environnementales très spécifiques |
 | **pacoupa** | Lookup SQLite + validation Zod | Recommandation basée sur base de données |
-| **impact-co2** | Données JSON + React state | Données statiques, peu de calcul |
 | **a-just** | Algorithmes JavaScript custom | Calculs de charge tribunaux très spécifiques |
+
+::: info Note sur impact-co2
+**impact-co2** utilise en réalité une approche hybride : des données statiques (Base Empreinte ADEME, Agribalyse) combinées avec Publicodes (`publicodes 1.4.0` + `@incubateur-ademe/publicodes-acv-numerique`) pour certains calculs d'ACV numérique.
+:::
 
 ---
 
