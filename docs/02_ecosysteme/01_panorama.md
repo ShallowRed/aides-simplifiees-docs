@@ -1,4 +1,3 @@
-```markdown
 # Panorama des simulateurs publics
 
 Une vingtaine de simulateurs d'aides et de droits sont développés dans la sphère publique française, principalement au sein de beta.gouv.fr et de ses partenaires. Ils couvrent des domaines variés : prestations sociales, fiscalité, transition écologique, droit du travail.
