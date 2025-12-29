@@ -5,14 +5,24 @@ Pour concrétiser les horizons explorés dans cette section, plusieurs chantiers
 ## 1. La standardisation des preuves (fixtures)
 Si nous voulons mutualiser les règles, nous devons mutualiser leur validation.
 *   **Question d'exploration** : Comment décrire une situation usager complexe (historique, foyer) dans un format JSON/YAML agnostique du moteur de calcul ?
+*   **Pistes** : S'inspirer du **BDD (Behavior-Driven Development)** et du langage **Gherkin** pour écrire des spécifications exécutables ("Given/When/Then") ; Créer une "banque centrale de cas de tests" certifiant la conformité nationale.
 
 ## 2. La dette de représentation
-Le fossé se creuse souvent entre ce que le système fait réellement (le code) et ce que l'organisation croit qu'il fait (la documentation, les schémas).
-*   **Question d'exploration** : Comment créer des représentations "compilables" (diagrammes, graphes) qui soient directement générées depuis le code des règles, garantissant un alignement parfait entre la documentation et l'exécution ?
+Le fossé se creuse souvent entre ce que le système fait réellement (le code) et ce que l'organisation croit qu'il fait (la documentation, les schémas). C'est ce que Cyrille Martraire appelle la "Documentation Morte".
+*   **Question d'exploration** : Comment créer de la **"Living Documentation"** : des représentations (diagrammes, graphes) générées directement depuis le code, garantissant qu'elles sont toujours à jour ("Evergreen") ?
+*   **Pistes** :
+    *   **Architecture as Code** : Traiter les diagrammes comme du code (versionnés, revus, automatisés).
+    *   **C4 Model** : Adopter ce standard hiérarchique pour cartographier le système à différents niveaux de zoom :
+        *   **C1 (Context)** : Le système dans son écosystème (utilisateurs, partenaires).
+        *   **C2 (Containers)** : Les applications et bases de données (unités de déploiement).
+        *   **C3 (Components)** : L'organisation interne des briques logicielles.
+    *   **Outillage** : Utiliser **MermaidJS** pour des besoins simples (intégré au Markdown) ou **Structurizr** pour une approche "Diagrams as Code 2.0" (modèle unique, vues multiples).
+    *   **Gouvernance fédérée** : Placer les diagrammes au plus près du code (dans les dépôts applicatifs) pour favoriser leur maintenance, tout en les agrégeant automatiquement dans un portail central pour la vision d'ensemble.
 
 ## 3. Le design de la traduction
-Traduire le droit en code n'est pas une simple transcription, c'est un acte de design qui implique des choix d'interprétation. Comme le souligne Mireille Hildebrandt ("Law for Computer Scientists"), il existe une friction irréductible entre l'ambiguïté féconde du droit et la rigidité binaire du code.
-*   **Question d'exploration** : Quels artefacts (registres d'interprétation, glossaires partagés) permettent de documenter explicitement les arbitrages faits lors de la modélisation ?
+Traduire le droit en code n'est pas une simple transcription, c'est un acte de design qui implique des choix d'interprétation.
+*   **Question d'exploration** : Quels artefacts permettent de documenter explicitement les arbitrages faits lors de la modélisation ?
+*   **Pistes** : Utiliser la **"Knowledge Augmentation"** (annotations dans le code type `@Glossary`) pour générer automatiquement des glossaires métier partagés ; Formaliser le rôle de "Designer de règles" comme tiers de confiance.
 
 ## 4. L'IA comme "colle" documentaire
 Plutôt que de générer du code, l'IA pourrait servir à maintenir la cohérence entre des objets hétérogènes.

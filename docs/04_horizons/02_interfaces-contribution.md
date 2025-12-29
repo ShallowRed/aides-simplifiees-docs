@@ -84,10 +84,10 @@ Pour construire ces interfaces du futur, nous proposons trois principes de desig
 L'interface (visuelle, tabulaire ou conversationnelle) n'est qu'une **vue** sur le code. Elle ne doit pas enfermer la règle dans un format propriétaire. Le fichier source (ex: Publicodes) doit rester lisible et éditable manuellement si besoin.
 
 ### 2. La validation par le test (Test-Driven Regulation)
-La meilleure façon pour un expert métier de contribuer n'est parfois pas d'écrire la règle, mais d'écrire le **test**.
+La meilleure façon pour un expert métier de contribuer n'est parfois pas d'écrire la règle, mais d'écrire le **test**. C'est le principe du **Behavior-Driven Development (BDD)**.
 *   *L'expert dit* : "Dans telle situation (revenu X, situation Y), l'usager doit toucher Z euros."
 *   *Le développeur* : Écrit la règle qui satisfait ce test.
-L'interface de contribution doit donc être avant tout une interface de définition de cas-types (fixtures).
+L'interface de contribution doit donc être avant tout une interface de définition de cas-types (fixtures), potentiellement utilisant la syntaxe **Gherkin** ("Given/When/Then") pour formaliser ces attentes.
 
 ### 3. La traçabilité radicale
 Chaque règle modifiée via une interface simplifiée doit garder le lien avec sa source (l'article de loi, la délibération). L'interface doit forcer la citation de la source avant d'accepter une modification.

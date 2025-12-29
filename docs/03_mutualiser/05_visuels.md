@@ -193,10 +193,11 @@ flowchart TD
     R2 -.->|testé par| C1
 ```
 
-## Stratégie : Représentations compilables vs manuelles
 
-Un pratique classique est de maintenir ces diagrammes manuellement (Figma, PowerPoint). Cela présente des avantages en flexibilité, mais ils deviennent obsolètes dès la première modification du code.
+## Inspiration : La "Living Documentation"
 
-Nous pensons que l'objectif est de tendre vers des **représentations compilables**, générées automatiquement à partir du code ou de la configuration.
+Une pratique classique est de maintenir ces diagrammes manuellement (Figma, PowerPoint). Cela présente des avantages en flexibilité, mais ils risquent de devenir obsolètes dès la première modification du code.
 
-**Principe directeur** : La règle calculable est le noyau. Tout le reste (interfaces, diagrammes, documentation) devrait en être une projection.
+Une piste inspirante est de tendre vers la **"Living Documentation"** : des représentations toujours à jour ("Evergreen"), générées automatiquement à partir du code ou de la configuration.
+
+**Principe directeur** : La règle calculable est le noyau. Tout le reste (interfaces, diagrammes, documentation) gagne à en être une projection.

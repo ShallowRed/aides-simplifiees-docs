@@ -22,4 +22,10 @@ Chaque évolution réglementaire doit suivre un protocole strict pour éviter le
 
 Au fil des évolutions, un risque insidieux guette les projets : la **dette de représentation**. C'est le décalage progressif entre la réalité du code (qui exécute la règle à jour) et sa documentation (maquettes, schémas, spécifications) qui n'a pas été mise à jour.
 
-Ce décalage est dangereux car il fausse les décisions : les experts valident des règles sur des documents obsolètes, croyant valider le système réel. Pour la combattre, il faut privilégier les **représentations compilables** (diagrammes générés depuis le code) et considérer le code du modèle comme la seule source de vérité fiable. Toute documentation externe doit être une projection de ce modèle, idéalement générée automatiquement.
+Ce décalage est dangereux car il fausse les décisions : les experts valident des règles sur des documents obsolètes, croyant valider le système réel. Pour la combattre, une stratégie inspirante est celle de la **"Living Documentation"** :
+
+1.  **Single Source of Truth** : Le code du modèle est la seule source de vérité.
+2.  **Evergreen Documentation** : Toute documentation externe gagne à être une projection de ce modèle, générée automatiquement (diagrammes de graphes, arbres de décision, documentation API).
+3.  **Architecture as Code** : Les schémas d'architecture eux-mêmes peuvent être décrits textuellement (C4 Model, Mermaid) et versionnés avec le code, pour évoluer au même rythme.
+
+Toute documentation statique (Word, PDF, Slide) court le risque de devenir une dette technique si elle n'est pas régulièrement synchronisée.
