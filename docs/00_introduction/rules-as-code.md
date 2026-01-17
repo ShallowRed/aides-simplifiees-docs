@@ -2,7 +2,7 @@
 
 Le **Rules as Code** consiste à représenter les règles juridiques sous une forme formelle et exécutable, tout en préservant leur lisibilité. L'objectif : créer un "jumeau numérique" de la réglementation, sur lequel on peut simuler des situations, vérifier la cohérence des politiques, et produire des services.
 
-Ce n'est pas "digitaliser" la réglementation, mais la rendre opérable : lisible par les humains, exécutable par les machines, gouvernable collectivement.
+Il s'agit de rendre la réglementaiton opérable : lisible par les humains, exécutable par les machines, gouvernable collectivement.
 
 ## Le problème
 

@@ -20,7 +20,7 @@ Le fossé se creuse souvent entre ce que le système fait réellement (le code) 
     *   **Gouvernance fédérée** : Placer les diagrammes au plus près du code (dans les dépôts applicatifs) pour favoriser leur maintenance, tout en les agrégeant automatiquement dans un portail central pour la vision d'ensemble.
 
 ## 3. Le design de la traduction
-Traduire le droit en code n'est pas une simple transcription, c'est un acte de design qui implique des choix d'interprétation.
+Traduire le droit en code est un acte de conception qui implique des choix d'interprétation.
 *   **Question d'exploration** : Quels artefacts permettent de documenter explicitement les arbitrages faits lors de la modélisation ?
 *   **Pistes** : Utiliser la **"Knowledge Augmentation"** (annotations dans le code type `@Glossary`) pour générer automatiquement des glossaires métier partagés ; Formaliser le rôle de "Designer de règles" comme tiers de confiance.
 

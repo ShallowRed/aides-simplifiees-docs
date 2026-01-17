@@ -15,7 +15,7 @@ L'usage de FranceConnect et de l'API Particulier offre un gain d'ergonomie majeu
 
 ## Accessibilité et inclusion
 
-L'accessibilité (RGAA) n'est pas une option mais une obligation légale pour tout service public numérique. Les simulateurs présentent des défis spécifiques en la matière, notamment les formulaires dynamiques où l'apparition de nouvelles questions peut désorienter les lecteurs d'écran. L'usage de régions `aria-live` et une gestion rigoureuse du focus sont indispensables.
+L'accessibilité (RGAA) est une obligation légale pour tout service public numérique. Les simulateurs présentent des défis spécifiques en la matière, notamment les formulaires dynamiques où l'apparition de nouvelles questions peut désorienter les lecteurs d'écran. L'usage de régions `aria-live` et une gestion rigoureuse du focus sont indispensables.
 
 Au-delà de l'accessibilité technique, l'inclusion passe par la clarté du langage. Une question trop précise ("Quel est votre RFR N-2 ?") améliore la justesse du calcul mais peut provoquer l'abandon par incompréhension ou méfiance. La transparence pédagogique, expliquer pourquoi une donnée est demandée et comment elle influence le résultat, est le meilleur levier pour instaurer la confiance.
 

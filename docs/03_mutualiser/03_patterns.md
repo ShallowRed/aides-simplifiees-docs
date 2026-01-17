@@ -1,6 +1,6 @@
 # Patterns architecturaux
 
-Connecter un formulaire utilisateur à un moteur de règles n'est pas une simple opération de câblage ; c'est un choix d'architecture qui détermine la flexibilité du parcours, la maintenabilité du code et la traçabilité juridique des calculs. L'analyse des projets existants révèle trois tensions fondamentales qu'il convient d'arbitrer.
+Connecter un formulaire utilisateur à un moteur de règles est un choix d'architecture qui détermine la flexibilité du parcours, la maintenabilité du code et la traçabilité juridique des calculs. L'analyse des projets existants révèle trois tensions fondamentales qu'il convient d'arbitrer.
 
 ## Tension 1 : La source de vérité de l'interface
 
